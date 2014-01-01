@@ -1,0 +1,14 @@
+footer#page_foot
+  .container
+    section.col-md-4
+
+    section.col-md-4
+      h3 My Sites
+
+    section.col-md-4
+      h3 Blog Posts
+      ol
+        - blog.articles[0...10].each do |article|
+          li
+            = link_to "#{article.title} <span>#{article.date.strftime('%b %e')}</span></li>", article
+
