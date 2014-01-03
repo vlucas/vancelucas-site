@@ -1,7 +1,7 @@
 require 'redcarpet'
 set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true, :smartypants => true
-activate :syntax, :line_numbers => true
+activate :syntax, :line_numbers => false
 
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
@@ -9,13 +9,17 @@ set :images_dir, 'images'
 
 Time.zone = "UTC"
 
+# Pages
+page "/", :layout => "home"
+
+# Blog
 activate :blog do |blog|
   blog.prefix = "blog"
-  blog.permalink = ":year/:month/:day/:title.html"
+  blog.permalink = ":title.html"
   # blog.sources = ":year-:month-:day-:title.html"
   blog.taglink = "tags/:tag.html"
-  # blog.layout = "layout"
-  # blog.summary_separator = /(READMORE)/
+  blog.layout = "post"
+  blog.summary_separator = /(READMORE)/
   # blog.summary_length = 250
   # blog.year_link = ":year.html"
   # blog.month_link = ":year/:month.html"

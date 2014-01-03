@@ -1,0 +1,8 @@
+- wrap_layout :base do
+  = partial "shared/header"
+  .container.main
+    .col-md-10.col-md-offset-1.col-sm-12.col-lg-10
+      h1= current_page.title
+      = yield
+  = partial "shared/footer"
+

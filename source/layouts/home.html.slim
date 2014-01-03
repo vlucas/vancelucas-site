@@ -1,0 +1,9 @@
+- wrap_layout :base do
+  = partial "shared/header"
+  .home_header
+    .overlay
+      h1= "Hi, my name is Vance Lucas, and I &hearts; the web"
+      p.lead= "Web &amp; Mobile Developer, Entreprenuer, Co-Founder of Brightbit"
+  .container.main= yield
+  = partial "shared/footer"
+

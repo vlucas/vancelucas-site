@@ -1,4 +1,54 @@
 @import 'bootstrap'
+@import 'code'
 
+body
+  margin: 0
+  padding: 0
+
+mark
+  background-color: lightyellow
+  padding: 3px
+
+// Site styles
+.main
+  font-size: 1.2em
+
+// Homepage
+.home_header
+  margin-top: -22px
+  width: 100%
+  height: 600px
+  background-color: #222
+  background-image: image-url('okc-header.jpg')
+  background-repeat: no-repeat
+  background-attachment: fixed
+  background-size: cover
+  background-position: 50% 0
+  .overlay
+    height: 100%
+    width: 100%
+    background-color: #222
+    opacity: 0.9
+    text-align: center
+    padding-top: 15%
+    color: #fff
+  .lead
+    color: #fff
+
+.index
+  .main
+    text-align: center
+    padding-top: 4em
+
+// blog styles
+.blog
+  h1
+    margin: 1.5em 0
+  h2, h3, h4, h5, h6, p
+    margin: 1.3em 0
+
+// footer
 #page_foot
   background-color: #eee
+  margin-top: 3em
+
