@@ -1,0 +1,109 @@
+<!DOCTYPE html><html><head><title>Easier Titanium XHR and AJAX Requests • Vance Lucas</title><link href="../../stylesheets/application.css?1388872757" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_easier-titanium-xhr-and-ajax-requests blog_easier-titanium-xhr-and-ajax-requests_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>Easier Titanium XHR and AJAX Requests</h1><p>One question I see a lot on the
+<a href="http://developer.appcelerator.com/questions">Appcelerator Titanium Developer Q&amp;A</a> is how to perform AJAX requests and/or work with APIs, etc. There is a built-in way to do this with the
+<a href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.Network.HTTPClient-object.html">Ti.Network.HTTPClient</a> module that is pretty easy, but it does have a few drawbacks and &ldquo;gotchas&rdquo;, like executing the &ldquo;success&rdquo; event for ANY returned status code - even 500 errors. Since working with APIs is so common with mobile apps, I made a wrapper function modeled after
+<a href="http://api.jquery.com/jQuery.ajax/">jQuery&rsquo;s $.ajax method</a> that I use in all my apps. It shortens the syntax quite a bit and is much more familiar to those who are used to using jQuery.</p>
+
+<p>The usage looks like this:</p>
+<pre class="highlight javascript"><span class="c1">// Geocode input text location
+</span><span class="nx">app</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">ajax</span><span class="p">({</span>
+    <span class="na">url</span><span class="p">:</span> <span class="s1">&#39;http://maps.googleapis.com/maps/api/geocode/json?address=&#39;</span> <span class="o">+</span> <span class="nx">txtLocation</span><span class="p">.</span><span class="nx">value</span> <span class="o">+</span><span class="s1">&#39;&amp;region=us&amp;sensor=true&#39;</span><span class="p">,</span>
+    <span class="na">method</span><span class="p">:</span> <span class="s1">&#39;get&#39;</span><span class="p">,</span>
+    <span class="na">success</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">xhr</span><span class="p">.</span><span class="nx">responseText</span><span class="p">);</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+
+        <span class="k">if</span><span class="p">(</span><span class="s2">&quot;OK&quot;</span> <span class="o">==</span> <span class="nx">data</span><span class="p">.</span><span class="nx">status</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">res</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">results</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+            <span class="k">if</span><span class="p">(</span><span class="nx">res</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;Location: &quot;</span> <span class="o">+</span> <span class="nx">res</span><span class="p">.</span><span class="nx">geometry</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">lat</span> <span class="o">+</span> <span class="s1">&#39;, &#39;</span> <span class="o">+</span> <span class="nx">res</span><span class="p">.</span><span class="nx">geometry</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">lng</span><span class="p">);</span>
+            <span class="p">}</span>
+            <span class="c1">// Do something with coordinates
+</span>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createAlertDialog</span><span class="p">({</span>
+                <span class="na">title</span><span class="p">:</span> <span class="s1">&#39;Geocode Error&#39;</span><span class="p">,</span>
+                <span class="na">message</span><span class="p">:</span> <span class="s1">&#39;Unable to geocode location input&#39;</span>
+            <span class="p">}).</span><span class="nx">show</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="na">error</span><span class="p">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">xhr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">UI</span><span class="p">.</span><span class="nx">createAlertDialog</span><span class="p">({</span>
+            <span class="na">title</span><span class="p">:</span> <span class="s1">&#39;Geocode Error&#39;</span><span class="p">,</span>
+            <span class="na">message</span><span class="p">:</span> <span class="s1">&#39;No location matches found. Please try something else.&#39;</span>
+        <span class="p">}).</span><span class="nx">show</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">});</span>
+</pre>
+<p>And the actual code for the utility function:</p>
+<pre class="highlight text">/**
+ * Application Utilities and Helper Methods
+ **/
+(function(_app) {
+    _app.utils = {};
+
+    // AJAX method that mimmicks jQuery&#39;s
+    _app.utils.ajax = function(_props) {
+
+        // Merge with default props
+        var o = _app.combine({
+            method: &#39;GET&#39;,
+            url: null,
+            data: false,
+            contentType: &#39;application/json&#39;,
+
+            // Ti API Options
+            async: true,
+            autoEncodeUrl: true,
+
+            // Callbacks
+            success: null,
+            error: null,
+            beforeSend: null,
+            complete: null
+        }, _props);
+
+        Ti.API.info(&quot;XHR &quot; + o.method + &quot;: \n&#39;&quot; + o.url + &quot;&#39;...&quot;);
+        var xhr = Ti.Network.createHTTPClient({
+            autoEncodeUrl: o.autoEncodeUrl,
+            async: o.async
+        });
+
+        // URL
+        xhr.open(o.method, o.url);
+
+        // Request header
+        xhr.setRequestHeader(&#39;Content-Type&#39;, o.contentType);
+
+        if(o.beforeSend) {
+            o.beforeSend(xhr);
+        }
+
+        // Errors
+        xhr.setTimeout(10000);
+        xhr.onerror = function() {
+            Ti.API.info(&#39;XHR &quot;onerror&quot; [&#39;+this.status+&#39;]: &#39;+this.responseText+&#39;&#39;);
+            if(null !== o.error) {
+                return o.error(this);
+            }
+        };
+
+        // Success
+        xhr.onload = function() {
+            // Log
+            Ti.API.info(&#39;XHR &quot;onload&quot; [&#39;+this.status+&#39;]: &#39;+this.responseText+&#39;&#39;);
+
+            // Success = 1xx or 2xx (3xx = redirect)
+            if(this.status
+</pre>
+<p>The particular organization of this utilities file assumes that your app structure follows the organization model shown in the
+<a href="https://github.com/appcelerator-titans/tweetanium">Tweetanium example app</a>
+(using the &lsquo;app&rsquo; namespace within a single window context), but is easy to
+adapt if you are not.</p>
+<div class="small">Posted on Sep 15, 2011</div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="../../images/VanceLucas-March09.jpg?1388872753" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="../../images/icons/GitHub.svg?1388872753" /></a></li><li><a href="https://twitter.com/vlucas"><img src="../../images/icons/Twitter.svg?1388872753" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="../../images/icons/LinkedIn.svg?1388872753" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/new-year-new-blog/">New Year, New Blog</a><a class="list-group-item" href="/blog/valitron-the-simple-validation-library-that-doesnt-suck/">Valitron: The Simple Validation Library That Doesn't Suck</a><a class="list-group-item" href="/blog/introducing-bullet-the-functional-php-micro-framework/">Introducing Bullet: The Functional PHP Micro-Framework</a><a class="list-group-item" href="/blog/handling-exceptions-in-gearman-tasks-even-background-ones/">Handling Exceptions in Gearman Tasks (Even Background Ones)</a><a class="list-group-item" href="/blog/confoo-2012-montreal/">Confoo 2012 Montreal</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-359731-12']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>

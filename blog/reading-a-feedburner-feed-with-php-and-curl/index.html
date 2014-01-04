@@ -1,0 +1,53 @@
+<!DOCTYPE html><html><head><title>Reading a FeedBurner Feed with PHP and cURL • Vance Lucas</title><link href="../../stylesheets/application.css?1388872757" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_reading-a-feedburner-feed-with-php-and-curl blog_reading-a-feedburner-feed-with-php-and-curl_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>Reading a FeedBurner Feed with PHP and cURL</h1><p>Just thought I&rsquo;d post a quick HOW-TO article on how to get the contents of a FeedBurner feed with PHP, because it&rsquo;s something I was attempting to do last night that really annoyed me.  Since I started this blog here, I decided to narrow another website of mine - 
+<a href="http://www.czaries.net">czaries.net</a> - to just distribute some PHP scripts I&rsquo;ve made and take down the news that was there.  I replaced it with a short paragraph explanation and a feed of the recent blog posts here.  The problem was, the feed wasn&rsquo;t displaying, and I couldn&rsquo;t figure out why.</p>
+
+<p>more
+I visited the feed URL in my browser, and viola - the XML feed content was there.  I double-checked the URL in PHP, and it was the same, but I was getting a 404 error instead.  Odd.  Turns out, viewing a FeedBurner feed requires the presence of a USER-AGENT string (The string that identifies the operating system, browser, and language of your computer).  So the solution is to use 
+<a href="http://us2.php.net/manual/en/ref.curl.php">PHP&rsquo;s cURL library</a> to send a USER-AGENT string along with the request, like so:</p>
+
+<p>// URL location of your feed
+$feedUrl = &ldquo;http://feeds.feedburner.com/VanceLucas?format=xml&rdquo;;
+$feedContent = &ldquo;&rdquo;;</p>
+
+<p>// Fetch feed from URL
+$curl = curl<em>init();
+curl</em>setopt($curl, CURLOPT<em>URL, $feedUrl);
+curl</em>setopt($curl, CURLOPT<em>TIMEOUT, 3);
+curl</em>setopt($curl, CURLOPT<em>FOLLOWLOCATION, true);
+curl</em>setopt($curl, CURLOPT<em>RETURNTRANSFER, true);
+curl</em>setopt($curl, CURLOPT_HEADER, false);</p>
+
+<p>// FeedBurner requires a proper USER-AGENT&hellip;
+curl<em>setopt($curl, CURL</em>HTTP<em>VERSION</em>1<em>1, true);
+curl</em>setopt($curl, CURLOPT<em>ENCODING, &ldquo;gzip, deflate&rdquo;);
+curl</em>setopt($curl, CURLOPT_USERAGENT, &ldquo;Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3&rdquo;);</p>
+
+<p>$feedContent = curl<em>exec($curl);
+curl</em>close($curl);</p>
+
+<p>// Did we get feed content?
+if($feedContent &amp;&amp; !empty($feedContent)):
+    $feedXml = @simplexml<em>load</em>string($feedContent);
+    if($feedXml):
+?</p>
+
+<h2>From The Blog&hellip;foreach($feedXml-channel->item as $item): ?&gt;</h2>
+
+<p>*<a href="?php%20echo%20$item-&amp;gt;link;%20?">echo $item-title; ?&gt;</a></p>
+
+<p>endforeach; ?</p>
+
+<p>endif; ?</p>
+
+<p>endif; ?
+The code above gets the feed contents and then displays a nice summary of all the headlines in an unordered list with links using 
+<a href="http://us2.php.net/manual/en/ref.simplexml.php">SimpleXML</a>.  Feel free to replace the USER-AGENT string with your own, or simply leave it as-is.  The current one is for Windows XP and Firefox 3.03.  You can get your own USER-AGENT string from a phpinfo() call towards the bottom of the page in the environment variables section.</p>
+<div class="small">Posted on Oct  1, 2008</div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="../../images/VanceLucas-March09.jpg?1388872753" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="../../images/icons/GitHub.svg?1388872753" /></a></li><li><a href="https://twitter.com/vlucas"><img src="../../images/icons/Twitter.svg?1388872753" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="../../images/icons/LinkedIn.svg?1388872753" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/new-year-new-blog/">New Year, New Blog</a><a class="list-group-item" href="/blog/valitron-the-simple-validation-library-that-doesnt-suck/">Valitron: The Simple Validation Library That Doesn't Suck</a><a class="list-group-item" href="/blog/introducing-bullet-the-functional-php-micro-framework/">Introducing Bullet: The Functional PHP Micro-Framework</a><a class="list-group-item" href="/blog/handling-exceptions-in-gearman-tasks-even-background-ones/">Handling Exceptions in Gearman Tasks (Even Background Ones)</a><a class="list-group-item" href="/blog/confoo-2012-montreal/">Confoo 2012 Montreal</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-359731-12']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>

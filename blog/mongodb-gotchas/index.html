@@ -1,0 +1,65 @@
+<!DOCTYPE html><html><head><title>MongoDB Gotchas • Vance Lucas</title><link href="../../stylesheets/application.css?1388872757" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_mongodb-gotchas blog_mongodb-gotchas_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>MongoDB Gotchas</h1><p>Most developers are coming from a background with relational database-specific experience, and then trying out some new NoSQL databases like 
+<a href="http://mongodb.org">MongoDB</a>. Here are some &ldquo;gotchas&rdquo; I ran into while using MongoDB with my MySQL hat still on.
+more###Queries are case-sensitive</p>
+
+<p>Fields and queries in MongoDB are case-sensitive:</p>
+
+<p>var test1 = db.test.find({&lsquo;tags&rsquo;: &lsquo;jquery&rsquo;}).count();
+var test2 = db.test.find({&lsquo;tags&rsquo;: &lsquo;jQuery&rsquo;}).count();
+test1 == test2; // Output is false - they do not query for the same information
+This can cause some headaches if you don&rsquo;t normalize user input ahead of time. Imagine you already have several posts tagged with &lsquo;NoSQL&rsquo; and users enter &lsquo;nosql&rsquo; in a tag search box. If you don&rsquo;t normalize how the data is stored internally (like lowercase all tags), your user will see a much smaller set of posts than they are expecting to see. This is something you don&rsquo;t have to worry or even think about with MySQL and most other relational databases.</p>
+
+<p>If you can&rsquo;t normalize the stored data, but still want a case-insensitive query, then you must perform a slower 
+<a href="http://www.mongodb.org/display/DOCS/Advanced+Queries#AdvancedQueries-RegularExpressions">regular expression query</a>:</p>
+
+<p>db.test.find({&lsquo;tags&rsquo;: /jquery/i}); // Note the &lsquo;i&rsquo; flag for case-insensitive</p>
+
+<h3>Data is type-sensitive</h3>
+
+<p>Data stored within MongoDB knows it&rsquo;s type. There is a small but significant difference between these two records:</p>
+
+<p>{&lsquo;count&rsquo;: 102}; // &lsquo;count&rsquo; is stored as an int
+{&lsquo;count&rsquo;: &ldquo;102&rdquo;}; // &lsquo;count&rsquo; is stored as a string
+This is obvious to any programmer when presented like this, but what may not be obvious is that this also affects how you can query for these records:</p>
+
+<p>// This returns 1 instead of 2, because it only matches the integer value
+db.test.find({&lsquo;count&rsquo;: 102}).count();
+This is due to how MongoDB stores documents internally with 
+<a href="http://bsonspec.org/">BSON</a> (Binary JSON), using various 
+<a href="http://www.mongodb.org/display/DOCS/Data+Types+and+Conventions">MongoDB data types</a>. This means - like the point above - that you must pay attention to how you are saving data 
+into MongoDB, because it will affect how you can query for it later.</p>
+
+<h3>Documents sizes are capped at 4MB each</h3>
+
+<p>This isn&rsquo;t a big issue for most people, but it&rsquo;s something to be aware of if you plan on storing large chunks of text or nesting a bunch of objects inside a single document. 
+<a href="http://www.businessinsider.com/how-we-use-mongodb-2009-11">Nesting comments inside article documents</a> is a particular approach that may give you pause knowing there is an upper threshold on document size.</p>
+
+<p>Note that this limitation is not an issue for storing 
+files in MongoDB because 
+<a href="http://www.mongodb.org/display/DOCS/GridFS">GridFS</a> transparently divides the contents of files larger than 4MB across multiple documents.</p>
+
+<h3>Only one index is used per query</h3>
+
+<p>Simply adding more indexes doesn&rsquo;t always help queries run faster. MongoDB can&rsquo;t use multiple indexes together like MySQL and other RDBMS can (see &ldquo;
+<a href="http://dev.mysql.com/doc/refman/5.0/en/index-merge-optimization.html">Index Merge Optimization</a>&rdquo;). This means that if a query is selecting or sorting based on multiple fields, a compound index should be created with those fields for the query to run most efficiently.</p>
+
+<h3>MongoDB is for high-memory and 64-bit systems only</h3>
+
+<p>Although MongoDB can be downloaded, compiled, and installed on 32-bit systems, it should never be run in production on them. This is because 
+<a href="http://www.mongodb.org/display/DOCS/Indexing+Advice+and+FAQ#IndexingAdviceandFAQ-MakesureyourindexescanfitinRAM.">MongoDB stores all indexes in memory</a> as well as 
+<a href="http://www.mongodb.org/display/DOCS/Caching">memory-mapped files</a> for all disk I/O for increased speed and throughput. While these two facts aren&rsquo;t &ldquo;gotchas&rdquo; themselves - they are clearly explained on the website - it does mean that MongoDB can quickly use a lot of memory, especially as the size of your database grows and becomes significant. Since 32-bit systems have an effective 
+<a href="http://en.wikipedia.org/wiki/3_GB_barrier">3GB memory limit</a> of addressable memory space, they prevent you from being able to add more memory as the size of your database grows. This is also something to think about if you plan to run MongoDB on a small VPS with limited memory, even if it is 64-bit. You may be forced into a memory upgrade sooner than you are prepared for if your database is large or rapidly growing.</p>
+
+<h3>Subtle Differences</h3>
+
+<p>When starting out with MongoDB, it&rsquo;s easy to draw a lot of parallels to MySQL and make a lot of assumptions based on those similarities. Collections are kind of like tables, fields are kind of like columns, a document is kind of like a row. You may find yourself going on to make more assumptions about how it&rsquo;s storing data, how you can query it, what you can do with it, etc. without even knowing it. So while MongoDB has a lot of similar features and is one of the easiest NoSQL databases to transition to from a relational database, it has some very distinct differences &ldquo;under the hood&rdquo; that you have to be aware of and plan for ahead of time. The 
+<a href="http://www.mongodb.org/display/DOCS/Manual">MongoDB documentation</a> is well-written, and is pretty good at explaining any potential differences or &ldquo;gotchas&rdquo;, so make sure to read it thoroughly before making the jump - and watch that first step.</p>
+<div class="small">Posted on Jul  7, 2010</div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="../../images/VanceLucas-March09.jpg?1388872753" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="../../images/icons/GitHub.svg?1388872753" /></a></li><li><a href="https://twitter.com/vlucas"><img src="../../images/icons/Twitter.svg?1388872753" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="../../images/icons/LinkedIn.svg?1388872753" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/new-year-new-blog/">New Year, New Blog</a><a class="list-group-item" href="/blog/valitron-the-simple-validation-library-that-doesnt-suck/">Valitron: The Simple Validation Library That Doesn't Suck</a><a class="list-group-item" href="/blog/introducing-bullet-the-functional-php-micro-framework/">Introducing Bullet: The Functional PHP Micro-Framework</a><a class="list-group-item" href="/blog/handling-exceptions-in-gearman-tasks-even-background-ones/">Handling Exceptions in Gearman Tasks (Even Background Ones)</a><a class="list-group-item" href="/blog/confoo-2012-montreal/">Confoo 2012 Montreal</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-359731-12']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>

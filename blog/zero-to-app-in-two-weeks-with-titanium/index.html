@@ -1,0 +1,99 @@
+<!DOCTYPE html><html><head><title>Zero to App in Two Weeks with Titanium • Vance Lucas</title><link href="../../stylesheets/application.css?1388872757" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_zero-to-app-in-two-weeks-with-titanium blog_zero-to-app-in-two-weeks-with-titanium_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>Zero to App in Two Weeks with Titanium</h1><p>Like any web developer who has been sitting on the sidelines watching this 
+<a href="http://www.readwriteweb.com/archives/admob_reports_on_mobile_webs_explosive_growth.php">mobile explosion</a> happen in front of my eyes, I was eager to find a way to jump in. Up until about a month ago, I was still evaluating various different mobile development platforms - 
+<a href="http://www.appcelerator.com/">Titanium</a>, 
+<a href="http://www.phonegap.com/">PhoneGap</a>, and 
+<a href="http://rhomobile.com/">Rhomobile</a>, trying to decide which one I wanted to use to make my first mobile app. My only selection criteria was that the platform would have to be able to produce both iPhone and Android apps with the same code, because I wanted to be able to develop and release both an Android and iPhone apps without having to learn two completely different programming languages and development environments, and without having to do everything twice.
+more</p>
+
+<p>After playing with all three platforms, I settled on 
+<a href="http://www.appcelerator.com/">Appcelerator Titanium</a> as my tool of choice for a few main reasons:*It produces native code, and is not just a simple html/css &ldquo;web view&rdquo; wrapper</p>
+
+<p>*It is javascript-based, which means I don&rsquo;t have to learn a new language or try wrap my head around entirely new design paradigms</p>
+
+<p>*The application code is UI and event focused, which seems to make the most sense for native apps (&ldquo;draw this button here&rdquo;, &ldquo;do this on click&rdquo;, etc)</p>
+
+<h3>Starting Out</h3>
+
+<p>Starting your first project with Titanium is a bit rough. There are a ton of steps involved in setting up the Android development environment, and you&rsquo;re pretty much on your own on how to do this from Appcelerator&rsquo;s standpoint - the Android Developer website has 
+<a href="http://developer.android.com/sdk/installing.html">instructions</a> on how to do this, and it&rsquo;s pretty much expected that you have gotten at least that far before beginning with Titanium. Xcode is easy to setup in comparison, but it&rsquo;s a painfully long download at over 3GB.</p>
+
+<p>Note that you&rsquo;re going to have to have these environments setup regardless of the platform you choose, so it&rsquo;s really not any discredit to the Titanium platform that they don&rsquo;t have guides for this, although I think it would be wise for them to make some for the new-to-mobile-development people like me.</p>
+
+<p>From a platform and code standpoint, the main thing that makes starting an Appcelerator project a bit tough is that there is little to no clear direction - the development process is literally wide open for you to do anything you want to do. This is good because it provides flexibility, but harder for newcomers because there is no defined answer for basic questions like &ldquo;how do I organize my files?&rdquo; or &ldquo;where do I put configuration?&rdquo;. It&rsquo;s like a programming language without a framework. The answer is almost always &ldquo;wherever you want to&rdquo;. You try a few things, find what works for you, and then copy that structure and base skeleton files for all your future projects. What helped me most here is looking at a few existing open-source projects (like 
+<a href="https://github.com/givp/Titanium-Mobile-Reference-Directory-App">this one</a>) and figuring out what they did.</p>
+
+<h3>The Development Experience</h3>
+
+<p>After you settle on an organization structure and get your app actually building and running an an emulator, the rest of the process is pretty easy and fairly smooth. The code syntax is calls to custom APIs with basic Javascript and JSON notation for options/settings, so most web developers will feel right at home, especially if they have ever had experience with javascript, jQuery or DOM scripting.</p>
+
+<p>If you&rsquo;re approaching Titanium from an MVC perspective, working with Titanium will be like spending most of your time in the &ldquo;View&rdquo; layer, and there really is no controller. Titanium and most native applications tend to be event-driven, and it works well with Javascript syntax and the way they have it setup. You&rsquo;re essentially making direct calls within a script file, telling Z window or button to render at X,Y with given display properties.</p>
+
+<p>Want a new blank window to open?</p>
+
+<p>var myWin = Ti.UI.createWindow({
+    title: &lsquo;New Window&rsquo;,
+    url: &lsquo;mydir/new_window.js&rsquo;
+});
+myWin.open();
+Want a button that scrolls an image slideshow to the previous image on click?</p>
+
+<p>// Create button object
+var btnLeft = Ti.UI.createButton({
+        left: 10,
+        width: 30,
+        height: 30,
+        backgroundColor: &lsquo;#333&rsquo;,
+        image:&lsquo;../images/icon<em>arrow</em>left.png&rsquo;
+    });</p>
+
+<p>// Add button to current window
+win.add(btnLeft);</p>
+
+<p>// Scroll to previous image on click/touch
+btnLeft.addEventListener(&lsquo;click&rsquo;, function(e) {
+        if (activeViewIndex == 0) {
+            return;
+        }
+        activeViewIndex&ndash;;
+        scrollView.scrollToView(activeViewIndex);
+    });
+Most other basic operations are similarly easy and trivial to accomplish with Titanium. The code is fairly straight forward, is easy to understand, and does what it says. Furthermore, there really is no setup or boilerplate code that you have to write at all, which means once you get the hang of Titanium, you can create apps pretty quickly.</p>
+
+<h3>Cross-Platform Mobile Development</h3>
+
+<p>If your wish was to find a development platform that smooths out all the idiosyncrasies and differences between all the different mobile platforms and provide you with a single way to achieve the same things on all platforms, Titanium may not be for you.</p>
+
+<p>Most of the provided Titanium UI APIs will work cross-platform, but they are tied to the native platform implementations of those features, so they are not guaranteed to look, work, or even act the same cross-platform. This leads to a lot of &ldquo;try it and see&rdquo; type development that consists of switching back and forth between code, re-building the project, and seeing how it works in the emulator on on your device. Although this type of blind development can be pretty frustrating at times, this approach makes sense and is actually a benefit to me as a sole developer. It means I don&rsquo;t have to spend any time at all on styling, UI, images, or look and feel of the app - I just get the native look and feel out of the box. This is also good from an end-user standpoint, because users will have the same familiar look and feel with your app as they have with most others they use. Contrast this with development tools like PhoneGap where you use HTML/CSS, and you&rsquo;re stuck creating your own whole look and feel with CSS (or using something like 
+<a href="http://jquerymobile.com/">jQuery Mobile</a>) for each app, and having the same look for all mobile platforms. That could be beneficial in some cases, but to an end user, suddenly having an iOS look on an Android app you launch is a bit odd when all the other apps you use have the Android UI.</p>
+
+<h3>The Difficult Pieces</h3>
+
+<p>The most difficult thing to deal with in Titanium is when a particular feature I want to use is well-supported on the iPhone, but causes immediate crashes in Android, with no warning from the compiler that the feature I am trying to use is not supported on the Android platform. This has lead to quite a bit more time-consuming &ldquo;try it and see if it works&rdquo; type development than I had originally bargained for &ndash; and the Android emulator isn&rsquo;t exactly quick to re-compile and re-launch an app after making changes.</p>
+
+<p>These developer headaches have not gone unheard through - Appcelerator just released 
+<a href="http://developer.appcelerator.com/blog/2010/12/titanium-mobile-1-5-0-is-ga-today.html">Titanium Mobile SDK 1.5.0</a>, which focused on full Android support. I upgraded and re-compiled a few of my apps to the new SDK, and most of the issues have been smoothed out. I have even been able to use code I had previously removed and have it work flawlessly now, so kudos to the Appcelerator Android team on their hard work. They are obviously committed to the platform and making it the best they can for developers that work on it.</p>
+
+<h3>The Finished Product</h3>
+
+<p>The app I made ended up being fairly simple - It&rsquo;s an automotive app for 
+<a href="http://autoridge.com">Autoridge</a> and the goal is to view vehicle photos by vehicle year/make/model, and view part numbers by category. It doubles as a simplistic vehicle database. The goal is to provide select part information for common replacement parts for your vehicle when you need to buy a part, but the part catalog is missing or your vehicle is not represented.</p>
+
+<p>From a technical standpoint it&rsquo;s pretty simple as well - It communicates with a JSON REST API and just displays the results on-screen in a native table view, with little special styling and no animations. The photo gallery was the most difficult and time-consuming piece of the whole app, and the 1.5 SDK release provided 
+much better support for it on Android (even built-in swipe gestures for photo transitions!).</p>
+
+<p><a href="http://autoridge.com/mobile"><img alt="Autoridge Lite for the iPhone" src="http://autoridge.com/assets/images/mobileapp/iphone/ss1-320.png" /></a> 
+<a href="http://autoridge.com/mobile"><img alt="Autoridge Lite for the Android" src="http://autoridge.com/assets/images/mobileapp/android/ss1-320.png" /></a></p>
+
+<h3>Summary</h3>
+
+<p>Overall, I have grown pretty fond of Appcelerator&rsquo;s Titanium platform. It allows me to create iOS and Android apps quickly and without having to learn any new programming languages - a feat I had previously thought was out of my reach. The platform is in a noticeably beta-like status (currently at Mobile SDK v1.5.1 at the time of writing) with frequent updates and even some truly frustrating compatibility-breaking changes and inexplicably missing functionality. If you&rsquo;re willing to stick with Titanium through the rough spots, you will be able to outpace native developers both in terms of line-for-line productivity and to-market speed for 
+simple most apps, and will be able to compile them for both iOS and Android platforms as an added bonus.</p>
+<div class="small">Posted on Dec 27, 2010</div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="../../images/VanceLucas-March09.jpg?1388872753" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="../../images/icons/GitHub.svg?1388872753" /></a></li><li><a href="https://twitter.com/vlucas"><img src="../../images/icons/Twitter.svg?1388872753" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="../../images/icons/LinkedIn.svg?1388872753" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/new-year-new-blog/">New Year, New Blog</a><a class="list-group-item" href="/blog/valitron-the-simple-validation-library-that-doesnt-suck/">Valitron: The Simple Validation Library That Doesn't Suck</a><a class="list-group-item" href="/blog/introducing-bullet-the-functional-php-micro-framework/">Introducing Bullet: The Functional PHP Micro-Framework</a><a class="list-group-item" href="/blog/handling-exceptions-in-gearman-tasks-even-background-ones/">Handling Exceptions in Gearman Tasks (Even Background Ones)</a><a class="list-group-item" href="/blog/confoo-2012-montreal/">Confoo 2012 Montreal</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-359731-12']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>
