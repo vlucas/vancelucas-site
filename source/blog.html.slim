@@ -1,0 +1,21 @@
+---
+pageable: true
+per_page: 10
+---
+
+- page_articles.each_with_index do |article, i|
+  .panel.panel-default
+    .panel-body
+      h2 ="#{link_to article.title, article} <small>#{article.date.strftime('%b %e, %Y')}</small></h2>"
+      = article.summary
+
+- if paginate && num_pages > 1
+  ul.pager
+    - if prev_page
+      li.previous
+        = link_to '&larr; Previous', prev_page
+      li.small= "Page #{page_number} of #{num_pages}"
+    - if next_page
+      li.next
+        = link_to 'Next &rarr;', next_page
+

@@ -1,5 +1,7 @@
 - wrap_layout :base do
   = partial "shared/header"
-  .container.main= yield
+  .container.main
+    .row
+      .col-md-10.col-md-offset-1= yield
   = partial "shared/footer"
 

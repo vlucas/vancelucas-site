@@ -78,7 +78,10 @@ GEM
     middleman-syntax (1.2.1)
       middleman-core (~> 3.0)
       rouge (~> 0.3.0)
+    mini_portile (0.5.2)
     multi_json (1.8.2)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     rack (1.5.2)
     rack-livereload (0.3.15)
       rack
@@ -115,7 +118,6 @@ GEM
       rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.4.1)
-    turbolinks (0.5.1)
     tzinfo (0.3.38)
     uglifier (2.1.2)
       execjs (>= 0.3.0)
@@ -134,9 +136,9 @@ DEPENDENCIES
   middleman-gh-pages (~> 0.0.2)
   middleman-livereload (~> 3.1.0)
   middleman-syntax (~> 1.2.1)
+  nokogiri (~> 1.6.1)
   rb-fsevent
   redcarpet (~> 3.0.0)
   slim (~> 2.0.1)
   thin (~> 1.6.1)
-  turbolinks
   watchr

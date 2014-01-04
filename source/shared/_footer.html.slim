@@ -1,14 +1,35 @@
 footer#page_foot
   .container
     section.col-md-4
+      h3
+      = image_tag 'VanceLucas-March09.jpg', width: '250', class: 'thumbnail'
+      ul.contact_icons
+        li= link_to image_tag('icons/GitHub.svg'), "https://github.com/vlucas"
+        li= link_to image_tag('icons/Twitter.svg'), "https://twitter.com/vlucas"
+        li= link_to image_tag('icons/LinkedIn.svg'), "http://www.linkedin.com/in/vancelucas"
 
     section.col-md-4
-      h3 My Sites
+      h3 Sites & Projects
+      .list-group
+        = link_to "Brightbit - App Development", "http://brightbit.com", class: 'list-group-item'
+        = link_to "Autoridge - Find Auto Parts", "http://autoridge.com", class: 'list-group-item'
+        = link_to "InvoiceMore - Online Invoicing", "http://invoicemore.com", class: 'list-group-item'
+        = link_to "Online JavaScript Compressor", "http://jscompress.com", class: 'list-group-item'
+        = link_to "Online String Functions", "http://strfu.com", class: 'list-group-item'
 
     section.col-md-4
-      h3 Blog Posts
-      ol
+      h3 Recent Posts
+      .list-group
         - blog.articles.select {|a| a.data[:published] != false }[0...5].each do |article|
-          li
-            = link_to "#{article.title}", article
+            = link_to "#{article.title}", article, class: 'list-group-item'
 
+javascript:
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-359731-12']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();

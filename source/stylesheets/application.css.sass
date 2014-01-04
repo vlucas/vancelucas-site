@@ -1,4 +1,4 @@
-@import 'bootstrap'
+@import 'bootstrap.min'
 @import 'code'
 
 body
@@ -40,15 +40,45 @@ mark
     text-align: center
     padding-top: 4em
 
+// Skills styles
+.table-skills
+  font-size: 0.8em
+  .language
+    font-weight: bold
+  .skill
+    width: 70%
+  .progress
+    margin-bottom: 3px
+  .progress-bar
+    text-align: left
+  .progress-bar span
+    margin-left: 5px
+
+
 // blog styles
 .blog
   h1
     margin: 1.5em 0
   h2, h3, h4, h5, h6, p
     margin: 1.3em 0
+  .panel h2
+    margin-top: 0
 
 // footer
 #page_foot
   background-color: #eee
   margin-top: 3em
 
+.contact_icons
+  padding: 0 0 0 50px
+  ul
+    margin: 0
+    padding: 0
+  li
+    float: left
+    margin: 0
+    padding-right: 10px
+    list-style: none
+  img
+    width: 44px
+    height: 44px
