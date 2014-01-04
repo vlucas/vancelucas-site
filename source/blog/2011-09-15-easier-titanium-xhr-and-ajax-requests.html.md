@@ -45,7 +45,7 @@ app.utils.ajax({
 
 And the actual code for the utility function:
 
-```
+```javascript
 /**
  * Application Utilities and Helper Methods
  **/
@@ -104,10 +104,76 @@ And the actual code for the utility function:
             Ti.API.info('XHR "onload" ['+this.status+']: '+this.responseText+'');
 
             // Success = 1xx or 2xx (3xx = redirect)
-            if(this.status
+            if(this.status < 400) {
+                try {
+                    if(null !== o.success) {
+                        return o.success(this);
+                    }
+                } catch(e) {
+                    Ti.API.info('XHR success function threw Exception: ' + e + '');
+                    return;
+                }
+            // Error = 4xx or 5xx
+            } else {
+                Ti.API.info('XHR error ['+this.status+']: '+this.responseText+'');
+                if(null !== o.error) {
+                    return o.error(this);
+                }
+            }
+        };
+
+        // Send
+        if(o.data) {
+            Ti.API.info(o.data);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(o.data);
+        } else {
+            xhr.send();
+        }
+
+        // Completed
+        if(null !== o.complete) {
+            return o.complete(this);
+        }
+    };
+
+    // And it does depend on this code below to combine object properties:
+
+    // Extend an object with the properties from another
+    // (thanks Dojo - http://docs.dojocampus.org/dojo/mixin)
+    var empty = {};
+    function mixin(/*Object*/ target, /*Object*/ source){
+        var name, s, i;
+        for(name in source){
+            s = source[name];
+            if(!(name in target) || (target[name] !== s && (!(name in empty) || empty[name] !== s))){
+                target[name] = s;
+            }
+        }
+        return target; // Object
+    };
+    _app.mixin = function(/*Object*/ obj, /*Object...*/ props){
+        if(!obj){ obj = {}; }
+        for(var i=1, l=arguments.length; i<l; i++){
+            mixin(obj, arguments[i]);
+        }
+        return obj; // Object
+    };
+
+    // Create a new object, combining the properties of the passed objects with the last arguments having
+    // priority over the first ones
+    _app.combine = function(/*Object*/ obj, /*Object...*/ props) {
+        var newObj = {};
+        for(var i=0, l=arguments.length; i<l; i++){
+            mixin(newObj, arguments[i]);
+        }
+        return newObj;
+    };
+})(app);
 ```
 
-The particular organization of this utilities file assumes that your app structure follows the organization model shown in the
-[Tweetanium example app](https://github.com/appcelerator-titans/tweetanium)
-(using the 'app' namespace within a single window context), but is easy to
-adapt if you are not.
+The particular organization of this utilities file assumes that your app
+structure follows the organization model shown in the [Tweetanium example
+app](https://github.com/appcelerator-titans/tweetanium) (using the 'app'
+namespace within a single window context), but is easy to adapt if you are not.
+
