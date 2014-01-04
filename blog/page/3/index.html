@@ -1,10 +1,35 @@
-<!DOCTYPE html><html><head><title>Mirror Remote Server With Linux FTP Commands • Vance Lucas</title><link href="../../../stylesheets/application.css?1388872832" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_page blog_page_3 blog_page_3_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="row"><div class="col-md-10 col-md-offset-1"><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/mysql-series-how-to-detect-utf-8-and-multi-byte-characters/">MySQL Series: How to Detect UTF-8 and Multi-byte Characters</a> <small>Mar 24, 2010</small></h2></h2><p>Multi-byte characters can cause quite a few headaches for the unsuspecting webmaster. Sometimes all you need to do to figure out how to fix the problem is detect which database records have UTF-8 data in them and which ones do not. If you’ve been scanning...</p></div></div><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/get-only-public-class-properties-for-the-current-class-in-php/">Get Only Public Class Properties for the Current Class in PHP</a> <small>Jan  5, 2010</small></h2></h2><p>PHP provides two built-in functions to retrieve properties of a given class - 
-<a href="http://php.net/get_object_vars">get<em>object</em>vars</a> and 
-<a href="http://php.net/get_class_vars">get<em>class</em>vars</a>. Both these functions behave the same exact way, one taking an object as a variable and the other taking a string class name. The tricky...</p></div></div><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/why-wordpress-should-not-have-won-the-open-source-cms-award/">Why WordPress Should Not Have Won the Open Source CMS Award</a> <small>Dec 23, 2009</small></h2></h2><p>Packt Publishing announced the winners for their annual 
-<a href="http://www.packtpub.com/award">Open Source CMS Award</a> in November, and since then I have been a bit disturbed that the 2009 
-<a href="http://wordpress.org/development/2009/11/wordpress-wins-cms-award/">winner was WordPress</a>. My first reaction was this:&gt;“… So a 
-blogging platform won the 
-content management...</p></div></div><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/mysql-series-return-null-values-first-with-descending-order/">MySQL Series: Return NULL Values First With Descending Order</a> <small>Dec 16, 2009</small></h2></h2><p>Sometimes there are unique situations where you need to order query results by
+<!DOCTYPE html><html><head><title>Mirror Remote Server With Linux FTP Commands • Vance Lucas</title><link href="../../../stylesheets/application.css?1388872832" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_page blog_page_3 blog_page_3_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="row"><div class="col-md-10 col-md-offset-1"><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/mysql-series-how-to-detect-utf-8-and-multi-byte-characters/">MySQL Series: How to Detect UTF-8 and Multi-byte Characters</a> <small>Mar 24, 2010</small></h2></h2><p>Multi-byte characters can cause quite a few headaches for the unsuspecting
+webmaster. Sometimes all you need to do to figure out how to fix the problem is
+detect which database records have UTF-8 data in them and which ones do not. If
+you’ve been scanning...</p></div></div><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/get-only-public-class-properties-for-the-current-class-in-php/">Get Only Public Class Properties for the Current Class in PHP</a> <small>Jan  5, 2010</small></h2></h2><p>PHP provides two built-in functions to retrieve properties of a given class -
+<a href="http://php.net/get_object_vars">get<em>object</em>vars</a> and
+<a href="http://php.net/get_class_vars">get<em>class</em>vars</a>. Both these functions behave
+the same exact way, one taking an object as a variable and the other taking a
+string class name. The tricky thing about the two functions is that they behave
+differently depending on the call scope, returning all of the class variables
+available within the called scope. So if you call either function within the
+current class you need properties from, all properties are returned - public,
+protected, and private - because the current scope has access to them
+all. This makes seemingly simple things like returning all the public
+properties within the current class a bit of a pain if you want to keep
+the code inside the class itself.</p>
+
+<p></div></div><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/why-wordpress-should-not-have-won-the-open-source-cms-award/">Why WordPress Should Not Have Won the Open Source CMS Award</a> <small>Dec 23, 2009</small></h2></h2><p>Packt Publishing announced the winners for their annual <a href="http://www.packtpub.com/award">Open Source CMS
+Award</a> in November, and since then I have been a
+bit disturbed that the 2009 <a href="http://wordpress.org/development/2009/11/wordpress-wins-cms-award/">winner was
+WordPress</a>.
+My first reaction was this:</p>
+
+<blockquote>
+<p>&ldquo;&hellip; So a blogging platform won the content management system award? How sad is that?&rdquo;</p>
+</blockquote>
+
+<p>My knee-jerk &ldquo;how sad is that?&rdquo; reaction comes not because I don&rsquo;t think
+WordPress is worthy, but because of what it implies about the state of other
+open source CMS projects. The reaction comes from the fact that a <strong>blogging
+platform is kicking your CMS&rsquo;s ass in its own category</strong>.</p>
+
+<p></div></div><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/mysql-series-return-null-values-first-with-descending-order/">MySQL Series: Return NULL Values First With Descending Order</a> <small>Dec 16, 2009</small></h2></h2><p>Sometimes there are unique situations where you need to order query results by
 a particular field in descending order, but also need NULL values first. The
 default (and logical) behavior of MySQL in this case is to return NULL values
 last, because in descending order they have the lowest value (none). But what

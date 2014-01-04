@@ -34,70 +34,135 @@
 <span class="p">});</span>
 </pre>
 <p>And the actual code for the utility function:</p>
-<pre class="highlight text">/**
- * Application Utilities and Helper Methods
- **/
-(function(_app) {
-    _app.utils = {};
+<pre class="highlight javascript"><span class="o">/**</span>
+ <span class="o">*</span> <span class="nx">Application</span> <span class="nx">Utilities</span> <span class="nx">and</span> <span class="nx">Helper</span> <span class="nx">Methods</span>
+ <span class="o">**</span><span class="sr">/</span><span class="err">
+(function(_app) {</span>
+    <span class="nx">_app</span><span class="p">.</span><span class="nx">utils</span> <span class="o">=</span> <span class="p">{};</span>
 
-    // AJAX method that mimmicks jQuery&#39;s
-    _app.utils.ajax = function(_props) {
+    <span class="c1">// AJAX method that mimmicks jQuery&#39;s
+</span>    <span class="nx">_app</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">ajax</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">_props</span><span class="p">)</span> <span class="p">{</span>
 
-        // Merge with default props
-        var o = _app.combine({
-            method: &#39;GET&#39;,
-            url: null,
-            data: false,
-            contentType: &#39;application/json&#39;,
+        <span class="c1">// Merge with default props
+</span>        <span class="kd">var</span> <span class="nx">o</span> <span class="o">=</span> <span class="nx">_app</span><span class="p">.</span><span class="nx">combine</span><span class="p">({</span>
+            <span class="na">method</span><span class="p">:</span> <span class="s1">&#39;GET&#39;</span><span class="p">,</span>
+            <span class="na">url</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="na">data</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="na">contentType</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span>
 
-            // Ti API Options
-            async: true,
-            autoEncodeUrl: true,
+            <span class="c1">// Ti API Options
+</span>            <span class="na">async</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="na">autoEncodeUrl</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
 
-            // Callbacks
-            success: null,
-            error: null,
-            beforeSend: null,
-            complete: null
-        }, _props);
+            <span class="c1">// Callbacks
+</span>            <span class="na">success</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="na">error</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="na">beforeSend</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="na">complete</span><span class="p">:</span> <span class="kc">null</span>
+        <span class="p">},</span> <span class="nx">_props</span><span class="p">);</span>
 
-        Ti.API.info(&quot;XHR &quot; + o.method + &quot;: \n&#39;&quot; + o.url + &quot;&#39;...&quot;);
-        var xhr = Ti.Network.createHTTPClient({
-            autoEncodeUrl: o.autoEncodeUrl,
-            async: o.async
-        });
+        <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s2">&quot;XHR &quot;</span> <span class="o">+</span> <span class="nx">o</span><span class="p">.</span><span class="nx">method</span> <span class="o">+</span> <span class="s2">&quot;: \n&#39;&quot;</span> <span class="o">+</span> <span class="nx">o</span><span class="p">.</span><span class="nx">url</span> <span class="o">+</span> <span class="s2">&quot;&#39;...&quot;</span><span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Network</span><span class="p">.</span><span class="nx">createHTTPClient</span><span class="p">({</span>
+            <span class="na">autoEncodeUrl</span><span class="p">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">autoEncodeUrl</span><span class="p">,</span>
+            <span class="na">async</span><span class="p">:</span> <span class="nx">o</span><span class="p">.</span><span class="nx">async</span>
+        <span class="p">});</span>
 
-        // URL
-        xhr.open(o.method, o.url);
+        <span class="c1">// URL
+</span>        <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">method</span><span class="p">,</span> <span class="nx">o</span><span class="p">.</span><span class="nx">url</span><span class="p">);</span>
 
-        // Request header
-        xhr.setRequestHeader(&#39;Content-Type&#39;, o.contentType);
+        <span class="c1">// Request header
+</span>        <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="nx">o</span><span class="p">.</span><span class="nx">contentType</span><span class="p">);</span>
 
-        if(o.beforeSend) {
-            o.beforeSend(xhr);
-        }
+        <span class="k">if</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">beforeSend</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">o</span><span class="p">.</span><span class="nx">beforeSend</span><span class="p">(</span><span class="nx">xhr</span><span class="p">);</span>
+        <span class="p">}</span>
 
-        // Errors
-        xhr.setTimeout(10000);
-        xhr.onerror = function() {
-            Ti.API.info(&#39;XHR &quot;onerror&quot; [&#39;+this.status+&#39;]: &#39;+this.responseText+&#39;&#39;);
-            if(null !== o.error) {
-                return o.error(this);
-            }
-        };
+        <span class="c1">// Errors
+</span>        <span class="nx">xhr</span><span class="p">.</span><span class="nx">setTimeout</span><span class="p">(</span><span class="mi">10000</span><span class="p">);</span>
+        <span class="nx">xhr</span><span class="p">.</span><span class="nx">onerror</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;XHR &quot;onerror&quot; [&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">status</span><span class="o">+</span><span class="s1">&#39;]: &#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="o">+</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+            <span class="k">if</span><span class="p">(</span><span class="kc">null</span> <span class="o">!==</span> <span class="nx">o</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">o</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
 
-        // Success
-        xhr.onload = function() {
-            // Log
-            Ti.API.info(&#39;XHR &quot;onload&quot; [&#39;+this.status+&#39;]: &#39;+this.responseText+&#39;&#39;);
+        <span class="c1">// Success
+</span>        <span class="nx">xhr</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+            <span class="c1">// Log
+</span>            <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;XHR &quot;onload&quot; [&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">status</span><span class="o">+</span><span class="s1">&#39;]: &#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="o">+</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
 
-            // Success = 1xx or 2xx (3xx = redirect)
-            if(this.status
+            <span class="c1">// Success = 1xx or 2xx (3xx = redirect)
+</span>            <span class="k">if</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">status</span> <span class="o">&lt;</span> <span class="mi">400</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">try</span> <span class="p">{</span>
+                    <span class="k">if</span><span class="p">(</span><span class="kc">null</span> <span class="o">!==</span> <span class="nx">o</span><span class="p">.</span><span class="nx">success</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="nx">o</span><span class="p">.</span><span class="nx">success</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+                    <span class="p">}</span>
+                <span class="p">}</span> <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;XHR success function threw Exception: &#39;</span> <span class="o">+</span> <span class="nx">e</span> <span class="o">+</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
+                    <span class="k">return</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="c1">// Error = 4xx or 5xx
+</span>            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;XHR error [&#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">status</span><span class="o">+</span><span class="s1">&#39;]: &#39;</span><span class="o">+</span><span class="k">this</span><span class="p">.</span><span class="nx">responseText</span><span class="o">+</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+                <span class="k">if</span><span class="p">(</span><span class="kc">null</span> <span class="o">!==</span> <span class="nx">o</span><span class="p">.</span><span class="nx">error</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="k">return</span> <span class="nx">o</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">};</span>
+
+        <span class="c1">// Send
+</span>        <span class="k">if</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Ti</span><span class="p">.</span><span class="nx">API</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+            <span class="nx">xhr</span><span class="p">.</span><span class="nx">setRequestHeader</span><span class="p">(</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">,</span> <span class="s1">&#39;application/x-www-form-urlencoded&#39;</span><span class="p">);</span>
+            <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">o</span><span class="p">.</span><span class="nx">data</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="c1">// Completed
+</span>        <span class="k">if</span><span class="p">(</span><span class="kc">null</span> <span class="o">!==</span> <span class="nx">o</span><span class="p">.</span><span class="nx">complete</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">o</span><span class="p">.</span><span class="nx">complete</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">};</span>
+
+    <span class="c1">// And it does depend on this code below to combine object properties:
+</span>
+    <span class="c1">// Extend an object with the properties from another
+</span>    <span class="c1">// (thanks Dojo - http://docs.dojocampus.org/dojo/mixin)
+</span>    <span class="kd">var</span> <span class="nx">empty</span> <span class="o">=</span> <span class="p">{};</span>
+    <span class="kd">function</span> <span class="nx">mixin</span><span class="p">(</span><span class="cm">/*Object*/</span> <span class="nx">target</span><span class="p">,</span> <span class="cm">/*Object*/</span> <span class="nx">source</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">name</span><span class="p">,</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">i</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="nx">name</span> <span class="k">in</span> <span class="nx">source</span><span class="p">){</span>
+            <span class="nx">s</span> <span class="o">=</span> <span class="nx">source</span><span class="p">[</span><span class="nx">name</span><span class="p">];</span>
+            <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">name</span> <span class="k">in</span> <span class="nx">target</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="nx">target</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">!==</span> <span class="nx">s</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">name</span> <span class="k">in</span> <span class="nx">empty</span><span class="p">)</span> <span class="o">||</span> <span class="nx">empty</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">!==</span> <span class="nx">s</span><span class="p">))){</span>
+                <span class="nx">target</span><span class="p">[</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">s</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">target</span><span class="p">;</span> <span class="c1">// Object
+</span>    <span class="p">};</span>
+    <span class="nx">_app</span><span class="p">.</span><span class="nx">mixin</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="cm">/*Object*/</span> <span class="nx">obj</span><span class="p">,</span> <span class="cm">/*Object...*/</span> <span class="nx">props</span><span class="p">){</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nx">obj</span><span class="p">){</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{};</span> <span class="p">}</span>
+        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="nx">l</span><span class="o">=</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="nx">mixin</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span> <span class="c1">// Object
+</span>    <span class="p">};</span>
+
+    <span class="c1">// Create a new object, combining the properties of the passed objects with the last arguments having
+</span>    <span class="c1">// priority over the first ones
+</span>    <span class="nx">_app</span><span class="p">.</span><span class="nx">combine</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="cm">/*Object*/</span> <span class="nx">obj</span><span class="p">,</span> <span class="cm">/*Object...*/</span> <span class="nx">props</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">newObj</span> <span class="o">=</span> <span class="p">{};</span>
+        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nx">l</span><span class="o">=</span><span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="nx">l</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">){</span>
+            <span class="nx">mixin</span><span class="p">(</span><span class="nx">newObj</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nx">newObj</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="err">}</span><span class="p">)(</span><span class="nx">app</span><span class="p">);</span>
 </pre>
-<p>The particular organization of this utilities file assumes that your app structure follows the organization model shown in the
-<a href="https://github.com/appcelerator-titans/tweetanium">Tweetanium example app</a>
-(using the &lsquo;app&rsquo; namespace within a single window context), but is easy to
-adapt if you are not.</p>
+<p>The particular organization of this utilities file assumes that your app
+structure follows the organization model shown in the <a href="https://github.com/appcelerator-titans/tweetanium">Tweetanium example
+app</a> (using the &lsquo;app&rsquo;
+namespace within a single window context), but is easy to adapt if you are not.</p>
 <div class="small">Posted on Sep 15, 2011</div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="../../images/VanceLucas-March09.jpg?1388872753" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="../../images/icons/GitHub.svg?1388872753" /></a></li><li><a href="https://twitter.com/vlucas"><img src="../../images/icons/Twitter.svg?1388872753" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="../../images/icons/LinkedIn.svg?1388872753" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/new-year-new-blog/">New Year, New Blog</a><a class="list-group-item" href="/blog/valitron-the-simple-validation-library-that-doesnt-suck/">Valitron: The Simple Validation Library That Doesn't Suck</a><a class="list-group-item" href="/blog/introducing-bullet-the-functional-php-micro-framework/">Introducing Bullet: The Functional PHP Micro-Framework</a><a class="list-group-item" href="/blog/handling-exceptions-in-gearman-tasks-even-background-ones/">Handling Exceptions in Gearman Tasks (Even Background Ones)</a><a class="list-group-item" href="/blog/confoo-2012-montreal/">Confoo 2012 Montreal</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-359731-12']);
 _gaq.push(['_trackPageview']);

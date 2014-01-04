@@ -1,93 +1,179 @@
-<!DOCTYPE html><html><head><title>Practical Uses for PHP 5.3 Closures • Vance Lucas</title><link href="../../stylesheets/application.css?1388872832" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_practical-uses-for-php-53-closures blog_practical-uses-for-php-53-closures_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>Practical Uses for PHP 5.3 Closures</h1><p>Closures are a new language-level feature that has been added to php 5.3, along with namespaces, late static binding, and a slew of other new features, patches, and updates. If you&rsquo;re like me, you might be wondering what the practical uses for these new features are before you can rightly justify diving in and using them in new or existing projects. I experimented a lot with closures and possible uses over the past few weeks, and came up with some compelling reasons to start using them.</p>
+<!DOCTYPE html><html><head><title>Practical Uses for PHP 5.3 Closures • Vance Lucas</title><link href="../../stylesheets/application.css?1388872832" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_practical-uses-for-php-53-closures blog_practical-uses-for-php-53-closures_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>Practical Uses for PHP 5.3 Closures</h1><p>Closures are a new language-level feature that has been added to php 5.3, along
+with namespaces, late static binding, and a slew of other new features,
+patches, and updates. If you&rsquo;re like me, you might be wondering what the
+practical uses for these new features are before you can rightly justify
+diving in and using them in new or existing projects. I experimented a lot
+with closures and possible uses over the past few weeks, and came up with
+some compelling reasons to start using them.</p>
 
-<p>more###Templating</p>
+<p></p>
 
-<p>Templating is perhaps the most compelling and creative use of closures that I have found, yet I haven&rsquo;t seen any people or projects using closures this way. Closures are an excellent way to allow custom formatting for re-useable template widgets, like forms, datagrids, and lists. Re-useable forms and datagrids are pretty common in frameworks, because no one likes the monotony of creating a bunch of HTML forms or tables. They all seem to work great, until you have to change a few things in how they output the input fields or format cell data - then they can get a bit hairy and ugly to work with, and often require inheritance or use some obscure template syntax of their own with tokens that get string replaced and weak-to-no support for basic control structures like loops and if statements. Fabien Potencier published a 
-<a href="http://groups.google.com/group/symfony-devs/browse_thread/thread/fb5fb9732cf5fc1e?pli=1">proof-of-concept for individual field templates</a> in Symfony2. This approach, while much more flexible than string-replaced field tokens, adds quite a bit of overhead because you now have to render one template per input field to produce a complete form. The same end result can now be easily achieved with the use of closures:</p>
+<h3>Templating</h3>
 
-<p>$table = new \Alloy\View\Generic\Datagrid(&lsquo;datagrid&rsquo;);
-$table-data($this->posts)
-    ->column(&lsquo;Post&rsquo;, function($item, $view) { return $item->title; })
-    ->column(&lsquo;Status&rsquo;, function($item, $view) { return $item->status; })
-    ->column(&lsquo;Date Published&rsquo;, function($item, $view) {
-        return ($item->date<em>published) ? $view->dateFormat($item->date</em>published) : &lsquo;(Unpublished)&rsquo;; 
-    });
-echo $table;
-?&gt;</p>
+<p>Templating is perhaps the most compelling and creative use of closures that I
+have found, yet I haven&rsquo;t seen any people or projects using closures this way.
+Closures are an excellent way to allow custom formatting for re-useable
+template widgets, like forms, datagrids, and lists. Re-useable forms and
+datagrids are pretty common in frameworks, because no one likes the monotony of
+creating a bunch of HTML forms or tables. They all seem to work great, until
+you have to change a few things in how they output the input fields or format
+cell data - then they can get a bit hairy and ugly to work with, and often
+require inheritance or use some obscure template syntax of their own with
+tokens that get string replaced and weak-to-no support for basic control
+structures like loops and if statements. Fabien Potencier published a
+<a href="http://groups.google.com/group/symfony-devs/browse_thread/thread/fb5fb9732cf5fc1e?pli=1">proof-of-concept for individual field
+templates</a>
+in Symfony2. This approach, while much more flexible than string-replaced field
+tokens, adds quite a bit of overhead because you now have to render one
+template per input field to produce a complete form. The same end result can
+now be easily achieved with the use of closures:</p>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="nv">$table</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\Alloy\View\Generic\Datagrid</span><span class="p">(</span><span class="s1">&#39;datagrid&#39;</span><span class="p">);</span>
+<span class="nv">$table</span><span class="o">-</span><span class="nx">data</span><span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">posts</span><span class="p">)</span>
+    <span class="o">-&gt;</span><span class="na">column</span><span class="p">(</span><span class="s1">&#39;Post&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$item</span><span class="p">,</span> <span class="nv">$view</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$item</span><span class="o">-&gt;</span><span class="na">title</span><span class="p">;</span> <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">column</span><span class="p">(</span><span class="s1">&#39;Status&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$item</span><span class="p">,</span> <span class="nv">$view</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nv">$item</span><span class="o">-&gt;</span><span class="na">status</span><span class="p">;</span> <span class="p">})</span>
+    <span class="o">-&gt;</span><span class="na">column</span><span class="p">(</span><span class="s1">&#39;Date Published&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$item</span><span class="p">,</span> <span class="nv">$view</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nv">$item</span><span class="o">-&gt;</span><span class="na">date_published</span><span class="p">)</span> <span class="o">?</span> <span class="nv">$view</span><span class="o">-&gt;</span><span class="na">dateFormat</span><span class="p">(</span><span class="nv">$item</span><span class="o">-&gt;</span><span class="na">date_published</span><span class="p">)</span> <span class="o">:</span> <span class="s1">&#39;(Unpublished)&#39;</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="k">echo</span> <span class="nv">$table</span><span class="p">;</span>
+<span class="cp">?&gt;</span>
+</pre>
+<p>In this example, our generic &ldquo;Datagrid&rdquo; view accepts <code>$this->posts</code> as its data
+source input, and loops over it with a foreach internally. It then implicitly
+passes two arguments to any closure given that defines column output - <code>$item</code>
+- the current item in the posts collection we provided, and <code>$view</code> - the view
+object itself so helpers and other typical functions can be accessed.</p>
 
-<p>In this example, our generic &ldquo;Datagrid&rdquo; view accepts &ldquo;$this->posts&rdquo; as its data source input, and loops over it with a foreach internally. It then implicitly passes two arguments to any closure given that defines column output - &ldquo;$item&rdquo; - the current item in the posts collection we provided, and &ldquo;$view&rdquo; - the view object itself so helpers and other typical functions can be accessed.</p>
+<p>The added benefits for using closures in this context are enormous. There is no
+additional (and limiting) pseudo-syntax to parse, and no additional item
+templates to render. The custom content is overridden in-line right where you
+want it to be (instead of being one-step removed in a separate template), and
+you can still use the native PHP code you know and love. The provided example
+is from <a href="http://cont-xt.com">Cont-xt CMS</a> built using my own <a href="http://alloyframework.org">Alloy HMVC
+Framework</a>.</p>
 
-<p>The added benefits for using closures in this context are enormous. There is no additional (and limiting) pseudo-syntax to parse, and no additional item templates to render. The custom content is overridden in-line right where you want it to be (instead of being one-step removed in a separate template), and you can still use the native PHP code you know and love. The provided example is from 
-<a href="http://cont-xt.com">Cont-xt CMS</a> built using my own 
-<a href="http://alloyframework.org">Alloy HMVC Framework</a>.</p>
-
-<p>Imagine how powerful and simple something like 
-<a href="http://framework.zend.com/manual/en/zend.navigation.html">Zend_Navigation</a> and the 
-<a href="http://framework.zend.com/manual/en/zend.view.helpers.html#zend.view.helpers.initial.navigation">resulting navigation view helpers</a> would become with support for closure templates. You would no longer have to rely on a deep hierarchy of nested configuration arrays, custom partial templates, or complex object inter-dependencies to generate page links with your own custom code.</p>
+<p>Imagine how powerful and simple something like
+<a href="http://framework.zend.com/manual/en/zend.navigation.html">Zend_Navigation</a> and
+the <a href="http://framework.zend.com/manual/en/zend.view.helpers.html#zend.view.helpers.initial.navigation">resulting navigation view
+helpers</a>
+would become with support for closure templates. You would no longer have to
+rely on a deep hierarchy of nested configuration arrays, custom partial
+templates, or complex object inter-dependencies to generate page links with
+your own custom code.</p>
 
 <h3>Dynamic Code Extension</h3>
 
-<p>Dynamically extending a class and modifying the behavior of a code block with the use of closures is the foundation of a new php 5.3 framework called 
-<a href="http://lithify.me/">Lithium</a>. Lithium&rsquo;s specific approach uses closure chains inside function bodies to allow end-users to modify core functionality without modifying the core files themselves or having to use inheritance.</p>
+<p>Dynamically extending a class and modifying the behavior of a code block with
+the use of closures is the foundation of a new php 5.3 framework called
+<a href="http://lithify.me/">Lithium</a>. Lithium&rsquo;s specific approach uses closure chains
+inside function bodies to allow end-users to modify core functionality without
+modifying the core files themselves or having to use inheritance.</p>
 
-<p>A more extreme example uses closures to enable dynamic run-time object creation. The idea is in an article titled 
-<a href="http://dhotson.tumblr.com/post/1167021666/php-object-oriented-programming-reinvented">PHP Object Oriented Programming Reinvented</a>. The entire object and all its functionality is created with closures. The article is a good demonstration of the power of closures, but has little practical use.</p>
+<p>A more extreme example uses closures to enable dynamic run-time object
+creation. The idea is in an article titled <a href="http://dhotson.tumblr.com/post/1167021666/php-object-oriented-programming-reinvented">PHP Object Oriented Programming
+Reinvented</a>.
+The entire object and all its functionality is created with closures. The
+article is a good demonstration of the power of closures, but has little
+practical use.</p>
 
-<p>One of the more practical (and perhaps controversial) uses I came up with is replacing string configuration values with closures if the return values needs to be dynamic. Here&rsquo;s an example:</p>
+<p>One of the more practical (and perhaps controversial) uses I came up with is
+replacing string configuration values with closures if the return values needs
+to be dynamic. Here&rsquo;s an example:</p>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="c1">// Set in base config file
+</span><span class="nv">$cfg</span><span class="p">[</span><span class="s1">&#39;path_uploads&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">function</span><span class="p">(</span><span class="nv">$cfg</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&quot;/uploads/&quot;</span> <span class="o">.</span> <span class="nv">$cfg</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;/&quot;</span><span class="p">;</span> <span class="p">};</span>
 
-<p>// Set in base config file
-$cfg[&lsquo;path<em>uploads&rsquo;] = function($cfg) { return &ldquo;/uploads/&rdquo; . $cfg[&lsquo;user</em>id&rsquo;] . &ldquo;/&rdquo;; };</p>
+<span class="c1">// Set dynamically by database value from logged-in user later in your application
+</span><span class="nv">$cfg</span><span class="p">[</span><span class="s1">&#39;user_id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">74</span><span class="p">;</span>
+<span class="o">?</span>
+</pre>
+<p>This way, the <code>path_uploads</code> config value will not have to be changed when the
+<code>user_id</code> config value is. The closure will cause the config value to always be
+evaluated when called, and will always use the current <code>user_id</code> value, so it
+will never be &ldquo;out of date&rdquo;. This, of course, requires you to have a standard
+way to retrieve config values from named keys, because closures can&rsquo;t just be
+automatically converted to a string by themselves, and do have to be called a
+different way (like functions).</p>
 
-<p>// Set dynamically by database value from logged-in user later in your application
-$cfg[&lsquo;user_id&rsquo;] = 74;
-?</p>
-
-<p>This way, the &lsquo;path<em>uploads&rsquo; config value will not have to be changed when the &lsquo;user</em>id&rsquo; config value is. The closure will cause the config value to always be evaluated when called, and will always use the current &lsquo;user_id&rsquo; value, so it will never be &ldquo;out of date&rdquo;. This, of course, requires you to have a standard way to retrieve config values from named keys, because closures can&rsquo;t just be automatically converted to a string by themselves, and do have to be called a different way (like functions).</p>
-
-<p>This is the only use that comes with a warning: beware how far down this road you travel. Dynamic code extension provides a lot of flexibility, but comes with the downside of code obfuscation and performance penalties. You are essentially adding class methods and modifying code behavior in places other than the code itself, which can lead to confusion when trying to trace code execution. Stack traces and development toolbars can help here, and using an opcode cache like APC can minimize the performance penalty.</p>
+<p>This is the only use that comes with a warning: beware how far down this road
+you travel. Dynamic code extension provides a lot of flexibility, but comes
+with the downside of code obfuscation and performance penalties. You are
+essentially adding class methods and modifying code behavior in places other
+than the code itself, which can lead to confusion when trying to trace code
+execution. Stack traces and development toolbars can help here, and using an
+opcode cache like APC can minimize the performance penalty.</p>
 
 <h3>Delayed Execution</h3>
 
-<p>Closures are a great tool to use anywhere you need to delay PHP code execution until a later time. A great example of this use is for a job queue system with multiple workers. Using closures, you can execute any arbitrary PHP code you need to without conforming to a specific structure &ndash; there is no need to create new classes or functions with set names determined by naming conventions, and no need to put &ldquo;worker classes&rdquo; in any specific place in the filesystem. Your worker task can be passed around and executed in parallel at will by the job queue.</p>
+<p>Closures are a great tool to use anywhere you need to delay PHP code execution
+until a later time. A great example of this use is for a job queue system with
+multiple workers. Using closures, you can execute any arbitrary PHP code you
+need to without conforming to a specific structure &ndash; there is no need to
+create new classes or functions with set names determined by naming
+conventions, and no need to put &ldquo;worker classes&rdquo; in any specific place in the
+filesystem. Your worker task can be passed around and executed in parallel at
+will by the job queue.</p>
 
-<p>Example: 
-<a href="http://github.com/kore/njq">PHP Native Job Queue</a>.</p>
+<p>Example: <a href="http://github.com/kore/njq">PHP Native Job Queue</a>.</p>
 
 <h3>Caching</h3>
 
-<p>Using closures for caching is a bit of an extension of the delayed execution idea. Consider a cached block of code inside a view template using a closure:</p>
-
-<p>echo $this-cache(function($view) { ?&gt;</p>
-
-<p>// Expensive external HTTP request
-    $blogRss = $view-helper(&lsquo;feedReader&rsquo;)->fetch(&lsquo;http://github.com/zendframework/zf2/commits/master.atom&rsquo;);
-    $widget = new \MyApp\View\Generic\FeedList(&lsquo;feedlist&rsquo;);
-    $widget->feedContent($blogRss, &lsquo;atom&rsquo;);
-    return $widget;
-    ?&gt;</p>
-
-<p>}, &lsquo;github<em>zf2</em>commits&rsquo;, 3600); ?</p>
-
-<p>Using a closure here offers two advantages over the typical &lsquo;beginCache&rsquo;, &lsquo;&hellip;&rsquo;, &lsquo;endCache&rsquo; type calls that are more prevalent in pre-5.3 code. The first benefit is that through the use of a closure, our code block is contained in a variable before it is even executed. This allows us to use a cache backend like Memcache without having to use output buffering at all, saving us a tiny bit of overhead. The second big benefit is that executing our code chunk is entirely optional, without manually checking the cache first. This second benefit could also allow you to disable rendering of certain cached content completely if you need it, without any code changes in your view templates. Heavy-load or traffic spike scenarios come to mind as possible candidates for this functionality. Imagine being able to make a small configuration change to skip certain code blocks like $cache->disable(&lsquo;github<em>zf2</em>commits&rsquo;) to serve a &ldquo;lite&rdquo; version of your site when you need all the server resources you can get.</p>
+<p>Using closures for caching is a bit of an extension of the delayed execution
+idea. Consider a cached block of code inside a view template using a closure:</p>
+<pre class="highlight php"><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">cache</span><span class="p">(</span><span class="k">function</span><span class="p">(</span><span class="nv">$view</span><span class="p">)</span> <span class="p">{</span> <span class="cp">?&gt;</span>
+    <span class="cp">&lt;?php</span>
+    <span class="c1">// Expensive external HTTP request
+</span>    <span class="nv">$blogRss</span> <span class="o">=</span> <span class="nv">$view</span><span class="o">-&gt;</span><span class="na">helper</span><span class="p">(</span><span class="s1">&#39;feedReader&#39;</span><span class="p">)</span><span class="o">-&gt;</span><span class="na">fetch</span><span class="p">(</span><span class="s1">&#39;http://github.com/zendframework/zf2/commits/master.atom&#39;</span><span class="p">);</span>
+    <span class="nv">$widget</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">\MyApp\View\Generic\FeedList</span><span class="p">(</span><span class="s1">&#39;feedlist&#39;</span><span class="p">);</span>
+    <span class="nv">$widget</span><span class="o">-&gt;</span><span class="na">feedContent</span><span class="p">(</span><span class="nv">$blogRss</span><span class="p">,</span> <span class="s1">&#39;atom&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nv">$widget</span><span class="p">;</span>
+    <span class="cp">?&gt;</span>
+  <span class="cp">&lt;?php</span> <span class="p">},</span> <span class="s1">&#39;github_zf2_commits&#39;</span><span class="p">,</span> <span class="mi">3600</span><span class="p">);</span> <span class="cp">?&gt;</span>
+</pre>
+<p>Using a closure here offers two advantages over the typical <code>beginCache</code>,
+<code>...</code>, <code>endCache</code> type calls that are more prevalent in pre-5.3 code. The
+first benefit is that through the use of a closure, our code block is
+contained in a variable before it is even executed. This allows us to use
+a cache backend like Memcache without having to use output buffering at
+all, saving us a tiny bit of overhead. The second big benefit is that
+executing our code chunk is entirely optional, without manually checking
+the cache first. This second benefit could also allow you to disable
+rendering of certain cached content completely if you need it, without
+any code changes in your view templates. Heavy-load or traffic spike
+scenarios come to mind as possible candidates for this functionality.
+Imagine being able to make a small configuration change to skip certain
+code blocks like <code>$cache->disable(&#39;github_zf2_commits&#39;)</code> to serve a &ldquo;lite&rdquo;
+version of your site when you need all the server resources you can get.</p>
 
 <h3>Convenience</h3>
 
-<p>This may sound like a bit of a cop-out reason, but using closures in some cases really does make things a lot easier, and truly better. Consider the case where you have to use a one-off function to apply some sort of custom filtering logic to an array or collection of objects. With closures, you can just specify the logic in-place right where you need it instead of having to create a new function for the job in a separate location and having to figure out where to put it in your application, and then how to call it. It produces the same result in fewer lines of code with no side-effects (like having to make a global function).</p>
+<p>This may sound like a bit of a cop-out reason, but using closures in some cases
+really does make things a lot easier, and truly better. Consider the case where
+you have to use a one-off function to apply some sort of custom filtering logic
+to an array or collection of objects. With closures, you can just specify the
+logic in-place right where you need it instead of having to create a new
+function for the job in a separate location and having to figure out where to
+put it in your application, and then how to call it. It produces the same
+result in fewer lines of code with no side-effects (like having to make a
+global function).</p>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="c1">// Collection of entities
+</span><span class="nv">$objCollection</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+    <span class="k">new</span> <span class="nx">Entity</span><span class="p">(),</span>
+    <span class="k">new</span> <span class="nx">Entity</span><span class="p">(),</span>
+    <span class="k">new</span> <span class="nx">EntityRelation</span><span class="p">(),</span>
+    <span class="k">new</span> <span class="nx">OtherRandomJunk</span><span class="p">()</span>
+<span class="p">);</span>
 
-<p>// Collection of entities
-$objCollection = array(
-    new Entity(),
-    new Entity(),
-    new EntityRelation(),
-    new OtherRandomJunk()
-);</p>
-
-<p>// Get only Entity objects
-$entitiesOnly = array_filter($objCollection, function($val) {
-    return ($val instanceof Entity);
-});</p>
-
-<p>In the above example, it may not make sense to create a separate named or global function for this collection filtering, because it may only ever be used in one place. If this is the case, it makes sense to use a closure, and makes the code more concise and readable because everything is all in one place.</p>
+<span class="c1">// Get only Entity objects
+</span><span class="nv">$entitiesOnly</span> <span class="o">=</span> <span class="nb">array_filter</span><span class="p">(</span><span class="nv">$objCollection</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$val</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nv">$val</span> <span class="nx">instanceof</span> <span class="nx">Entity</span><span class="p">);</span>
+<span class="p">});</span>
+</pre>
+<p>In the above example, it may not make sense to create a separate named or
+global function for this collection filtering, because it may only ever be used
+in one place. If this is the case, it makes sense to use a closure, and makes
+the code more concise and readable because everything is all in one place.</p>
 
 <h3>Summary</h3>
 
