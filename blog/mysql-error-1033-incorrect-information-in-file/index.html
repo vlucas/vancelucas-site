@@ -1,62 +1,53 @@
-<!DOCTYPE html><html><head><title>MySQL Error: 1033 Incorrect information in file • Vance Lucas</title><link href="../../stylesheets/application.css?1388872832" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_mysql-error-1033-incorrect-information-in-file blog_mysql-error-1033-incorrect-information-in-file_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>MySQL Error: 1033 Incorrect information in file</h1><p>I recently encountered this error on 
-<a href="http://disposeamail.com">Disposeamail</a> - a free disposable email site of mine that uses MySQL heavily for storing all incoming mail through an email pipe script.</p>
+<!DOCTYPE html><html><head><title>MySQL Error: 1033 Incorrect information in file • Vance Lucas</title><link href="../../stylesheets/application.css?1388872832" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_mysql-error-1033-incorrect-information-in-file blog_mysql-error-1033-incorrect-information-in-file_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>MySQL Error: 1033 Incorrect information in file</h1><p>I recently encountered this error on <a href="http://disposeamail.com">Disposeamail</a> -
+a free disposable email site of mine that uses MySQL heavily for storing all
+incoming mail through an email pipe script.</p>
 
-<p>I did a lot of researching, and basically, there are a few primary culprits I was able to identify that will hopefully save you some time.</p>
+<p>I did a lot of researching, and basically, there are a few primary culprits I
+was able to identify that will hopefully save you some time.</p>
 
-<p>more###Check your /tmp directory</p>
+<p></p>
 
-<p>MySQL will produce this error sometimes when the temp directory is not writeable.</p>
+<h3>Check your /tmp directory</h3>
 
-<p><em>Ensure that 
-*</em>/tmp**
- (and/or /var/tmp) has the 
-<strong>correct permissions</strong>
- (777)</p>
+<p>MySQL will produce this error sometimes when the temp directory is not
+writeable.</p>
 
-<p><em>Check the 
-*</em>my.cnf**
-file and search for a 
-<strong>tmpdir</strong>
-=/tmp flag. Ensure the value is pointing to the correct temp directory.</p>
-
-<p><em>Ensure your 
-*</em>/tmp directory is not full**</p>
+<ol>
+<li>Ensure that <strong>/tmp</strong> (and/or /var/tmp) has the <strong>correct permissions</strong> (777)</li>
+<li>Check the <strong>my.cnf</strong> file and search for a  <strong>tmpdir</strong> =/tmp flag. Ensure the
+value is pointing to the correct temp directory.</li>
+<li>Ensure your <strong>/tmp directory is not full</strong></li>
+</ol>
 
 <h3>Check your my.cnf</h3>
 
-<p><em>If you 
-*</em>made changes**
- recently, 
-<strong>revert them</strong>
- and restart MySQL (especially InnoDB Buffer Pool settings)</p>
-
-<p><em>**Restore my.cnf.back</em>*
- is there is one</p>
-
-<p><em>If you are using 
-*</em>InnoDB tables**
-, ensure the 
-<strong>skip-innodb</strong>
- line in my.cnf is 
-<strong>commented out</strong>
- or removed.</p>
+<ol>
+<li>If you <strong>made changes</strong> recently, <strong>revert them</strong> and restart MySQL
+(especially InnoDB Buffer Pool settings)</li>
+<li><strong>Restore my.cnf.back</strong> is there is one</li>
+<li>If you are using <strong>InnoDB tables</strong> , ensure the  <strong>skip-innodb</strong> line in
+my.cnf is <strong>commented out</strong> or removed.</li>
+</ol>
 
 <h3>Clear InnoDB Log Files</h3>
 
-<p>This step 
-<strong>ONLY APPLIES IF THE ABOVE STEPS DID NOT WORK</strong>
-.</p>
+<p>This step <strong>ONLY APPLIES IF THE ABOVE STEPS DID NOT WORK</strong>.</p>
 
-<p>Read the 
-<a href="http://dev.mysql.com/doc/refman/5.0/en/innodb-data-log-reconfiguration.html">MySQL Manual page on removing InnoDB log files</a> for a safer backup and restoration procedures. Basically, the steps are:</p>
+<p>Read the  <a href="http://dev.mysql.com/doc/refman/5.0/en/innodb-data-log-reconfiguration.html">MySQL Manual page on removing InnoDB log
+files</a>
+for a safer backup and restoration procedures. Basically, the steps are:</p>
 
-<p>*Shut down MySQL</p>
+<ol>
+<li>Shut down MySQL</li>
+<li><strong>Remove ib_logfile</strong>* files from the MySQL data directory (move them or
+rename them if you want to be safe)</li>
+<li>Re-start MySQL</li>
+</ol>
 
-<p><strong><em>Remove ib_logfile</em></strong>
- files from the MySQL data directory (move them or rename them if you want to be safe)</p>
-
-<p>*Re-start MySQL
-My specific problem was that somehow the &ldquo;skip-innodb&rdquo; line got added back into my &ldquo;my.cnf&rdquo; file, so MySQL was expecting a different table format when loading data. I suspect this had something to do with my cPanel/WHM setup overwriting the file, but I&rsquo;ll never know for sure.</p>
+<p>My specific problem was that somehow the &ldquo;skip-innodb&rdquo; line got added back into
+my &ldquo;my.cnf&rdquo; file, so MySQL was expecting a different table format when loading
+data. I suspect this had something to do with my cPanel/WHM setup overwriting
+the file, but I&rsquo;ll never know for sure.</p>
 
 <p>Good Luck!</p>
 <div class="small">Posted on Mar  2, 2011</div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="../../images/VanceLucas-March09.jpg?1388872753" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="../../images/icons/GitHub.svg?1388872753" /></a></li><li><a href="https://twitter.com/vlucas"><img src="../../images/icons/Twitter.svg?1388872753" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="../../images/icons/LinkedIn.svg?1388872753" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/new-year-new-blog/">New Year, New Blog</a><a class="list-group-item" href="/blog/valitron-the-simple-validation-library-that-doesnt-suck/">Valitron: The Simple Validation Library That Doesn't Suck</a><a class="list-group-item" href="/blog/introducing-bullet-the-functional-php-micro-framework/">Introducing Bullet: The Functional PHP Micro-Framework</a><a class="list-group-item" href="/blog/handling-exceptions-in-gearman-tasks-even-background-ones/">Handling Exceptions in Gearman Tasks (Even Background Ones)</a><a class="list-group-item" href="/blog/confoo-2012-montreal/">Confoo 2012 Montreal</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
