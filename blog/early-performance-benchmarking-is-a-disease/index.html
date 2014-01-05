@@ -1,52 +1,87 @@
-<!DOCTYPE html><html><head><title>Early Performance Benchmarking is a Disease • Vance Lucas</title><link href="../../stylesheets/application.css?1388872832" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_early-performance-benchmarking-is-a-disease blog_early-performance-benchmarking-is-a-disease_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>Early Performance Benchmarking is a Disease</h1><p>Benchmarking and performance concerns should be one of the 
-last things you address while building your application, but it seems as though, in the PHP community especially, it&rsquo;s often one of the 
-first things novice developers think about.</p>
+<!DOCTYPE html><html><head><title>Early Performance Benchmarking is a Disease • Vance Lucas</title><link href="../../stylesheets/application.css?1388872832" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1388872756" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_early-performance-benchmarking-is-a-disease blog_early-performance-benchmarking-is-a-disease_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>Early Performance Benchmarking is a Disease</h1><p>Benchmarking and performance concerns should be one of the last things you
+address while building your application, but it seems as though, in the PHP
+community especially, it&rsquo;s often one of the first things novice developers
+think about.</p>
 
-<p>Any PHP developer who&rsquo;s been in the community for a while 
-<a href="http://reinholdweber.com/?p=3">has heard</a> preposterous claims like &ldquo;use single quotes (&lsquo;) for strings instead of double quotes (&rdquo;), because it&rsquo;s faster&quot;.  That is, faster over the 100,000 or so iterations it took the tester to generate a number sufficiently large enough to justify the claim, with a particular version of PHP, in a particular development environment in which it was tested.
-more</p>
+<p>Any PHP developer who&rsquo;s been in the community for a while <a href="http://reinholdweber.com/?p=3">has
+heard</a> preposterous claims like &ldquo;use single
+quotes (&lsquo;) for strings instead of double quotes (&rdquo;), because it&rsquo;s faster&quot;. 
+That is, faster over the 100,000 or so iterations it took the tester to
+generate a number sufficiently large enough to justify the claim, with a
+particular version of PHP, in a particular development environment in which
+it was tested.</p>
 
-<p>These articles are then followed up with 
-<a href="http://www.chazzuka.com/blog/?p=163">other</a> 
-<a href="http://blogs.digitss.com/php/php-performance-improvement-tips/">posts</a> that only serve to perpetuate and solidify the original and invalid performance claims.  Articles like these are like a plague to the PHP community, spreading around and steering novice developers in the wrong direction, concerning them with the wrong things.  Chris Vincent recently released 
-<a href="http://www.phpbench.com/">PHPBench.com</a> - a website that benchmarks chunks of related PHP code against each other to compare the speeds.  His goal was just a simple discovery of what code is actually fastest, and although it does yield a few interesting results, I have to wonder if it even matters.  If the tests prove anything at all, it&rsquo;s that the specific syntax you choose 
-doesn&rsquo;t matter.  Why? Because it shows that newer PHP versions (he runs it on PHP 5.2+ where most of the previous articles were based on PHP 4.x) have been corrected and optimized to fix any performance discrepencies that there may have been in the past.  In the &ldquo;double (&rdquo;) vs. single (&rsquo;) quotes&quot; test, Chris concludes:&gt;&ldquo;In today&rsquo;s versions of PHP it looks like this argument has been satisfied on both sides of the line. Lets all join together in harmony in this one!&rdquo;</p>
+<p></p>
 
-<p>Similarly, the differences in the &ldquo;echo vs. print&rdquo; and &ldquo;for vs. while&rdquo; tests are so close in speed (and again remember, this is over 1,000 iterations) that you&rsquo;re just better off using which ever one is a better fit the for job you&rsquo;re doing.</p>
+<p>These articles are then followed up with
+<a href="http://www.chazzuka.com/blog/?p=163">other</a>
+<a href="http://blogs.digitss.com/php/php-performance-improvement-tips/">posts</a> that
+only serve to perpetuate and solidify the original and invalid performance
+claims.  Articles like these are like a plague to the PHP community, spreading
+around and steering novice developers in the wrong direction, concerning them
+with the wrong things.  Chris Vincent recently released
+<a href="http://www.phpbench.com/">PHPBench.com</a> - a website that benchmarks chunks of
+related PHP code against each other to compare the speeds.  His goal was just a
+simple discovery of what code is actually fastest, and although it does yield a
+few interesting results, I have to wonder if it even matters.  If the tests
+prove anything at all, it&rsquo;s that the specific syntax you choose doesn&rsquo;t
+matter.  Why? Because it shows that newer PHP versions (he runs it on PHP 5.2+
+  where most of the previous articles were based on PHP 4.x) have been
+corrected and optimized to fix any performance discrepencies that there may
+have been in the past.  In the &ldquo;double (&rdquo;) vs. single (&rsquo;) quotes&quot; test, Chris
+concludes:&gt;&ldquo;In today&rsquo;s versions of PHP it looks like this argument has been
+satisfied on both sides of the line. Lets all join together in harmony in this
+one!&rdquo;</p>
+
+<p>Similarly, the differences in the &ldquo;echo vs. print&rdquo; and &ldquo;for vs. while&rdquo; tests
+are so close in speed (and again remember, this is over 1,000 iterations) that
+you&rsquo;re just better off using which ever one is a better fit the for job you&rsquo;re
+doing.</p>
 
 <h3>Optimize for Performance AFTER You Code</h3>
 
-<p>The true way to optimize your code to run faster is to worry about optimization 
-after you code.  This is, of course, because the 
-realbottlenecks in your code can only be identified 
-after the code is already written.  When put into simplified steps, the development and optimization process would then look something like this:</p>
+<p>The true way to optimize your code to run faster is to worry about optimization
+after you code.  This is, of course, because the realbottlenecks in your code
+can only be identified after the code is already written.  When put into
+simplified steps, the development and optimization process would then look
+something like this:</p>
 
-<p>*Write code</p>
+<ol>
+<li>Write code</li>
+<li>Run it for a while until you (or your users) start to experience noticeable slowdowns or you begin to reach the capacity of the hardware you&rsquo;re running on</li>
+<li><a href="http://www.sitepoint.com/blogs/2007/04/23/faster-php-apps-profile-your-code-with-xdebug/">Profile</a>
+<a href="http://devzone.zend.com/article/2899-Profiling-PHP-Applications-With-xdebug">your</a>
+<a href="http://www.pseudocoder.com/archives/2007/04/24/how-to-really-use-xdebug-to-speed-up-your-app/">code</a>
+to identify where the realbottlenecks are</li>
+<li>Re-factor and make adjustments to your code to fix those bottlenecks</li>
+<li>Go back to step 2</li>
+</ol>
 
-<p>*Run it for a while until you (or your users) start to experience noticeable slowdowns or you begin to reach the capacity of the hardware you&rsquo;re running on</p>
-
-<p>*<a href="http://www.sitepoint.com/blogs/2007/04/23/faster-php-apps-profile-your-code-with-xdebug/">Profile</a> 
-<a href="http://devzone.zend.com/article/2899-Profiling-PHP-Applications-With-xdebug">your</a> 
-<a href="http://www.pseudocoder.com/archives/2007/04/24/how-to-really-use-xdebug-to-speed-up-your-app/">code</a> to identify where the 
-realbottlenecks are</p>
-
-<p>*Re-factor and make adjustments to your code to fix those bottlenecks</p>
-
-<p>*Go back to step 2
-Now that&rsquo;s not to say that performance concerns should be 
-completely discarded when writing your code - experienced developers will automatically make code and design decisions based on their experience that will have a beneficial impact on performance while they&rsquo;re writing the code.  This just means that it should never be your 
-primaryfocus when developing your application, and that you should never be overly concerned about it until it&rsquo;s actually a problem.</p>
+<p>Now that&rsquo;s not to say that performance concerns should be completely discarded
+when writing your code - experienced developers will automatically make code
+and design decisions based on their experience that will have a beneficial
+impact on performance while they&rsquo;re writing the code.  This just means that it
+should never be your primaryfocus when developing your application, and that
+you should never be overly concerned about it until it&rsquo;s actually a problem.</p>
 
 <h3>The Impact on Your Code</h3>
 
-<p>So the real difference here is that when you listen to benchmarks and have performance as a high priority immediately, you end up making bad design decisions and waste time worrying and doing things that may not even affect performance at all in the end.  So instead, 
-focus on your users, and do what you can to make their lives easier, no matter what you think ahead of time the performance impact may be.  If it becomes a problem in the future, you can turn your focus to the specific problem and fix your code where the problems actually are.</p>
+<p>So the real difference here is that when you listen to benchmarks and have
+performance as a high priority immediately, you end up making bad design
+decisions and waste time worrying and doing things that may not even affect
+performance at all in the end.  So instead, focus on your users, and do what
+you can to make their lives easier, no matter what you think ahead of time the
+performance impact may be.  If it becomes a problem in the future, you can turn
+your focus to the specific problem and fix your code where the problems
+actually are.</p>
 
 <h3>Conclusion</h3>
 
-<p>Put aside your worries about performance and 
-<strong>just build it</strong>
-.  Would you rather have 10,000 users using a website with performance problems that you have to fix or 100 users using a website that is half as useful but runs 10% faster because you spent all your time focusing on performance &ldquo;tips&rdquo; when they may not even have an impact on performance at all?</p>
+<p>Put aside your worries about performance and <strong>just build it</strong>.  Would you
+rather have 10,000 users using a website with performance problems that you
+have to fix or 100 users using a website that is half as useful but runs 10%
+faster because you spent all your time focusing on performance &ldquo;tips&rdquo; when they
+may not even have an impact on performance at all?</p>
 <div class="small">Posted on Oct 18, 2008</div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="../../images/VanceLucas-March09.jpg?1388872753" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="../../images/icons/GitHub.svg?1388872753" /></a></li><li><a href="https://twitter.com/vlucas"><img src="../../images/icons/Twitter.svg?1388872753" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="../../images/icons/LinkedIn.svg?1388872753" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/new-year-new-blog/">New Year, New Blog</a><a class="list-group-item" href="/blog/valitron-the-simple-validation-library-that-doesnt-suck/">Valitron: The Simple Validation Library That Doesn't Suck</a><a class="list-group-item" href="/blog/introducing-bullet-the-functional-php-micro-framework/">Introducing Bullet: The Functional PHP Micro-Framework</a><a class="list-group-item" href="/blog/handling-exceptions-in-gearman-tasks-even-background-ones/">Handling Exceptions in Gearman Tasks (Even Background Ones)</a><a class="list-group-item" href="/blog/confoo-2012-montreal/">Confoo 2012 Montreal</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-359731-12']);
 _gaq.push(['_trackPageview']);
