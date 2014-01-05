@@ -4,72 +4,49 @@ date: 2011-03-02
 tags: database, mysql, mysql, mysql-errors
 ---
 
-I recently encountered this error on 
-[Disposeamail](http://disposeamail.com) - a free disposable email site of mine that uses MySQL heavily for storing all incoming mail through an email pipe script.
+I recently encountered this error on [Disposeamail](http://disposeamail.com) -
+a free disposable email site of mine that uses MySQL heavily for storing all
+incoming mail through an email pipe script.
 
-I did a lot of researching, and basically, there are a few primary culprits I was able to identify that will hopefully save you some time.
+I did a lot of researching, and basically, there are a few primary culprits I
+was able to identify that will hopefully save you some time.
 
+READMORE
 
-more###Check your /tmp directory
+### Check your /tmp directory
 
-MySQL will produce this error sometimes when the temp directory is not writeable.
+MySQL will produce this error sometimes when the temp directory is not
+writeable.
 
-*Ensure that 
-**/tmp**
- (and/or /var/tmp) has the 
-**correct permissions**
- (777)
+1. Ensure that **/tmp** (and/or /var/tmp) has the **correct permissions** (777)
+2. Check the **my.cnf** file and search for a  **tmpdir** =/tmp flag. Ensure the
+   value is pointing to the correct temp directory.
+3. Ensure your **/tmp directory is not full**
 
-	
-*Check the 
-**my.cnf**
-file and search for a 
-**tmpdir**
-=/tmp flag. Ensure the value is pointing to the correct temp directory.
+### Check your my.cnf
 
-	
-*Ensure your 
-**/tmp directory is not full**
+1. If you **made changes** recently, **revert them** and restart MySQL
+   (especially InnoDB Buffer Pool settings)
+2. **Restore my.cnf.back** is there is one
+3. If you are using **InnoDB tables** , ensure the  **skip-innodb** line in
+   my.cnf is **commented out** or removed.
 
-###Check your my.cnf
+### Clear InnoDB Log Files
 
+This step **ONLY APPLIES IF THE ABOVE STEPS DID NOT WORK**.
 
-*If you 
-**made changes**
- recently, 
-**revert them**
- and restart MySQL (especially InnoDB Buffer Pool settings)
+Read the  [MySQL Manual page on removing InnoDB log
+files](http://dev.mysql.com/doc/refman/5.0/en/innodb-data-log-reconfiguration.html)
+for a safer backup and restoration procedures. Basically, the steps are:
 
-	
-***Restore my.cnf.back**
- is there is one
+1. Shut down MySQL
+2. **Remove ib_logfile**\* files from the MySQL data directory (move them or
+   rename them if you want to be safe)
+3. Re-start MySQL
 
-	
-*If you are using 
-**InnoDB tables**
-, ensure the 
-**skip-innodb**
- line in my.cnf is 
-**commented out**
- or removed.
-
-###Clear InnoDB Log Files
-
-This step 
-**ONLY APPLIES IF THE ABOVE STEPS DID NOT WORK**
-.
-
-Read the 
-[MySQL Manual page on removing InnoDB log files](http://dev.mysql.com/doc/refman/5.0/en/innodb-data-log-reconfiguration.html) for a safer backup and restoration procedures. Basically, the steps are:
-
-*Shut down MySQL
-
-	
-***Remove ib_logfile***
- files from the MySQL data directory (move them or rename them if you want to be safe)
-
-	
-*Re-start MySQL
-My specific problem was that somehow the "skip-innodb" line got added back into my "my.cnf" file, so MySQL was expecting a different table format when loading data. I suspect this had something to do with my cPanel/WHM setup overwriting the file, but I'll never know for sure.
+My specific problem was that somehow the "skip-innodb" line got added back into
+my "my.cnf" file, so MySQL was expecting a different table format when loading
+data. I suspect this had something to do with my cPanel/WHM setup overwriting
+the file, but I'll never know for sure.
 
 Good Luck!
