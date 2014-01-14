@@ -7,6 +7,7 @@ GEM
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
+    builder (3.2.2)
     chunky_png (1.2.9)
     coffee-script (2.2.0)
       coffee-script-source
@@ -129,6 +130,7 @@ PLATFORMS
 
 DEPENDENCIES
   bourbon (~> 3.1.8)
+  builder (~> 3.2.2)
   growl_notify
   jquery-middleman (~> 3.0.4)
   middleman (~> 3.2.1)
