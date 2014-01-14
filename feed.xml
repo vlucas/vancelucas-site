@@ -1,0 +1,742 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Vance Lucas</title>
+  <subtitle>Thoughts and Ramblings of an Entrepreneur</subtitle>
+  <id>http://www.vancelucas.com/blog</id>
+  <link href="http://www.vancelucas.com/blog"/>
+  <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
+  <updated>2014-01-04T04:57:00Z</updated>
+  <author>
+    <name>Vance Lucas</name>
+  </author>
+  <entry>
+    <title>New Year, New Blog</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/new-year-new-blog/"/>
+    <id>http://www.vancelucas.com/blog/new-year-new-blog/</id>
+    <published>2014-01-04T04:57:00Z</published>
+    <updated>2014-01-03T23:39:57-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;It&amp;rsquo;s a whole new year, and I&amp;rsquo;ve got a whole new blog. This time around, I knew
+I wanted a static blog generator instead of a WordPress site (they are a little
+more developer friendly, and there are no security vulnerabilities with static
+HTML), and I&amp;rsquo;ve been window shopping a bit. A self-hosted blog was important to
+me since I want to make sure I will always own and control all my own content.&lt;/p&gt;
+
+&lt;h3&gt;The Options&lt;/h3&gt;
+
+&lt;p&gt;Though popular, &lt;a href="https://github.com/imathis/octopress"&gt;Octopress&lt;/a&gt; was out,
+because of my experience using it on &lt;a href="http://okcjs.com"&gt;OKC.js&lt;/a&gt;. It is
+difficult to customize, and the Octopress code is mixed in with your blog and
+website content, making upgrading difficult as well.&lt;/p&gt;
+
+&lt;p&gt;Using &lt;a href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt; was very tempting - and I almost used it,
+but I decided to take a look at another option first - and I&amp;rsquo;m very glad I did.&lt;/p&gt;
+
+&lt;h3&gt;Enter Middleman&lt;/h3&gt;
+
+&lt;p&gt;I ended up going with &lt;a href="http://middlemanapp.com/"&gt;Middleman&lt;/a&gt; for this blog. We
+just re-launched the &lt;a href="http://brightbit.com"&gt;Brightbit&lt;/a&gt; website with it, and
+Joshua (my design co-founder) was raving about it, so I had to give it a shot.
+Both Jekyll and Octopress use &lt;a href="http://liquidmarkup.org/"&gt;Liquid&lt;/a&gt; templates,
+which are a learning curve if you&amp;rsquo;ve never used them. I personally don&amp;rsquo;t like
+the syntax, so I wasn&amp;rsquo;t too keen on doing a lot of layout customization with
+it.&lt;/p&gt;
+
+&lt;p&gt;Middleman, however, is different. Middleman offers so much more flexibility -
+pure Ruby code, Sass, the option to use Slim or Haml for templates, blog posts,
+and pages, and the same asset pipeline that Rails has for combining and
+compressing your CSS and JavaScript into a single file for production
+deployment. Layout customization is also easier and better feeling in general.
+The last, and perhaps biggest reason Middleman is a winner is that Middleman
+exists entirely inside it&amp;rsquo;s own self-contained gem. Your site&amp;rsquo;s project folder
+has only what it should - your site&amp;rsquo;s content. There is no Middleman cruft in
+there that you have to bring along, and upgrades are clean and brainless since
+Middleman is a gem.&lt;/p&gt;
+
+&lt;h3&gt;Wrapping Up&lt;/h3&gt;
+
+&lt;p&gt;Importing all my old posts from WordPress and converting them all to markdown
+was a bit tricky and time-consuming (though
+&lt;a href="https://github.com/mdb/wp2middleman"&gt;wp2middleman&lt;/a&gt; did most of the heavy
+lifting), but I&amp;rsquo;m glad I did it. Here&amp;rsquo;s to a great 2014 on a great new (and
+much better looking) blog.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Valitron: The Simple Validation Library That Doesn't Suck</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/valitron-the-simple-validation-library-that-doesnt-suck/"/>
+    <id>http://www.vancelucas.com/blog/valitron-the-simple-validation-library-that-doesnt-suck/</id>
+    <published>2013-03-04T00:00:00Z</published>
+    <updated>2014-01-02T11:41:32-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="https://github.com/vlucas/valitron"&gt;Valitron&lt;/a&gt; is a simple, minimal and elegant stand-alone PHP validation library with NO dependencies. Valitron uses simple, straightforward validation methods with a focus on readable and concise syntax.&lt;/p&gt;
+
+&lt;h3&gt;Why Another Validation Library?&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://github.com/vlucas/valitron"&gt;Valitron&lt;/a&gt; was created out of frustration with other validation libraries that have dependencies on large components from other frameworks unrelated to validation like
+&lt;a href="https://github.com/illuminate/validation"&gt;Illuminate Validation&lt;/a&gt; (laravel 4) requiring 
+&lt;a href="http://symfony.com/doc/master/components/http_foundation/index.html"&gt;Symfony HttpFoundation&lt;/a&gt;, pulling in a ton of extra files that aren&amp;rsquo;t needed for basic validation. It also has purposefully simple syntax used to run all validations in one call instead of individually validating each value by instantiating new classes and validating values one at a time like
+&lt;a href="https://github.com/Respect/Validation"&gt;Respect Validation&lt;/a&gt; requires you to do. Valitron also has a focus on being concise - validation rules are just a single line per rule, and can include multiple fields in an array. This is handy, because in most use cases, a single validation rule - like &amp;ldquo;required&amp;rdquo; will be applied to many fields, so it doesn&amp;rsquo;t make sense to start with the field first like
+&lt;a href="https://github.com/fuelphp/validation"&gt;Fuel Validation&lt;/a&gt; does.&lt;/p&gt;
+
+&lt;p&gt;In short, Valitron is everything you&amp;rsquo;ve been looking for in a validation library but haven&amp;rsquo;t been able to find until now: simple pragmatic syntax, lightweight code that makes sense, extensibility for custom callbacks and validations, good test coverage, and no dependencies.&lt;/p&gt;
+
+&lt;h3&gt;Usage Example&lt;/h3&gt;
+
+&lt;p&gt;Valitron is made to setup all your validation rules on the fields you need, and then run all the validations in one call. This is better than validating the fields one-by-one, because that approach causes a lot of &amp;ldquo;if&amp;rdquo; statements and branching logic that doesn&amp;rsquo;t make the resulting code any better than doing the validations by hand (which obviously sucks).&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="nv"&gt;$v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Valitron\Validator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_POST&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// Input array
+&lt;/span&gt;&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;rule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;required&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;date_start&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;rule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// Email uses filter_var
+&lt;/span&gt;&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;rule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateAfter&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;date_start&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;\DateTime&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt; &lt;span class="c1"&gt;// After today
+&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Yay! We&amp;#39;re all good!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="nb"&gt;print_r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;data&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="c1"&gt;// Errors
+&lt;/span&gt;    &lt;span class="nb"&gt;print_r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;More usage examples and documentation can be found on the
+&lt;a href="https://github.com/vlucas/valitron"&gt;Valitron GitHub Page&lt;/a&gt;. Valitron is
+&lt;a href="https://packagist.org/packages/vlucas/valitron"&gt;on Packagist&lt;/a&gt;, and can be installed via
+&lt;a href="http://getcomposer.org/"&gt;Composer&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Introducing Bullet: The Functional PHP Micro-Framework</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/introducing-bullet-the-functional-php-micro-framework/"/>
+    <id>http://www.vancelucas.com/blog/introducing-bullet-the-functional-php-micro-framework/</id>
+    <published>2012-12-20T00:00:00Z</published>
+    <updated>2014-01-02T12:15:04-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://bulletphp.com"&gt;Bullet&lt;/a&gt; is a new PHP micro-framework with a unique
+functional approach to URL routing that allows for more flexibility and
+requires less verbosity than the more typical full route+callback approach
+found in other micro-frameworks.&lt;/p&gt;
+
+&lt;h3&gt;The Problem with Independent Scope&lt;/h3&gt;
+
+&lt;p&gt;The main problem with most micro-frameworks and even full-stack MVC frameworks
+that leads to code duplication is that the callback or method executed to
+perform the action and respond to the URL route lives fully within its own
+scope. This means that you are forced to repeat a lot of setup code across URL
+route handlers that load the same resource, authorize it, etc.&lt;/p&gt;
+
+&lt;p&gt;Some typical micro-framework code might look like this:&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="c1"&gt;// View single post
+&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/posts/:id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$post&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Post&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="na"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;check_user_acl_for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="c1"&gt;// ...
+&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Delete post
+&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/posts/:id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$post&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Post&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="na"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;check_user_acl_for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="c1"&gt;// ...
+&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="c1"&gt;// Edit post
+&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/posts/:id/edit&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$post&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Post&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="na"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="nx"&gt;check_user_acl_for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="c1"&gt;// ...
+&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;You may be able to move the ACL check to a middleware layer or &amp;ldquo;before&amp;rdquo; hook if
+the framework supports it, but there is always a certain amount of duplicate
+code you will either never be able to get rid of, or have to jump through hoops
+to get rid of (like adding more abstraction or re-checking the current URL,
+etc).&lt;/p&gt;
+
+&lt;h3&gt;The Benefits of Shared Scope&lt;/h3&gt;
+
+&lt;p&gt;Bullet uses a unique nested callback style that splits the URL by directory
+separator and only handles a single part of the URL at a time with it&amp;rsquo;s own
+callback. At first blush, this approach might seem like more work, but the key
+to how Bullet works is that nested closures - by definition - can use variables
+defined in the scope of their parent. This leads to some pretty powerful and
+profund capabilities that can only be done using the same nested closure style
+that Bullet uses.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;posts&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$req&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;param&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;int&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$req&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$post&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Post&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="na"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;check_user_acl_for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// View (GET)
+&lt;/span&gt;        &lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$req&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="c1"&gt;// ...
+&lt;/span&gt;        &lt;span class="p"&gt;});&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// Delete
+&lt;/span&gt;        &lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$req&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;delete&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+            &lt;span class="c1"&gt;// ...
+&lt;/span&gt;        &lt;span class="p"&gt;});&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// Edit (&amp;#39;edit&amp;#39; path added after id)
+&lt;/span&gt;        &lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;edit&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$req&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="c1"&gt;// ...
+&lt;/span&gt;        &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Notice in the example here how the code to load the desired post and perform
+the ACL check only have to be run ONCE. Any other code or URL routes below that
+point will automatically be safe and can use($post) to get access to the
+already loaded Post object.&lt;/p&gt;
+
+&lt;h3&gt;Other Advantages and Positive Side-Effects&lt;/h3&gt;
+
+&lt;p&gt;Since Bullet&amp;rsquo;s URL routes handle only a single path segment at a time and are
+relative to the parent execution scope, it opens up all kinds of possibilities
+for code re-use unimaginable in most other PHP frameworks today. The first and
+perhaps most obvious one is that URL routes can be crafted however you want,
+and can be nested unlimited levels deep with no restrictions beyond
+your imagination. The second one is that it becomes trivially easy to
+do things that are inexplicably difficult with other frameworks like
+create a base version folder for an API like &amp;ldquo;v1&amp;rdquo; or &amp;ldquo;v2&amp;rdquo; that then
+includes the other main paths below it like &amp;ldquo;v1/posts&amp;rdquo; and &amp;ldquo;v2/events&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Perhaps the most significant benefit of this approach is that if you logically
+separate your routes into different include files (&amp;lsquo;posts.php&amp;rsquo;, &amp;lsquo;events.php&amp;rsquo;,
+&amp;lsquo;comments.php&amp;rsquo;, etc.), you can include them inside other route handlers,
+ and since both PHP includes and closures are context-sensitive, they
+ will work perfectly and will act as nested routes from whatever path
+ you include them in. Bullet even has a built-in url method that helps
+ build context-sensitive URLs that can be dynamically nested in-context
+ from the current URL path.&lt;/p&gt;
+
+&lt;p&gt;The classic use-case for this nesting functionality is an &amp;lsquo;admin&amp;rsquo; path:&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;admin&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$req&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;some_acl_check_to_ensure_admin_that_throws_exception_if_not&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+    &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;posts.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// For /admin/posts ...
+&lt;/span&gt;    &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;events.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// For /admin/events ...
+&lt;/span&gt;    &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;comments.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// For /admin/comments ...
+&lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;A lot of other frameworks - if they can even support doing this - use
+additional concepts like route namespaces to solve this problem. With Bullet,
+ the usage is simple and straightforward, and the logic is simple and
+ easy to understand - this is how bullet already works, so there are
+ no new concepts in play. There are no routing tables or
+ pre-determined rules that make this impossible to do, and the
+ concepts here are all native to PHP and fully leverage how PHP
+ already works - It&amp;rsquo;s just one more path to declare.&lt;/p&gt;
+
+&lt;h3&gt;Polymorphic Code Re-Use&lt;/h3&gt;
+
+&lt;p&gt;Taking this logic even further, you can create a file with routes that are
+intended for polymorphic-style code re-use, like allowing &amp;lsquo;comments.php&amp;rsquo; to be
+nested within any other path - in our case, both &amp;lsquo;posts&amp;rsquo; and &amp;lsquo;events&amp;rsquo;. Such use
+might look something like this:&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;path&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;posts&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$req&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;param&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;int&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$req&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$post&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Post&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="na"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;check_user_acl_for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// View (GET)
+&lt;/span&gt;        &lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$req&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="c1"&gt;// ...
+&lt;/span&gt;
+            &lt;span class="c1"&gt;// Use array notation for variable passing on the $app instance
+&lt;/span&gt;            &lt;span class="c1"&gt;// Tell comments to load comments for post_id
+&lt;/span&gt;            &lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;comments&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;type&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;post&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;type_id&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="nv"&gt;$post&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+            &lt;span class="c1"&gt;// Include our nested comments
+&lt;/span&gt;            &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;comments.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// will be &amp;#39;posts/42/comments&amp;#39;
+&lt;/span&gt;        &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="p"&gt;});&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Method handlers ensure the FULL path is matched, so comments.php will not get included twice
+&lt;/span&gt;    &lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$req&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Use array notation for variable passing (via Pimple)
+&lt;/span&gt;        &lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;comments&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;type&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;post&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// all comments for &amp;#39;post&amp;#39; type
+&lt;/span&gt;
+        &lt;span class="c1"&gt;// Include our nested comments
+&lt;/span&gt;        &lt;span class="k"&gt;require&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;comments.php&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// will be &amp;#39;posts/comments&amp;#39;
+&lt;/span&gt;    &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;This allows the re-use of specific paths and common functionality by nesting
+them in multiple contexts with a simple PHP include/require. Bullet is setup
+for this out of the box, and even encourages this type of code re-use through
+features like relative URL building - another unique feature among PHP
+frameworks:&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="c1"&gt;// RELATIVE url (/posts/25/comments/57, /events/9/comments/57, /comments/57)
+&lt;/span&gt;&lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;./comments/&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nv"&gt;$comment&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// ROOT url (always /comments/57)
+&lt;/span&gt;&lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="nv"&gt;$app&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;url&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/comments/&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nv"&gt;$comment&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;h3&gt;Wrapping Up&lt;/h3&gt;
+
+&lt;p&gt;This has been a brief overview of the main benefits, but there&amp;rsquo;s a lot more to
+get excited about regarding Bullet, and there is &lt;a href="http://bulletphp.com"&gt;lots of explanation and
+documentation up on the Bullet site&lt;/a&gt; to dig through. It&amp;rsquo;s
+a very unique PHP framework that fully embraces and helps your app
+automatically conform to the HTTP spec, and I think you&amp;rsquo;ll love using it.&lt;/p&gt;
+
+&lt;h3&gt;Get Bullet&lt;/h3&gt;
+
+&lt;p&gt;View or fork the
+&lt;a href="https://github.com/vlucas/bulletphp"&gt;Source on GitHub&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Visit the main
+&lt;a href="http://bulletphp.com"&gt;Bullet Website&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;See the
+&lt;a href="https://packagist.org/packages/vlucas/bulletphp"&gt;Composer Package&lt;/a&gt; on Packagist&lt;/p&gt;
+
+&lt;p&gt;Make sure to
+&lt;a href="http://twitter.com/vlucas"&gt;let me know&lt;/a&gt; if you start using it or if you have any questions or awesome ideas.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Handling Exceptions in Gearman Tasks (Even Background Ones)</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/handling-exceptions-in-gearman-tasks-even-background-ones/"/>
+    <id>http://www.vancelucas.com/blog/handling-exceptions-in-gearman-tasks-even-background-ones/</id>
+    <published>2012-07-31T00:00:00Z</published>
+    <updated>2014-01-02T12:15:34-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;I recently had some issues with Gearman tasks throwing exceptions and killing
+the whole Gearman daemon. This made it nearly impossible to trace errors back
+to their origin, because the logged exception stack trace didn&amp;rsquo;t provide much
+useful information, because it just logged where it failed in Gearman - not the
+actual file and line of code that was doing the work. I dug into the code and
+started trying things like
+&lt;a href="http://us.php.net/manual/en/gearmanclient.setexceptioncallback.php"&gt;GearmanClient::setExceptionCallback&lt;/a&gt;
+and running the tasks, but since the tasks were being run with
+&lt;a href="http://us.php.net/manual/en/gearmanclient.addtaskbackground.php"&gt;addTaskBackground&lt;/a&gt;
+instead of just
+&lt;a href="http://us.php.net/manual/en/gearmanclient.addtask.php"&gt;addTask&lt;/a&gt;, the callbacks
+were never getting executed, and I still was not able to do anything to handle
+exceptions for the jobs that were being run (and they were still killing the
+    Gearman daemon). Clearly, I was going to have to get a little more
+creative.&lt;/p&gt;
+
+&lt;p&gt;The only other place to add code that will catch exceptions for all jobs run is
+in the GearmanWorker::addFunction method. So I looked at the following
+one-liner for adding named job callbacks:&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="nv"&gt;$worker&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;addFunction&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$task&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;And replaced it with a closure that uses a try/catch and then logs any
+exceptions to &lt;a href="http://www.exceptional.io/"&gt;Exceptional&lt;/a&gt; so we can see the full
+stack trace and exact point of failure for any job - even background jobs:&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="nv"&gt;$worker&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;addFunction&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$task&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;call_user_func_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$task&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;func_get_args&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;catch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;\Exception&lt;/span&gt; &lt;span class="nv"&gt;$e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;GEARMAN_WORK_EXCEPTION&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Gearman: CAUGHT EXCEPTION: &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nv"&gt;$e&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;getMessage&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// Send exception to Exceptional so it can be logged with details
+&lt;/span&gt;        &lt;span class="nx"&gt;Exceptional&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="na"&gt;handle_exception&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$e&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;FALSE&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;$result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;And it works beautifully. Now all the jobs are run, the Gearman daemon is never
+killed by a PHP process, and all the exceptions are logged with full granular
+details that makes it easy to troubleshoot and fix any errors.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Confoo 2012 Montreal</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/confoo-2012-montreal/"/>
+    <id>http://www.vancelucas.com/blog/confoo-2012-montreal/</id>
+    <published>2012-04-13T00:00:00Z</published>
+    <updated>2014-01-01T16:45:54-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;My second year speaking at
+&lt;a href="http://confoo.ca"&gt;Confoo&lt;/a&gt; was more fun than my first. This year I met a lot of new people and had a lot of interesting discussions, particularly in the CMS room and at lunch after my
+&lt;a href="http://stackboxcms.com"&gt;Stackbox CMS&lt;/a&gt; presentation. The whole philosophy and approach of Stackbox seemed to have stuck a chord with other people passionate about CMSes and a lot of discussion emerged about different CMS concepts and how to integrate them into the various CMSes around. The whole edit-on-page approach of Stackbox isn&amp;rsquo;t new, but it&amp;rsquo;s striking how much simpler it is for the end user than most existing CMSes that are used today -
+&lt;a href="http://drupal.org"&gt;Drupal&lt;/a&gt;,
+&lt;a href="http://joomla.org"&gt;Joomla&lt;/a&gt;, and
+&lt;a href="http://wordpress.org"&gt;Wordpress&lt;/a&gt; included. I think 
+&lt;strong&gt;all&lt;/strong&gt;
+ CMSes should strive to enable on-page and in-place editing wherever possible - it really makes a huge difference in usability.&lt;/p&gt;
+
+&lt;p&gt;The second talk I gave at Confoo was 
+&lt;a href="http://confoo.ca/en/2012/session/hierarchical-mvc-hmvc-what-why-and-how"&gt;Hierarchical MVC (HMVC) - What, Why, and How&lt;/a&gt; - an architectural talk I have been wanting to give at several conferences for a little while now (but had until now not been accepted). The talk was very well received, and hopefully helped at least a few people though some of the tougher architectural decisions they might be facing in their own projects. The gist of the talk is that HMVC can help break up code into &amp;ldquo;widget&amp;rdquo; type blocks, and can go further down the path of fully separating concerns than more strict traditional MVC can. HMVC is all about code re-use across multiple places, like a comment module that is dispatched to anywhere you display comments across multiple types of content (blog posts, articles, pages, events, etc.). Traditional MVC forces you to use view partials, different layouts, duplicate code, or some other separate widget system to achieve the same level of flexibility you get from HMVC.&lt;/p&gt;
+
+&lt;p&gt;One of the best things I like about Confoo is the sheer diversity of the schedule. There were 10 tracks this year, with talks spanning across all types of technologies, markets, and languages, like PHP, Ruby, Python, .NET, Java, and JavaScript to Scaling, Startups, CMSes and Agile. Confoo is the most technologically diverse conference I have had the privilege of speaking at, and I benefit from that diversity every year by expanding my horizons a little bit. While I was there, I attended a
+&lt;a href="http://confoo.ca/en/2012/session/renee"&gt;talk&lt;/a&gt; on a Ruby framework called
+&lt;a href="http://reneerb.com/"&gt;Renee&lt;/a&gt; by
+&lt;a href="https://github.com/joshbuddy"&gt;Joshua Hull&lt;/a&gt;. Even though most of my background is in PHP and I was presenting with PHP examples and projects for my talks, I use Ruby on Rails quite a bit for client work at my company 
+&lt;a href="http://brightb.it"&gt;Brightbit&lt;/a&gt; and was working on a Rails API at the time, so I thought I&amp;rsquo;d check it out. I had been thinking about better REST frameworks beyond MVC for a little while, and the talk inspired me to try the same nested callback style with closures in PHP, and I started hacking together the very first (crude) implementation of
+&lt;a href="https://github.com/vlucas/bulletphp"&gt;Bullet&lt;/a&gt; on the plane ride back home the next day, just to see if it was possible. I had the basic concept working well in under an hour thanks to PHP 5.3&amp;rsquo;s awesome closures. That&amp;rsquo;s why I like and value the diversity at Confoo so much. You get to see things that are going on in other languages and expand your horizon a bit, then you can bring those benefits back to another language you work in, and benefit even more people. I&amp;rsquo;ve fleshed out Bullet a little more now and made it a proper project, but the details of that are for another blog post. For now, I leave you with the slide decks I presented at Confoo.&lt;/p&gt;
+
+&lt;h3&gt;Slide Decks&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="https://speakerdeck.com/u/vlucas/p/stackbox-cms-next-generation-content-management"&gt;Stackbox CMS Slides&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="https://speakerdeck.com/u/vlucas/p/hierarchical-mvc-what-why-how"&gt;Hierarchical MVC (HMVC) Slides&lt;/a&gt;&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Nginx + PHP-FPM Blank Pages with PHAR Packages</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/nginx-php-fpm-blank-pages-with-phar-packages/"/>
+    <id>http://www.vancelucas.com/blog/nginx-php-fpm-blank-pages-with-phar-packages/</id>
+    <published>2012-03-07T00:00:00Z</published>
+    <updated>2014-01-02T11:43:03-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;Ran into this issue when setting up a new VPS for
+&lt;a href="http://autoridge.com"&gt;AutoRidge&lt;/a&gt;. This happens when using Nginx and PHP-FPM
+with PHP 5.3+ and the Suhosin patch when trying to run a PHP script using a
+PHAR package. From what I can gather, the Suhosin patch basically blocks PHP
+include/require functions from executing files ending with .phar, which results
+in a PHP segfault that leaves no trace of any error at all. This is what makes
+this error so frustratingly difficult to track down - there is no trace left in
+any logs about what is happening or that any PHP error even occurred at all.&lt;/p&gt;
+
+&lt;p&gt;The solution is to open your &amp;ldquo;suhosin.ini&amp;rdquo; file to ensure the Suhosin patch is
+allowing PHP to open and execute PHAR files.&lt;/p&gt;
+
+&lt;p&gt;Mine was at:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;/etc/php5/conf.d/suhosin.ini
+&lt;/pre&gt;
+&lt;p&gt;If your suhosin config file is not there and you don&amp;rsquo;t know where it is, run this:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;locate suhosin.ini
+&lt;/pre&gt;
+&lt;p&gt;Find the config key &lt;code&gt;suhosin.executor.include.whitelist&lt;/code&gt; and add &amp;ldquo;phar&amp;rdquo; to it.&lt;/p&gt;
+&lt;pre class="highlight ini"&gt;&lt;span class="py"&gt;suhosin.executor.include.whitelist&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;phar&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Then restart PHP-FPM and Nginx and you should be good to go!&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;/etc/init.d/php5-fpm restart
+/etc/init.d/nginx restart
+&lt;/pre&gt;</content>
+  </entry>
+  <entry>
+    <title>Excessive Data Usage with iPhone 4S / iOS5</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/excessive-data-usage-with-iphone-4s-ios5/"/>
+    <id>http://www.vancelucas.com/blog/excessive-data-usage-with-iphone-4s-ios5/</id>
+    <published>2011-11-16T00:00:00Z</published>
+    <updated>2014-01-01T16:51:18-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;Got a new iPhone 4S or recently upgraded your iPhone 4 or 3GS to IOS5 and noticing unusually high cellular data usage? Are you close to exceeding your data usage limit when you never have before? Have you already exceeded it? You are
+&lt;a href="http://forums.wireless.att.com/t5/Apple-iPhone/Insane-data-usage-with-the-new-iPhone-4s/td-p/2952781"&gt;not&lt;/a&gt;
+&lt;a href="https://discussions.apple.com/thread/3410990"&gt;alone&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;My wife recently traded in her old iPhone 3G for a shiny new iPhone 4S, and within 10 days had exceeded her 200MB AT&amp;amp;T data plan limit when she has never exceeded it before. So what gives? It&amp;rsquo;s a new phone, and Siri does transmit voice data back to Apple&amp;rsquo;s servers, but could that really have caused the usage?###Fixing The Data Usage Problem&lt;/p&gt;
+
+&lt;p&gt;Turns out the problem is that Apple ships iOS5 with iCloud data syncing over cellular networks ON by default. This means all the documents and data stored on your phone for all the applications you have installed on your phone will be automatically uploaded to iCloud, decimating your puny cellular data plan you thought you&amp;rsquo;d never burn through.&lt;/p&gt;
+
+&lt;p&gt;If you are experiencing super high data usage on iOS5, just follow these steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Navigate to: Settings -&gt; iCloud -&gt; Documents &amp;amp; Data -&gt; Use Cellular&lt;/li&gt;
+&lt;li&gt;Turn it OFF&lt;/li&gt;
+&lt;li&gt;Fight with AT&amp;amp;T (or other wireless carrier) about your excessive data usage charges&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Why Apple would ever think its a good default to sync data and documents for all your phone&amp;rsquo;s applications over a cellular network in the world of severely limited data plans and usage based billing is beyond me. This, and the
+&lt;a href="https://discussions.apple.com/thread/3391947"&gt;widespread&lt;/a&gt; 
+&lt;a href="http://gizmodo.com/5859278/the-iphone-4s-battery-problem-is-probably-not-because-of-faulty-hardware"&gt;battery&lt;/a&gt; 
+&lt;a href="http://www.macworld.com/article/163200/2011/10/troubleshoot_iphone4s_battery.html"&gt;issues&lt;/a&gt; with the iPhone 4S and iOS5 seem to indicate Apple didn&amp;rsquo;t do nearly enough field testing with the new phone or OS. Let&amp;rsquo;s home they learn from this in the future.&lt;/p&gt;
+
+&lt;h3&gt;Usage Before iPhone 4S&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="http://www.vancelucas.com/wp-content/uploads/2011/11/Screen-shot-2011-11-16-at-5.08.03-PM.png"&gt;&lt;img src="http://www.vancelucas.com/wp-content/uploads/2011/11/Screen-shot-2011-11-16-at-5.08.03-PM.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Some months have clearly higher data usage than others depending on how long we were away from home or what we did while we were out with out phones, but we were never in any real danger of going over the low 200MB limit before.&lt;/p&gt;
+
+&lt;h3&gt;Data Usage after 10 days with the iPhone 4S&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href="http://www.vancelucas.com/wp-content/uploads/2011/11/Screen-shot-2011-11-16-at-5.09.04-PM.png"&gt;&lt;img src="http://www.vancelucas.com/wp-content/uploads/2011/11/Screen-shot-2011-11-16-at-5.09.04-PM.png" /&gt;&lt;/a&gt;
+On the left (green) is my data usage with an Android device, Right (red) is my wife&amp;rsquo;s data usage this month with the new iPhone 4S.&lt;/p&gt;
+
+&lt;p&gt;My wife got a text alert for 65% data plan usage on Monday, and then one on Friday for 80%, and one the day after on Saturday saying she had gone over her limit (exceeding 100% of the plan) and that we would be billed an additional $15 by AT&amp;amp;T for the overage.&lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+
+&lt;p&gt; &lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>How to add Photos to the iPhone Simulator</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/how-to-add-photos-to-the-iphone-simulator/"/>
+    <id>http://www.vancelucas.com/blog/how-to-add-photos-to-the-iphone-simulator/</id>
+    <published>2011-09-16T00:00:00Z</published>
+    <updated>2014-01-01T16:44:49-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;Building an app that needs to access the photo library but don&amp;rsquo;t have any photos in the iPhone simulator? No problem. Follow these simple steps to import photos into the iPhone Simulator:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Open the iPhone Simulator&lt;/li&gt;
+&lt;li&gt;Browse to the photo you want to put into the simulator (Finder or web browser)&lt;/li&gt;
+&lt;li&gt;Click and drag the photo over the simulator window. A green &amp;ldquo;plus&amp;rdquo; icon should appear under your cursor with the simulator frame highlighted. Drop the photo.&lt;/li&gt;
+&lt;li&gt;Mobile Safari should open on the simulator to the location of the image you just dragged and dropped over it&lt;/li&gt;
+&lt;li&gt;Note that if the image you dropped is linked in a webpage, it will open the link instead of the image URL.&lt;/li&gt;
+&lt;li&gt;Click the mouse down over the image and hold it until a popup window appears.&lt;/li&gt;
+&lt;li&gt;Click &amp;ldquo;Save Image&amp;rdquo;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;The photo will now reside in the &amp;ldquo;Saved Photos&amp;rdquo; album on the iPhone Simulator. Rince and repeat as many times as you need to get all your photos in the album.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Easier Titanium XHR and AJAX Requests</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/easier-titanium-xhr-and-ajax-requests/"/>
+    <id>http://www.vancelucas.com/blog/easier-titanium-xhr-and-ajax-requests/</id>
+    <published>2011-09-15T00:00:00Z</published>
+    <updated>2014-01-04T16:29:25-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;One question I see a lot on the
+&lt;a href="http://developer.appcelerator.com/questions"&gt;Appcelerator Titanium Developer Q&amp;amp;A&lt;/a&gt; is how to perform AJAX requests and/or work with APIs, etc. There is a built-in way to do this with the
+&lt;a href="http://developer.appcelerator.com/apidoc/mobile/latest/Titanium.Network.HTTPClient-object.html"&gt;Ti.Network.HTTPClient&lt;/a&gt; module that is pretty easy, but it does have a few drawbacks and &amp;ldquo;gotchas&amp;rdquo;, like executing the &amp;ldquo;success&amp;rdquo; event for ANY returned status code - even 500 errors. Since working with APIs is so common with mobile apps, I made a wrapper function modeled after
+&lt;a href="http://api.jquery.com/jQuery.ajax/"&gt;jQuery&amp;rsquo;s $.ajax method&lt;/a&gt; that I use in all my apps. It shortens the syntax quite a bit and is much more familiar to those who are used to using jQuery.&lt;/p&gt;
+
+&lt;p&gt;The usage looks like this:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="c1"&gt;// Geocode input text location
+&lt;/span&gt;&lt;span class="nx"&gt;app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;utils&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ajax&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+    &lt;span class="na"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://maps.googleapis.com/maps/api/geocode/json?address=&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;txtLocation&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;amp;region=us&amp;amp;sensor=true&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="na"&gt;method&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;get&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="na"&gt;success&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;JSON&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;responseText&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;API&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;OK&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;status&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;res&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;results&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;res&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="nx"&gt;alert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;Location: &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;res&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;geometry&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;location&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;lat&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;, &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;res&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;geometry&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;location&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;lng&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="c1"&gt;// Do something with coordinates
+&lt;/span&gt;        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;UI&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createAlertDialog&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+                &lt;span class="na"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Geocode Error&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;span class="na"&gt;message&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Unable to geocode location input&amp;#39;&lt;/span&gt;
+            &lt;span class="p"&gt;}).&lt;/span&gt;&lt;span class="nx"&gt;show&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="na"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;UI&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createAlertDialog&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+            &lt;span class="na"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Geocode Error&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="na"&gt;message&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;No location matches found. Please try something else.&amp;#39;&lt;/span&gt;
+        &lt;span class="p"&gt;}).&lt;/span&gt;&lt;span class="nx"&gt;show&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;And the actual code for the utility function:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="o"&gt;/**&lt;/span&gt;
+ &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nx"&gt;Application&lt;/span&gt; &lt;span class="nx"&gt;Utilities&lt;/span&gt; &lt;span class="nx"&gt;and&lt;/span&gt; &lt;span class="nx"&gt;Helper&lt;/span&gt; &lt;span class="nx"&gt;Methods&lt;/span&gt;
+ &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="sr"&gt;/&lt;/span&gt;&lt;span class="err"&gt;
+(function(_app) {&lt;/span&gt;
+    &lt;span class="nx"&gt;_app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;utils&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// AJAX method that mimmicks jQuery&amp;#39;s
+&lt;/span&gt;    &lt;span class="nx"&gt;_app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;utils&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;ajax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;_props&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// Merge with default props
+&lt;/span&gt;        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;_app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;combine&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+            &lt;span class="na"&gt;method&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;GET&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="na"&gt;url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="na"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="na"&gt;contentType&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;application/json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+
+            &lt;span class="c1"&gt;// Ti API Options
+&lt;/span&gt;            &lt;span class="na"&gt;async&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="na"&gt;autoEncodeUrl&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+
+            &lt;span class="c1"&gt;// Callbacks
+&lt;/span&gt;            &lt;span class="na"&gt;success&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="na"&gt;error&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="na"&gt;beforeSend&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="na"&gt;complete&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;
+        &lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="nx"&gt;_props&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;API&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;XHR &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;method&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;: \n&amp;#39;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;url&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;#39;...&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;xhr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Network&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createHTTPClient&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+            &lt;span class="na"&gt;autoEncodeUrl&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;autoEncodeUrl&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="na"&gt;async&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;async&lt;/span&gt;
+        &lt;span class="p"&gt;});&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// URL
+&lt;/span&gt;        &lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;method&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;url&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// Request header
+&lt;/span&gt;        &lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setRequestHeader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;contentType&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;beforeSend&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;beforeSend&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// Errors
+&lt;/span&gt;        &lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;10000&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onerror&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;API&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;XHR &amp;quot;onerror&amp;quot; [&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;status&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;]: &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;responseText&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;};&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// Success
+&lt;/span&gt;        &lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;onload&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="c1"&gt;// Log
+&lt;/span&gt;            &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;API&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;XHR &amp;quot;onload&amp;quot; [&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;status&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;]: &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;responseText&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+            &lt;span class="c1"&gt;// Success = 1xx or 2xx (3xx = redirect)
+&lt;/span&gt;            &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;status&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;400&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;success&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;success&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                    &lt;span class="p"&gt;}&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;catch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;API&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;XHR success function threw Exception: &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nx"&gt;e&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                    &lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="c1"&gt;// Error = 4xx or 5xx
+&lt;/span&gt;            &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;API&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;XHR error [&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;status&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;]: &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;responseText&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+                &lt;span class="p"&gt;}&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;};&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// Send
+&lt;/span&gt;        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;API&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;setRequestHeader&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Content-Type&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;application/x-www-form-urlencoded&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+            &lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;send&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nx"&gt;xhr&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;send&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+
+        &lt;span class="c1"&gt;// Completed
+&lt;/span&gt;        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kc"&gt;null&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;complete&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;o&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;complete&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;};&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// And it does depend on this code below to combine object properties:
+&lt;/span&gt;
+    &lt;span class="c1"&gt;// Extend an object with the properties from another
+&lt;/span&gt;    &lt;span class="c1"&gt;// (thanks Dojo - http://docs.dojocampus.org/dojo/mixin)
+&lt;/span&gt;    &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;empty&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+    &lt;span class="kd"&gt;function&lt;/span&gt; &lt;span class="nx"&gt;mixin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="cm"&gt;/*Object*/&lt;/span&gt; &lt;span class="nx"&gt;target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="cm"&gt;/*Object*/&lt;/span&gt; &lt;span class="nx"&gt;source&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;source&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;source&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;target&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt; &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;empty&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nx"&gt;empty&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt;&lt;span class="p"&gt;))){&lt;/span&gt;
+                &lt;span class="nx"&gt;target&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;name&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;target&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// Object
+&lt;/span&gt;    &lt;span class="p"&gt;};&lt;/span&gt;
+    &lt;span class="nx"&gt;_app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;mixin&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="cm"&gt;/*Object*/&lt;/span&gt; &lt;span class="nx"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="cm"&gt;/*Object...*/&lt;/span&gt; &lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;!&lt;/span&gt;&lt;span class="nx"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt; &lt;span class="nx"&gt;obj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;l&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;arguments&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;l&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="nx"&gt;mixin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;arguments&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// Object
+&lt;/span&gt;    &lt;span class="p"&gt;};&lt;/span&gt;
+
+    &lt;span class="c1"&gt;// Create a new object, combining the properties of the passed objects with the last arguments having
+&lt;/span&gt;    &lt;span class="c1"&gt;// priority over the first ones
+&lt;/span&gt;    &lt;span class="nx"&gt;_app&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;combine&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="cm"&gt;/*Object*/&lt;/span&gt; &lt;span class="nx"&gt;obj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="cm"&gt;/*Object...*/&lt;/span&gt; &lt;span class="nx"&gt;props&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;newObj&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+        &lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;l&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nx"&gt;arguments&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nx"&gt;l&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;){&lt;/span&gt;
+            &lt;span class="nx"&gt;mixin&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;newObj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nx"&gt;arguments&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nx"&gt;newObj&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="err"&gt;}&lt;/span&gt;&lt;span class="p"&gt;)(&lt;/span&gt;&lt;span class="nx"&gt;app&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;The particular organization of this utilities file assumes that your app
+structure follows the organization model shown in the &lt;a href="https://github.com/appcelerator-titans/tweetanium"&gt;Tweetanium example
+app&lt;/a&gt; (using the &amp;lsquo;app&amp;rsquo;
+namespace within a single window context), but is easy to adapt if you are not.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Count the Number of Object keys/properties in Node.js</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/count-the-number-of-object-keysproperties-in-nodejs/"/>
+    <id>http://www.vancelucas.com/blog/count-the-number-of-object-keysproperties-in-nodejs/</id>
+    <published>2011-07-25T00:00:00Z</published>
+    <updated>2014-01-03T15:12:40-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;When using the excellent
+&lt;a href="https://github.com/felixge/node-formidable"&gt;formidable&lt;/a&gt; library to handle file
+uploads, I needed to get a count of the number of files unloaded in a
+multi-part form. Javascript arrays have a .length property that you can use,
+  but objects do not. I instinctively typed:files.length&lt;/p&gt;
+
+&lt;p&gt;Which returned undefined. So if there is no length property present, an easy
+way to count the number of keys or properties of an object in ES5-compliant
+javascript environments like &lt;a href="http://nodejs.org"&gt;Node.js&lt;/a&gt; is to use the Object
+prototype directly:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="nb"&gt;Object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;files&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;A little more typing, but it is fast, efficient, and most importantly: already built-in.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>php|tek 2011</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/phptek-2011/"/>
+    <id>http://www.vancelucas.com/blog/phptek-2011/</id>
+    <published>2011-06-27T00:00:00Z</published>
+    <updated>2014-01-02T13:10:37-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://tek11.phparch.com/"&gt;&lt;img alt="php|tek 2011 Speaker" src="http://www.vancelucas.com/wp-content/uploads/2011/05/tek11_SPEAKER_badge_150x150.png" /&gt;&lt;/a&gt;
+Chicago - May 24-27
+php|tek in Chicago was fun as always. It is the best PHP conference I have ever
+been to, which makes sense, given that it is focused solely on PHP and
+surrounding technologies. The best thing about the conference is the community
+feeling in general. You get a real sense that everyone there really cares about
+PHP and is heavily invested in it, which is good for moving the whole language
+and ecosystem forward.&lt;/p&gt;
+
+&lt;p&gt;I myself gave two talks - one about &lt;a href="http://stackboxcms.com"&gt;Stackbox CMS&lt;/a&gt;, a
+new CMS project I have been working on, and one about &lt;a href="http://appcelerator.com"&gt;Apppcelerator Titanium
+Mobile&lt;/a&gt; since I have been working with it a lot
+lately. The presentations are embedded below.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h3&gt;&lt;a href="http://www.slideshare.net/vlucas/crossplatform-mobile-development-with-titanium"&gt;Cross-Platform Mobile Development with Titanium&lt;/a&gt;&lt;/h3&gt;
+
+&lt;h3&gt;&lt;a href="http://www.slideshare.net/vlucas/stackbox-cms-nextgeneration-content-management"&gt;Stackbox CMS: Next-Generation Content Management&lt;/a&gt;&lt;/h3&gt;
+</content>
+  </entry>
+</feed>
