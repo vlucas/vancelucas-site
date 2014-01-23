@@ -42,7 +42,7 @@ people you meet and talk to who are also there. At SkiPHP, the main event was
 obvious - skiing! A small group of us stayed an extra day or two after the
 conference to hit the slopes at [Snowbird](http://www.snowbird.com/).
 
-![SkiPHP Slopes Crew](/images/posts/2014/skiphp-group.jpg)
+![SkiPHP Slopes Crew](skiphp-group.jpg)
 <small>Pictured (Front): Adam Culp, Ben Edmonds, Chris Boden, Josh Adell
 (Back) Paul Jones, Vance Lucas, John Coggeshall</small>
 
@@ -51,7 +51,7 @@ hill since it was our first time snow skiing, but the other guys hit the real
 slopes, and have much better, more majestic mountanside pictures and views to
 share. I did manage to take a good selfie on the ski lift though!
 
-![Vance Lucas on the Ski Lift on the Chickadee Slope at Snowbrid](/images/posts/2014/skiphp-selfie.jpg)
+![Vance Lucas on the Ski Lift on the Chickadee Slope at Snowbrid](skiphp-selfie.jpg)
 
 ## Wrapping Up
 
