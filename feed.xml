@@ -5,10 +5,76 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2014-01-04T04:57:00Z</updated>
+  <updated>2014-01-22T17:07:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>SkiPHP Conference 2014</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/skiphp-conference/"/>
+    <id>http://www.vancelucas.com/blog/skiphp-conference/</id>
+    <published>2014-01-22T17:07:00Z</published>
+    <updated>2014-01-23T17:08:04-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;It&amp;rsquo;s always fun to be a part of a conference&amp;rsquo;s first year. This year, I was
+lucky enough to speak at the inaugural &lt;a href="http://skiphp.com"&gt;SkiPHP Conference&lt;/a&gt;
+in Salt Lake City, UT. Since the conference was very micro-framework friendly,
+I was able to present my own &lt;a href="http://bulletphp.com"&gt;Bullet PHP
+Micro-Framework&lt;/a&gt;. The talk went well, was very well
+recieved, and got &lt;a href="http://joind.in/talk/view/10434"&gt;very highly rated on
+Joind.in&lt;/a&gt;. The talk (and Bullet itself)
+presents some interesting ideas that I was very happy to be able to share in a
+conference talk format.&lt;/p&gt;
+
+&lt;p&gt;Overall, the conference was great. It was very well put together, and very well
+run. The orgainzers sent lots of emails ahead of time letting us know what was
+going on, and took care of speakers very well - even having breakfast ready for
+us each morning in the speaker lounge (something that was very much appreciated
+by myself and many other speakers as well). I thought the talk selection was
+good as well - there were more sessions at this conference that I was
+personally interested in atending than I have in while at many other
+conferences over the years.&lt;/p&gt;
+
+&lt;p&gt;Huge thanks and kudos go to the SkiPHP organizers - I hope this is a sign of
+good things from the Salt Lake City PHP community, and I hope there are many
+more sucessful years of this conference ahead.&lt;/p&gt;
+
+&lt;h2&gt;Bullet: The Functional PHP Micro-Framework&lt;/h2&gt;
+
+&lt;p&gt;My &lt;a href="https://www.slideshare.net/vlucas/bullet-php"&gt;presentation slides are avaialble on
+Slideshare&lt;/a&gt;, though I am not sure
+how enlightening they will be without the audio. For this particular talk of
+mine, the audio context is pretty important. Luckily, my entire talk was
+recorded on video, so I will post that here when available.&lt;/p&gt;
+
+&lt;h2&gt;Post-Conference Activities&lt;/h2&gt;
+
+&lt;p&gt;Half the fun of a conference is all the activities surrounding it, and all the
+people you meet and talk to who are also there. At SkiPHP, the main event was
+obvious - skiing! A small group of us stayed an extra day or two after the
+conference to hit the slopes at &lt;a href="http://www.snowbird.com/"&gt;Snowbird&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="SkiPHP Slopes Crew" src="images/posts/2014/skiphp-group.jpg?1390518665" /&gt;
+&lt;small&gt;Pictured (Front): Adam Culp, Ben Edmonds, Chris Boden, Josh Adell
+(Back) Paul Jones, Vance Lucas, John Coggeshall&lt;/small&gt;&lt;/p&gt;
+
+&lt;p&gt;Paul Jones and I started with the beginner course and stayed on the &amp;ldquo;Chickadee&amp;rdquo;
+hill since it was our first time snow skiing, but the other guys hit the real
+slopes, and have much better, more majestic mountanside pictures and views to
+share. I did manage to take a good selfie on the ski lift though!&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Vance Lucas on the Ski Lift on the Chickadee Slope at Snowbrid" src="images/posts/2014/skiphp-selfie.jpg?1390518665" /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Wrapping Up&lt;/h2&gt;
+
+&lt;p&gt;All in all, my time at SkiPHP was a blast. The Salt Lake City PHP community
+really came together to put on a great conference and show their support for
+events like this in their backyard. I am already looking forward to submitting
+again next year! Maybe I can try some green slopes this time :).&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>New Year, New Blog</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/new-year-new-blog/"/>
@@ -707,36 +773,6 @@ prototype directly:&lt;/p&gt;
 &lt;pre class="highlight javascript"&gt;&lt;span class="nb"&gt;Object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;files&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;
 &lt;/pre&gt;
 &lt;p&gt;A little more typing, but it is fast, efficient, and most importantly: already built-in.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>php|tek 2011</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/phptek-2011/"/>
-    <id>http://www.vancelucas.com/blog/phptek-2011/</id>
-    <published>2011-06-27T00:00:00Z</published>
-    <updated>2014-01-02T13:10:37-06:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;a href="http://tek11.phparch.com/"&gt;&lt;img alt="php|tek 2011 Speaker" src="http://www.vancelucas.com/wp-content/uploads/2011/05/tek11_SPEAKER_badge_150x150.png" /&gt;&lt;/a&gt;
-Chicago - May 24-27
-php|tek in Chicago was fun as always. It is the best PHP conference I have ever
-been to, which makes sense, given that it is focused solely on PHP and
-surrounding technologies. The best thing about the conference is the community
-feeling in general. You get a real sense that everyone there really cares about
-PHP and is heavily invested in it, which is good for moving the whole language
-and ecosystem forward.&lt;/p&gt;
-
-&lt;p&gt;I myself gave two talks - one about &lt;a href="http://stackboxcms.com"&gt;Stackbox CMS&lt;/a&gt;, a
-new CMS project I have been working on, and one about &lt;a href="http://appcelerator.com"&gt;Apppcelerator Titanium
-Mobile&lt;/a&gt; since I have been working with it a lot
-lately. The presentations are embedded below.&lt;/p&gt;
-
-&lt;p&gt;&lt;/p&gt;
-
-&lt;h3&gt;&lt;a href="http://www.slideshare.net/vlucas/crossplatform-mobile-development-with-titanium"&gt;Cross-Platform Mobile Development with Titanium&lt;/a&gt;&lt;/h3&gt;
-
-&lt;h3&gt;&lt;a href="http://www.slideshare.net/vlucas/stackbox-cms-nextgeneration-content-management"&gt;Stackbox CMS: Next-Generation Content Management&lt;/a&gt;&lt;/h3&gt;
 </content>
   </entry>
 </feed>
