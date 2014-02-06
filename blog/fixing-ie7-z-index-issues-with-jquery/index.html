@@ -1,32 +1,48 @@
-<!DOCTYPE html><html><head><title>Fixing IE7 Z-Index Issues with jQuery • Vance Lucas</title><link href="../../stylesheets/application.css?1390519462" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1390519453" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><link href="http://vancelucas.com/feed.xml" rel="alternate" title="RSS" type="application/rss+xml" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_fixing-ie7-z-index-issues-with-jquery blog_fixing-ie7-z-index-issues-with-jquery_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle" data-target="#nav-main-header" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse" id="nav-main-header"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>Fixing IE7 Z-Index Issues with jQuery</h1><p>For some reason, Internet Explorer 7 does some pretty funky things, and has 
-<a href="http://www.quirksmode.org/bugreports/archives/explorer_7/index.html">several known bugs</a> with it&rsquo;s rendering engine that drive web developers like me crazy.  While most of the known bugs occur in relatively obscure situations and go largely unnoticed, there are a few that really stick out and cause web developers to waste many hours trying to fix them.  The way IE7 renders z-index stacking orders is one of them.</p>
+<!DOCTYPE html><html><head><title>Fixing IE7 Z-Index Issues with jQuery • Vance Lucas</title><link href="../../stylesheets/application.css?1390519462" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1390519453" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><link href="http://vancelucas.com/feed.xml" rel="alternate" title="RSS" type="application/rss+xml" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_fixing-ie7-z-index-issues-with-jquery blog_fixing-ie7-z-index-issues-with-jquery_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle" data-target="#nav-main-header" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse" id="nav-main-header"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>Fixing IE7 Z-Index Issues with jQuery</h1><p>For some reason, Internet Explorer 7 does some pretty funky things, and has
+<a href="http://www.quirksmode.org/bugreports/archives/explorer_7/index.html">several known
+bugs</a> with
+it&rsquo;s rendering engine that drive web developers like me crazy.  While most of
+the known bugs occur in relatively obscure situations and go largely unnoticed,
+there are a few that really stick out and cause web developers to waste
+many hours trying to fix them.  The way IE7 renders z-index stacking orders
+is one of them.</p>
 
-<p>One way to fix many of the issues with IE7 is to dynamically reverse the default z-index stacking order of the elements on your page. This will ensure the elements higher in your HTML source will also have a higher z-index order on your page, solving most of the IE stacking issues.
-more If you&rsquo;re using 
-<a href="http://jquery.com">jQuery</a> (the best Javascript library there is), here&rsquo;s the quick fix:</p>
+<p>One way to fix many of the issues with IE7 is to dynamically reverse the
+default z-index stacking order of the elements on your page. This will ensure
+the elements higher in your HTML source will also have a higher z-index order
+on your page, solving most of the IE stacking issues.  more If you&rsquo;re using
+<a href="http://jquery.com">jQuery</a> (the best Javascript library there is), here&rsquo;s the
+quick fix:</p>
+<pre class="highlight javascript"><span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">zIndexNumber</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;zIndex&#39;</span><span class="p">,</span> <span class="nx">zIndexNumber</span><span class="p">);</span>
+        <span class="nx">zIndexNumber</span> <span class="o">-=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre>
+<p>This code will start with a z-index of 1000, and decrement the z-index for each
+DIV element of the page by 10, giving the first DIV a z-index of 1000, the
+second, 990, the third 980, and so on. Notice that the selector will find all
+DIV elements with the code &ldquo;$(&lsquo;div&rsquo;)&rdquo;, using the same syntax as CSS selectors.
+If your HTML code has different requirements, feel free to change the code or
+the selector to suit your needs by following jQuery&rsquo;s <a href="http://docs.jquery.com/Selectors">documentation on
+selectors</a>.</p>
 
-<p>$(function() {
-    var zIndexNumber = 1000;
-    $(&lsquo;div&rsquo;).each(function() {
-        $(this).css(&lsquo;zIndex&rsquo;, zIndexNumber);
-        zIndexNumber -= 10;
-    });
-});</p>
+<h3>Update for MooTools</h3>
 
-<p>This code will start with a z-index of 1000, and decrement the z-index for each DIV element of the page by 10, giving the first DIV a z-index of 1000, the second, 990, the third 980, and so on. Notice that the selector will find all DIV elements with the code &ldquo;$(&lsquo;div&rsquo;)&rdquo;, using the same syntax as CSS selectors.  If your HTML code has different requirements, feel free to change the code or the selector to suit your needs by following jQuery&rsquo;s 
-<a href="http://docs.jquery.com/Selectors">documentation on selectors</a>.###Update for MooTools (04/14/2009):</p>
+<p>(04/14/2009):</p>
 
-<p><a href="http://www.liamsmart.co.uk/">A generous commenter</a> has posted the code for fixing z-index issues with 
-<a href="http://mootools.net/">MooTools</a> 1.2:</p>
-
-<p>if(Browser.Engine.trident){
-    var zIndexNumber = 1000;
-    $$(&lsquo;div&rsquo;).each(function(el,i){
-        el.setStyle(&lsquo;z-index&rsquo;,zIndexNumber);
-        zIndexNumber -= 10;
-    });
-};</p>
-<div class="small">Posted on Sep 22, 2008</div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="../../images/VanceLucas-March09.jpg?1390519453" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="../../images/icons/Github.png?1390519453" /></a></li><li><a href="https://twitter.com/vlucas"><img src="../../images/icons/Twitter.png?1390519453" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="../../images/icons/LinkedIN.png?1390519453" /></a></li><li><a href="/feed.xml"><img src="../../images/icons/RSS.png?1390519453" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/skiphp-conference/">SkiPHP Conference 2014</a><a class="list-group-item" href="/blog/new-year-new-blog/">New Year, New Blog</a><a class="list-group-item" href="/blog/valitron-the-simple-validation-library-that-doesnt-suck/">Valitron: The Simple Validation Library That Doesn't Suck</a><a class="list-group-item" href="/blog/introducing-bullet-the-functional-php-micro-framework/">Introducing Bullet: The Functional PHP Micro-Framework</a><a class="list-group-item" href="/blog/handling-exceptions-in-gearman-tasks-even-background-ones/">Handling Exceptions in Gearman Tasks (Even Background Ones)</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+<p><a href="http://www.liamsmart.co.uk/">A generous commenter</a> has posted the code for
+fixing z-index issues with <a href="http://mootools.net/">MooTools</a> 1.2:</p>
+<pre class="highlight javascript"><span class="k">if</span><span class="p">(</span><span class="nx">Browser</span><span class="p">.</span><span class="nx">Engine</span><span class="p">.</span><span class="nx">trident</span><span class="p">){</span>
+    <span class="kd">var</span> <span class="nx">zIndexNumber</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+    <span class="nx">$$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span><span class="nx">i</span><span class="p">){</span>
+        <span class="nx">el</span><span class="p">.</span><span class="nx">setStyle</span><span class="p">(</span><span class="s1">&#39;z-index&#39;</span><span class="p">,</span><span class="nx">zIndexNumber</span><span class="p">);</span>
+        <span class="nx">zIndexNumber</span> <span class="o">-=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="p">});</span>
+<span class="p">};</span>
+</pre><div class="small">Posted on Sep 22, 2008</div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="../../images/VanceLucas-March09.jpg?1390519453" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="../../images/icons/Github.png?1390519453" /></a></li><li><a href="https://twitter.com/vlucas"><img src="../../images/icons/Twitter.png?1390519453" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="../../images/icons/LinkedIN.png?1390519453" /></a></li><li><a href="/feed.xml"><img src="../../images/icons/RSS.png?1390519453" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/skiphp-conference/">SkiPHP Conference 2014</a><a class="list-group-item" href="/blog/new-year-new-blog/">New Year, New Blog</a><a class="list-group-item" href="/blog/valitron-the-simple-validation-library-that-doesnt-suck/">Valitron: The Simple Validation Library That Doesn't Suck</a><a class="list-group-item" href="/blog/introducing-bullet-the-functional-php-micro-framework/">Introducing Bullet: The Functional PHP Micro-Framework</a><a class="list-group-item" href="/blog/handling-exceptions-in-gearman-tasks-even-background-ones/">Handling Exceptions in Gearman Tasks (Even Background Ones)</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-359731-12']);
 _gaq.push(['_trackPageview']);
 
