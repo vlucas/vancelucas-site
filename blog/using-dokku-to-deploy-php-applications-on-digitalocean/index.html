@@ -1,0 +1,142 @@
+<!DOCTYPE html><html><head><title>Using Dokku to Deploy PHP Applications on DigitalOcean • Vance Lucas</title><link href="../../stylesheets/application.css?1390519462" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="../../javascripts/application.js?1390519453" type="text/javascript"></script><link href="../../images/favicon.ico" rel="shortcut icon" /><link href="http://vancelucas.com/feed.xml" rel="alternate" title="RSS" type="application/rss+xml" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_using-dokku-to-deploy-php-applications-on-digitalocean blog_using-dokku-to-deploy-php-applications-on-digitalocean_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle" data-target="#nav-main-header" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse" id="nav-main-header"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1>Using Dokku to Deploy PHP Applications on DigitalOcean</h1><p>Want a Platform-as-a-Service setup like <a href="http://heroku.com">Heroku</a> on your own
+<a href="https://www.digitalocean.com/?refcode=b814bf3a4035">$5/month VPS from DigitalOcean</a>? Look no
+further than
+<a href="http://progrium.com/blog/2013/06/19/dokku-the-smallest-paas-implementation-youve-ever-seen/">Dokku</a>
+- a set of scripts built on <a href="https://www.docker.io/">Docker</a> and Heroku&rsquo;s own
+buildpacks. After this setup, you&rsquo;re just one <code>git push</code> away from deploying
+your app to your own server.</p>
+
+<h2>Step 1: Create a new Droplet with Dokku</h2>
+
+<p>DigitalOcean has a great guide on <a href="https://www.digitalocean.com/community/articles/how-to-use-the-digitalocean-dokku-application?refcode=b814bf3a4035">how to use the DigitalOcean Dokku
+Application</a>,
+so there is no sense in repeating the steps here. Follow the steps in that
+article, and then come back here. <strong>There are issues I ran into after the Dokku
+setup that are important steps not to skip</strong>. So be sure to come back here
+before trying to deploy your PHP application.</p>
+
+<h2>Step 2: Setup Swap Space</h2>
+
+<p>DigitalOcean boxes don&rsquo;t come with any disk swap space configured by default,
+but Dokku uses some when deploying your apps, so you need to <a href="https://www.digitalocean.com/community/articles/how-to-add-swap-on-ubuntu-12-04?refcode=b814bf3a4035">configure some
+using this
+guide</a>
+before your first <code>git push</code> or you may run into errors (I sure did). The guide
+says Ubuntu 12.04, but it works on 13.04 too, so no worries. Do this and then come back. I&rsquo;ll wait.</p>
+
+<h2>Step 3: Deploy Your App</h2>
+
+<p>Although the setup is not fully complete, try and deploy your app now to make
+sure your dokku setup is working properly. You also need to deploy your app now
+so you will have a container ready for the next steps.</p>
+<pre class="highlight text">git remote add dokku dokku@yourdomain.com:app_name
+git push dokku master
+</pre>
+<p>The ouput of the <code>git push</code> will let you know if your deploy was successful or
+not. If you have a successful deploy, but get a &ldquo;502 Bad Gateway&rdquo; response from
+Nginx, continue with the steps below.</p>
+
+<h2>Step 4: Install the user-env-compile Plugin</h2>
+
+<p>Install the <a href="https://github.com/musicglue/dokku-user-env-compile">user-env-compile
+plugin</a>. This will allow
+you to set environment variables on your app that are available to be used at
+build time. <strong>This is important for the next step</strong>.</p>
+
+<h2>Step 5: Use CHH&rsquo;s PHP Buildpack</h2>
+
+<p>Now that you have the <code>user-env-compile</code> plugin installed and have created your
+app&rsquo;s initial container, you can set environment variable configuration values
+on it. To specify what buildpack you want to use, set the <code>BUILDPACK_URL</code> ENV value.</p>
+<pre class="highlight shell">ssh dokku@&lt;yourserver.com&gt; config:set &lt;app_name&gt; <span class="nv">BUILDPACK_URL</span><span class="o">=</span>https://github.com/CHH/heroku-buildpack-php
+</pre>
+<p>You should see output like this:</p>
+<pre class="highlight shell"><span class="gp">-----&gt; </span>Setting config vars and restarting &lt;app_name&gt;
+BUILDPACK_URL: https://github.com/CHH/heroku-buildpack-php
+<span class="gp">-----&gt; </span>Releasing &lt;app_name&gt; ...
+<span class="gp">-----&gt; </span>Release <span class="nb">complete</span>!
+<span class="gp">-----&gt; </span>Deploying &lt;app_name&gt; ...
+<span class="gp">-----&gt; </span>Deploy <span class="nb">complete</span>!
+</pre>
+<p>NOTE: ANY Heroku buildpack will work, so if you wnat to use another one, you
+are free to do so, although it is very doubtful you will find a better one for
+PHP :).</p>
+
+<h2>Step 6: Set your Document Root</h2>
+
+<p>Now open your <code>composer.json</code> file, and add the <code>extra</code> configuration block to
+specify your <code>document-root</code> and <code>index-document</code> so the PHP buildpack will
+know where to serve your files from.</p>
+<pre class="highlight json"><span class="p">{</span><span class="w">
+    </span><span class="s2">&quot;require&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;php&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&gt;=5.4.0&quot;</span><span class="p">,</span><span class="w">
+        </span><span class="s2">&quot;vlucas/bulletphp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;~1.3.x&quot;</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">&quot;extra&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">&quot;heroku&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">&quot;framework&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;slim&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;document-root&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;web&quot;</span><span class="p">,</span><span class="w">
+            </span><span class="s2">&quot;index-document&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;index.php&quot;</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre>
+<p>Note: The <code>framework</code> key here is <code>slim</code>. This doesn&rsquo;t match <a href="http://bulletphp.com">my framework
+Bullet</a>, but I have to put this in here because this maps
+to the <a href="https://github.com/CHH/heroku-buildpack-php/tree/master/conf/nginx">nginx config file
+used</a>. So
+if I don&rsquo;t specify this here, the buildpack assumes a standard classic PHP
+setup and will only execute <code>.php</code> files, and not rewrite all requests to the
+main <code>index.php</code> file like most frameworks (including Bullet) require, causing
+nginx to throw lots of &ldquo;404 error&rdquo; responses.</p>
+
+<p>The configuration key says <code>heroku</code>, but this works for dokku too - remember
+Dokku basically uses all the same basic things that Heroku does - buildpacks,
+git based deploys, putting apps in their own sandboxed containers, etc.</p>
+
+<h2>Step 7: Install Other Plugins Your App Needs</h2>
+
+<h3>Custom Domains</h3>
+
+<p>You will want the <a href="https://github.com/wmluke/dokku-domains-plugin">dokku domains
+plugin</a> so your app can use
+domains instead of subdomains or ports.</p>
+
+<p>Then add your domain to your your app using:</p>
+<pre class="highlight text">ssh dokku@&lt;yourserver.com&gt; domains:set &lt;app_name&gt; yourdomain.com api.yourdomain.com
+</pre>
+<h3>MySQL / MariaDB</h3>
+
+<p>If your app uses MySQL, install the <a href="https://github.com/Kloadut/dokku-md-plugin">dokku MariaDB
+plugin</a> (drop-in MySQL
+Replacement).</p>
+
+<p>Then create a database for your app using:</p>
+<pre class="highlight text">ssh dokku@&lt;yourserver.com&gt; mariadb:create &lt;app_name&gt;
+</pre>
+<p>This will create a <code>DATABASE_URL</code> environment variable that will be available
+as a DSN string for your app to use to connect to the database via PDO or other
+ORM that you may want to use. You can access this in PHP via <code>$_SERVER[&#39;DATABASE_URL&#39;]</code>.</p>
+
+<h3>Other Plugins</h3>
+
+<p>If you use Redis, Memcached, or anything else, check the <a href="https://github.com/progrium/dokku/wiki/Plugins">Dokku Plugins
+page</a> and install whatever you
+need.</p>
+
+<h2>Step 8: Re-Deploy Your App</h2>
+
+<p>This time when you deploy your app via <code>git push</code>, it will use the custom buildpack you set in
+Step 4. You should be able to view your app live on your custom port, subdomain, or
+domain now, and all should be well.</p>
+
+<p>Now sit back, relax, and enjoy your own mini-Heroku at a fraction of the cost!</p>
+<div class="small">Posted on Feb  8, 2014</div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="../../images/VanceLucas-March09.jpg?1390519453" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="../../images/icons/Github.png?1390519453" /></a></li><li><a href="https://twitter.com/vlucas"><img src="../../images/icons/Twitter.png?1390519453" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="../../images/icons/LinkedIN.png?1390519453" /></a></li><li><a href="/feed.xml"><img src="../../images/icons/RSS.png?1390519453" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/using-dokku-to-deploy-php-applications-on-digitalocean/">Using Dokku to Deploy PHP Applications on DigitalOcean</a><a class="list-group-item" href="/blog/skiphp-conference/">SkiPHP Conference 2014</a><a class="list-group-item" href="/blog/new-year-new-blog/">New Year, New Blog</a><a class="list-group-item" href="/blog/valitron-the-simple-validation-library-that-doesnt-suck/">Valitron: The Simple Validation Library That Doesn't Suck</a><a class="list-group-item" href="/blog/introducing-bullet-the-functional-php-micro-framework/">Introducing Bullet: The Functional PHP Micro-Framework</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-359731-12']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>

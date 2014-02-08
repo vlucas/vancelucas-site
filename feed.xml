@@ -5,10 +5,154 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2014-01-22T17:07:00Z</updated>
+  <updated>2014-02-08T19:48:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>Using Dokku to Deploy PHP Applications on DigitalOcean</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/using-dokku-to-deploy-php-applications-on-digitalocean/"/>
+    <id>http://www.vancelucas.com/blog/using-dokku-to-deploy-php-applications-on-digitalocean/</id>
+    <published>2014-02-08T19:48:00Z</published>
+    <updated>2014-02-08T15:20:47-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;Want a Platform-as-a-Service setup like &lt;a href="http://heroku.com"&gt;Heroku&lt;/a&gt; on your own
+&lt;a href="https://www.digitalocean.com/?refcode=b814bf3a4035"&gt;$5/month VPS from DigitalOcean&lt;/a&gt;? Look no
+further than
+&lt;a href="http://progrium.com/blog/2013/06/19/dokku-the-smallest-paas-implementation-youve-ever-seen/"&gt;Dokku&lt;/a&gt;
+- a set of scripts built on &lt;a href="https://www.docker.io/"&gt;Docker&lt;/a&gt; and Heroku&amp;rsquo;s own
+buildpacks. After this setup, you&amp;rsquo;re just one &lt;code&gt;git push&lt;/code&gt; away from deploying
+your app to your own server.&lt;/p&gt;
+
+&lt;h2&gt;Step 1: Create a new Droplet with Dokku&lt;/h2&gt;
+
+&lt;p&gt;DigitalOcean has a great guide on &lt;a href="https://www.digitalocean.com/community/articles/how-to-use-the-digitalocean-dokku-application?refcode=b814bf3a4035"&gt;how to use the DigitalOcean Dokku
+Application&lt;/a&gt;,
+so there is no sense in repeating the steps here. Follow the steps in that
+article, and then come back here. &lt;strong&gt;There are issues I ran into after the Dokku
+setup that are important steps not to skip&lt;/strong&gt;. So be sure to come back here
+before trying to deploy your PHP application.&lt;/p&gt;
+
+&lt;h2&gt;Step 2: Setup Swap Space&lt;/h2&gt;
+
+&lt;p&gt;DigitalOcean boxes don&amp;rsquo;t come with any disk swap space configured by default,
+but Dokku uses some when deploying your apps, so you need to &lt;a href="https://www.digitalocean.com/community/articles/how-to-add-swap-on-ubuntu-12-04?refcode=b814bf3a4035"&gt;configure some
+using this
+guide&lt;/a&gt;
+before your first &lt;code&gt;git push&lt;/code&gt; or you may run into errors (I sure did). The guide
+says Ubuntu 12.04, but it works on 13.04 too, so no worries. Do this and then come back. I&amp;rsquo;ll wait.&lt;/p&gt;
+
+&lt;h2&gt;Step 3: Deploy Your App&lt;/h2&gt;
+
+&lt;p&gt;Although the setup is not fully complete, try and deploy your app now to make
+sure your dokku setup is working properly. You also need to deploy your app now
+so you will have a container ready for the next steps.&lt;/p&gt;
+&lt;pre class="highlight text"&gt;git remote add dokku dokku@yourdomain.com:app_name
+git push dokku master
+&lt;/pre&gt;
+&lt;p&gt;The ouput of the &lt;code&gt;git push&lt;/code&gt; will let you know if your deploy was successful or
+not. If you have a successful deploy, but get a &amp;ldquo;502 Bad Gateway&amp;rdquo; response from
+Nginx, continue with the steps below.&lt;/p&gt;
+
+&lt;h2&gt;Step 4: Install the user-env-compile Plugin&lt;/h2&gt;
+
+&lt;p&gt;Install the &lt;a href="https://github.com/musicglue/dokku-user-env-compile"&gt;user-env-compile
+plugin&lt;/a&gt;. This will allow
+you to set environment variables on your app that are available to be used at
+build time. &lt;strong&gt;This is important for the next step&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Step 5: Use CHH&amp;rsquo;s PHP Buildpack&lt;/h2&gt;
+
+&lt;p&gt;Now that you have the &lt;code&gt;user-env-compile&lt;/code&gt; plugin installed and have created your
+app&amp;rsquo;s initial container, you can set environment variable configuration values
+on it. To specify what buildpack you want to use, set the &lt;code&gt;BUILDPACK_URL&lt;/code&gt; ENV value.&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;ssh dokku@&amp;lt;yourserver.com&amp;gt; config:set &amp;lt;app_name&amp;gt; &lt;span class="nv"&gt;BUILDPACK_URL&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;https://github.com/CHH/heroku-buildpack-php
+&lt;/pre&gt;
+&lt;p&gt;You should see output like this:&lt;/p&gt;
+&lt;pre class="highlight shell"&gt;&lt;span class="gp"&gt;-----&amp;gt; &lt;/span&gt;Setting config vars and restarting &amp;lt;app_name&amp;gt;
+BUILDPACK_URL: https://github.com/CHH/heroku-buildpack-php
+&lt;span class="gp"&gt;-----&amp;gt; &lt;/span&gt;Releasing &amp;lt;app_name&amp;gt; ...
+&lt;span class="gp"&gt;-----&amp;gt; &lt;/span&gt;Release &lt;span class="nb"&gt;complete&lt;/span&gt;!
+&lt;span class="gp"&gt;-----&amp;gt; &lt;/span&gt;Deploying &amp;lt;app_name&amp;gt; ...
+&lt;span class="gp"&gt;-----&amp;gt; &lt;/span&gt;Deploy &lt;span class="nb"&gt;complete&lt;/span&gt;!
+&lt;/pre&gt;
+&lt;p&gt;NOTE: ANY Heroku buildpack will work, so if you wnat to use another one, you
+are free to do so, although it is very doubtful you will find a better one for
+PHP :).&lt;/p&gt;
+
+&lt;h2&gt;Step 6: Set your Document Root&lt;/h2&gt;
+
+&lt;p&gt;Now open your &lt;code&gt;composer.json&lt;/code&gt; file, and add the &lt;code&gt;extra&lt;/code&gt; configuration block to
+specify your &lt;code&gt;document-root&lt;/code&gt; and &lt;code&gt;index-document&lt;/code&gt; so the PHP buildpack will
+know where to serve your files from.&lt;/p&gt;
+&lt;pre class="highlight json"&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;require&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;php&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;gt;=5.4.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;vlucas/bulletphp&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;~1.3.x&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;extra&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;heroku&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;
+            &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;framework&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;slim&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+            &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;document-root&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;web&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt;
+            &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;index-document&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;index.php&amp;quot;&lt;/span&gt;&lt;span class="w"&gt;
+        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/pre&gt;
+&lt;p&gt;Note: The &lt;code&gt;framework&lt;/code&gt; key here is &lt;code&gt;slim&lt;/code&gt;. This doesn&amp;rsquo;t match &lt;a href="http://bulletphp.com"&gt;my framework
+Bullet&lt;/a&gt;, but I have to put this in here because this maps
+to the &lt;a href="https://github.com/CHH/heroku-buildpack-php/tree/master/conf/nginx"&gt;nginx config file
+used&lt;/a&gt;. So
+if I don&amp;rsquo;t specify this here, the buildpack assumes a standard classic PHP
+setup and will only execute &lt;code&gt;.php&lt;/code&gt; files, and not rewrite all requests to the
+main &lt;code&gt;index.php&lt;/code&gt; file like most frameworks (including Bullet) require, causing
+nginx to throw lots of &amp;ldquo;404 error&amp;rdquo; responses.&lt;/p&gt;
+
+&lt;p&gt;The configuration key says &lt;code&gt;heroku&lt;/code&gt;, but this works for dokku too - remember
+Dokku basically uses all the same basic things that Heroku does - buildpacks,
+git based deploys, putting apps in their own sandboxed containers, etc.&lt;/p&gt;
+
+&lt;h2&gt;Step 7: Install Other Plugins Your App Needs&lt;/h2&gt;
+
+&lt;h3&gt;Custom Domains&lt;/h3&gt;
+
+&lt;p&gt;You will want the &lt;a href="https://github.com/wmluke/dokku-domains-plugin"&gt;dokku domains
+plugin&lt;/a&gt; so your app can use
+domains instead of subdomains or ports.&lt;/p&gt;
+
+&lt;p&gt;Then add your domain to your your app using:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;ssh dokku@&amp;lt;yourserver.com&amp;gt; domains:set &amp;lt;app_name&amp;gt; yourdomain.com api.yourdomain.com
+&lt;/pre&gt;
+&lt;h3&gt;MySQL / MariaDB&lt;/h3&gt;
+
+&lt;p&gt;If your app uses MySQL, install the &lt;a href="https://github.com/Kloadut/dokku-md-plugin"&gt;dokku MariaDB
+plugin&lt;/a&gt; (drop-in MySQL
+Replacement).&lt;/p&gt;
+
+&lt;p&gt;Then create a database for your app using:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;ssh dokku@&amp;lt;yourserver.com&amp;gt; mariadb:create &amp;lt;app_name&amp;gt;
+&lt;/pre&gt;
+&lt;p&gt;This will create a &lt;code&gt;DATABASE_URL&lt;/code&gt; environment variable that will be available
+as a DSN string for your app to use to connect to the database via PDO or other
+ORM that you may want to use. You can access this in PHP via &lt;code&gt;$_SERVER[&amp;#39;DATABASE_URL&amp;#39;]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Other Plugins&lt;/h3&gt;
+
+&lt;p&gt;If you use Redis, Memcached, or anything else, check the &lt;a href="https://github.com/progrium/dokku/wiki/Plugins"&gt;Dokku Plugins
+page&lt;/a&gt; and install whatever you
+need.&lt;/p&gt;
+
+&lt;h2&gt;Step 8: Re-Deploy Your App&lt;/h2&gt;
+
+&lt;p&gt;This time when you deploy your app via &lt;code&gt;git push&lt;/code&gt;, it will use the custom buildpack you set in
+Step 4. You should be able to view your app live on your custom port, subdomain, or
+domain now, and all should be well.&lt;/p&gt;
+
+&lt;p&gt;Now sit back, relax, and enjoy your own mini-Heroku at a fraction of the cost!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>SkiPHP Conference 2014</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/skiphp-conference/"/>
@@ -749,30 +893,6 @@ On the left (green) is my data usage with an Android device, Right (red) is my w
 structure follows the organization model shown in the &lt;a href="https://github.com/appcelerator-titans/tweetanium"&gt;Tweetanium example
 app&lt;/a&gt; (using the &amp;lsquo;app&amp;rsquo;
 namespace within a single window context), but is easy to adapt if you are not.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Count the Number of Object keys/properties in Node.js</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/count-the-number-of-object-keysproperties-in-nodejs/"/>
-    <id>http://www.vancelucas.com/blog/count-the-number-of-object-keysproperties-in-nodejs/</id>
-    <published>2011-07-25T00:00:00Z</published>
-    <updated>2014-01-03T15:12:40-06:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;When using the excellent
-&lt;a href="https://github.com/felixge/node-formidable"&gt;formidable&lt;/a&gt; library to handle file
-uploads, I needed to get a count of the number of files unloaded in a
-multi-part form. Javascript arrays have a .length property that you can use,
-  but objects do not. I instinctively typed:files.length&lt;/p&gt;
-
-&lt;p&gt;Which returned undefined. So if there is no length property present, an easy
-way to count the number of keys or properties of an object in ES5-compliant
-javascript environments like &lt;a href="http://nodejs.org"&gt;Node.js&lt;/a&gt; is to use the Object
-prototype directly:&lt;/p&gt;
-&lt;pre class="highlight javascript"&gt;&lt;span class="nb"&gt;Object&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;files&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;length&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;A little more typing, but it is fast, efficient, and most importantly: already built-in.&lt;/p&gt;
 </content>
   </entry>
 </feed>
