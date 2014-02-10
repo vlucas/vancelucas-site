@@ -1,5 +1,5 @@
 ---
-title: Using Dokku to Deploy PHP Applications on DigitalOcean
+title: 'Using Dokku to Deploy PHP Applications with a "git push" on DigitalOcean'
 date: 2014-02-08 19:48 UTC
 tags: ['server', 'vps', 'php']
 ---
