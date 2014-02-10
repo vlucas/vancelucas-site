@@ -10,11 +10,11 @@
     <name>Vance Lucas</name>
   </author>
   <entry>
-    <title>Using Dokku to Deploy PHP Applications on DigitalOcean</title>
+    <title>Using Dokku to Deploy PHP Applications with a "git push" on DigitalOcean</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/using-dokku-to-deploy-php-applications-on-digitalocean/"/>
     <id>http://www.vancelucas.com/blog/using-dokku-to-deploy-php-applications-on-digitalocean/</id>
     <published>2014-02-08T19:48:00Z</published>
-    <updated>2014-02-08T15:20:47-06:00</updated>
+    <updated>2014-02-10T10:22:38-06:00</updated>
     <author>
       <name>Vance Lucas</name>
     </author>
