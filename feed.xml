@@ -5,10 +5,89 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2014-03-03T17:26:00Z</updated>
+  <updated>2014-03-08T23:10:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>MacBook Pro Retina 3.5mm TRRS Cable With Audio Input</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/macbook-pro-retina-3-5mm-trrs-cable-with-audio-input/"/>
+    <id>http://www.vancelucas.com/blog/macbook-pro-retina-3-5mm-trrs-cable-with-audio-input/</id>
+    <published>2014-03-08T23:10:00Z</published>
+    <updated>2014-03-09T14:35:06-05:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;One of the unexpected surprises that came with upgrading to a new Macbook Pro
+Retina 15&amp;quot; from an older MacBook Pro was Apple&amp;rsquo;s inexplicable deletion of
+the audio input (mic) 3.5mm jack. I use a regularly use a gaming headset with a
+boom mic that was now rendered completely useless, because I was no longer able
+to plug in the mic. I love it that Apple&amp;rsquo;s hardware is on the cutting edge, but
+sometimes they do things like this that just don&amp;rsquo;t make sense for the average
+user.&lt;/p&gt;
+
+&lt;h2&gt;What Happened?&lt;/h2&gt;
+
+&lt;p&gt;I did some searching around, and discovered that &lt;strong&gt;Apple changed the standard
+dual input/output 3.5mm jacks for a single combined TRRS 3.5mm jack&lt;/strong&gt; with 3
+contacts - the same one they use for the iPod, iPhone, and iPad. I guess it
+makes sense for Apple to standardize everything so you can use their headphones
+everywhere, but it caught me offguard and really frustrated me that I would
+have to buy something extra just to continue using my headset.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Where did the mic jack go!?" src="http://f.cl.ly/items/241l0R3G2T3B153Z2o2v/Screen%20Shot%202014-03-08%20at%205.36.24%20PM.png" /&gt;&lt;/p&gt;
+
+&lt;h2&gt;Things I Tried&lt;/h2&gt;
+
+&lt;p&gt;I did some searching and originally purchased &lt;a
+href="http://www.amazon.com/gp/product/B002SK66OY?ie=UTF8&amp;camp=213733&amp;creative=393177&amp;creativeASIN=B002SK66OY&amp;linkCode=shr&amp;tag=auto0be-20"&gt;this
+Headset Buddy cable from Amazon&lt;/a&gt;. It&amp;rsquo;s $15.95(!) and has branding from the
+1980&amp;rsquo;s. I cringed and made the purchase thinking it would be worth it if it
+solved my problem. When it arrived, it was clear that the price of the cable is
+about 3x what it should be. The cable is flimsy and cheap, and didn&amp;rsquo;t even work
+at all. I promptly returned it. &lt;strong&gt;The customer reviews are mixed, but don&amp;rsquo;t gamble
+on it&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;That cable purchase has soured my view on the TRRS splitters for a while, so I
+opted for a &lt;a
+href="http://www.amazon.com/gp/product/B001MSS6CS?ie=UTF8&amp;camp=213733&amp;creative=393185&amp;creativeASIN=B001MSS6CS&amp;linkCode=shr&amp;tag=auto0be-20"&gt;USB
+audio adapter to 3.5mm input/output jacks&lt;/a&gt; instead. &lt;strong&gt;It was a little cheaper
+at $10.95 and worked great, but came with a huge downside&lt;/strong&gt;: It uses one of
+only TWO total USB ports on your MacBook Pro - a precious resource that I was
+already using (and thus had to also use a USB hub). Another downside here is
+that you have to explicitly switch to USB audio using the Sound preference
+pane, which can be annoying at times.&lt;/p&gt;
+
+&lt;h2&gt;The Best Solution&lt;/h2&gt;
+
+&lt;p&gt;The best working solution (and also the cheapest) I found is &lt;strong&gt;&lt;a
+href="http://www.monoprice.com/Product?c_id=115&amp;cp_id=11509&amp;cs_id=1150908&amp;p_id=601030&amp;seq=1&amp;format=2"&gt;this
+TRRS audio cable from Monoprice&lt;/a&gt;
+for about $5&lt;/strong&gt;. When it came in the mail, I originally thought I ordered the
+wrong cable, because the configuration is weird. Instead of a typical &amp;ldquo;Y&amp;rdquo;
+configuration off the male jack, it instead splits off from the 3.5mm audio
+input female jack into another 3.5mm audio output female jack. Make sure you
+look at all the product images to see what I mean.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="Weird Cable Configuration" src="http://images.monoprice.com/productlargeimages/6010302.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;The cable works well and feels very durable, even if it does looke like the
+wrong type of cable (Monoprice, if you&amp;rsquo;re listening - please fix this. It
+works, but it just looks weird with the &amp;ldquo;Y&amp;rdquo; coming off the female 3.5mm
+input jack).&lt;/p&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;Hopefully my misadventures in trying to solve this problem that Apple itself
+doesn&amp;rsquo;t even have a cable for will help you not have to do all this
+experimentation yourself. I feel like this should have been way easier than it
+was to find a cable that works on newer Macbook Pros, but apparently marketing
+lags a bit behind for 3rd party accessories like this (all these cables are
+marketed as iPod/iPhone/iPad cables, which have the same TRRS 3.5mm jack). In
+another year or two, I doubt this will be a problem at all, but just incase it
+still is - you can always find this blog post :).&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Oklahoma PHP User Group Reboot</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/okcphp-user-group-reboot/"/>
@@ -726,30 +805,6 @@ On the left (green) is my data usage with an Android device, Right (red) is my w
 &lt;p&gt; &lt;/p&gt;
 
 &lt;p&gt; &lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>How to add Photos to the iPhone Simulator</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/how-to-add-photos-to-the-iphone-simulator/"/>
-    <id>http://www.vancelucas.com/blog/how-to-add-photos-to-the-iphone-simulator/</id>
-    <published>2011-09-16T00:00:00Z</published>
-    <updated>2014-01-01T16:44:49-06:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;Building an app that needs to access the photo library but don&amp;rsquo;t have any photos in the iPhone simulator? No problem. Follow these simple steps to import photos into the iPhone Simulator:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Open the iPhone Simulator&lt;/li&gt;
-&lt;li&gt;Browse to the photo you want to put into the simulator (Finder or web browser)&lt;/li&gt;
-&lt;li&gt;Click and drag the photo over the simulator window. A green &amp;ldquo;plus&amp;rdquo; icon should appear under your cursor with the simulator frame highlighted. Drop the photo.&lt;/li&gt;
-&lt;li&gt;Mobile Safari should open on the simulator to the location of the image you just dragged and dropped over it&lt;/li&gt;
-&lt;li&gt;Note that if the image you dropped is linked in a webpage, it will open the link instead of the image URL.&lt;/li&gt;
-&lt;li&gt;Click the mouse down over the image and hold it until a popup window appears.&lt;/li&gt;
-&lt;li&gt;Click &amp;ldquo;Save Image&amp;rdquo;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;The photo will now reside in the &amp;ldquo;Saved Photos&amp;rdquo; album on the iPhone Simulator. Rince and repeat as many times as you need to get all your photos in the album.&lt;/p&gt;
 </content>
   </entry>
 </feed>
