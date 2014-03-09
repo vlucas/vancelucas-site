@@ -7,6 +7,13 @@ set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true, :smartypants => true
 activate :syntax, :line_numbers => false
 
+# URL redirects to new feed
+require 'rack/rewrite'
+
+use Rack::Rewrite do
+  r301 %r{/blog/feed}, '/feed.xml'
+end
+
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
