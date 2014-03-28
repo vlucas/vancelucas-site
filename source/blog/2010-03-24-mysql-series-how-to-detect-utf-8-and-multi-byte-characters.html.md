@@ -15,7 +15,7 @@ Return all the rows with multi-byte characters in table posts on field title:
 ```sql
 SELECT *
 FROM posts
-WHERE LENGTH(title)  CHAR_LENGTH(title)
+WHERE LENGTH(title) != CHAR_LENGTH(title)
 ```
 
 This does pretty much what it looks like: returns all the rows in the posts
