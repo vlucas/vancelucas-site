@@ -7,7 +7,7 @@ your ales:</p>
 <p>Return all the rows with multi-byte characters in table posts on field title:</p>
 <pre class="highlight sql"><span class="k">SELECT</span> <span class="o">*</span>
 <span class="k">FROM</span> <span class="n">posts</span>
-<span class="k">WHERE</span> <span class="k">LENGTH</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>  <span class="k">CHAR_LENGTH</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="k">WHERE</span> <span class="k">LENGTH</span><span class="p">(</span><span class="n">title</span><span class="p">)</span> <span class="o">!=</span> <span class="k">CHAR_LENGTH</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
 </pre>
 <p>This does pretty much what it looks like: returns all the rows in the posts
 table where the title&rsquo;s character length does not match the title&rsquo;s length.
