@@ -5,10 +5,63 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2014-03-08T23:10:00Z</updated>
+  <updated>2014-03-20T13:50:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>Funemployed</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/funemployed/"/>
+    <id>http://www.vancelucas.com/blog/funemployed/</id>
+    <published>2014-03-20T13:50:00Z</published>
+    <updated>2014-04-14T16:36:16-05:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;After running &lt;a href="http://brightbit.com"&gt;Brightbit&lt;/a&gt; with &lt;a href="http://joshuaogle.com"&gt;Joshua
+Ogle&lt;/a&gt; and &lt;a href="http://ericboehs.com"&gt;Eric Boehs&lt;/a&gt; for nearly
+fours years, it officially came to an end a few weeks ago on February 28, 2014
+when we closed the office. It&amp;rsquo;s a long story, and there is no blog post for it
+yet, but now is not the time. Long story short, we worked too far past our
+deposits for a few clients who used to be awesome clients, but, as it turns
+out, couldn&amp;rsquo;t pay anymore. We ran out of money, had to lay everyone off, and
+close the office. It was the most depressing experience of my life - but like I
+said, that&amp;rsquo;s for another post some other time.&lt;/p&gt;
+
+&lt;h2&gt;What do You do After Running Your Own Company?&lt;/h2&gt;
+
+&lt;p&gt;This is a question I&amp;rsquo;ve been asking myself a lot over the past few months,
+facing the impending office closure and winding down of my own business.
+Thing is, when you&amp;rsquo;re a business owner, you get to (read: have to) wear a
+lot of different hats. On any given day, I&amp;rsquo;d do development, marketing, sales,
+project management, HR, project planning, business planning, financial
+forcasting, and more. Since your role isn&amp;rsquo;t really defined, it just expands to
+fill whatever role is necessary at any given time. It&amp;rsquo;s both frustrating and
+liberating, and it&amp;rsquo;s an incredible learning experience - and unlike anything
+else that any full-time job is going to give you. &lt;strong&gt;This makes choosing my next
+job very hard&lt;/strong&gt;. A lot more thought goes into what I am going to go with the next
+few years of my life, and how that will help me along my path, whether or not
+it will be interesting and challening enough for me, etc.&lt;/p&gt;
+
+&lt;h2&gt;What I am Looking For Now&lt;/h2&gt;
+
+&lt;p&gt;After taking a little breather to do some hard thinking and evaluate my
+options, I have come to the conclusion that&amp;hellip; I have no idea what I really
+want to do next. I am open to - and actively evaluating - a lot of different
+options right now ranging from &lt;strong&gt;part-time and full-time contracts&lt;/strong&gt; to more
+traditional (and even some quite unique) &lt;strong&gt;full-time jobs&lt;/strong&gt;. One thing I do know,
+however, is that it does &lt;strong&gt;have to be something that is both very interesting
+and challenging&lt;/strong&gt; for me - something that will force me to grow and learn. It
+also has to be either &lt;strong&gt;remote/telecommute or based in the OKC area&lt;/strong&gt;. I have put
+down significant roots in OKC, am very involved in the local developer
+community, and have lots of family here. Basically, I really don&amp;rsquo;t want to move
+right now &lt;em&gt;(unless maybe you need me to relocate to say&amp;hellip; the Bahamas or the
+ Virgin Islands and pay generous housing allowances. There&amp;rsquo;s a chance I might
+ go for that.)&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Have work for me? &lt;a href="/contact"&gt;Get in touch&lt;/a&gt;. No recruiters, please!&lt;/strong&gt;&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>MacBook Pro Retina 3.5mm TRRS Cable With Audio Input</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/macbook-pro-retina-3-5mm-trrs-cable-with-audio-input/"/>
@@ -754,57 +807,5 @@ allowing PHP to open and execute PHAR files.&lt;/p&gt;
 &lt;pre class="highlight shell"&gt;/etc/init.d/php5-fpm restart
 /etc/init.d/nginx restart
 &lt;/pre&gt;</content>
-  </entry>
-  <entry>
-    <title>Excessive Data Usage with iPhone 4S / iOS5</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/excessive-data-usage-with-iphone-4s-ios5/"/>
-    <id>http://www.vancelucas.com/blog/excessive-data-usage-with-iphone-4s-ios5/</id>
-    <published>2011-11-16T00:00:00Z</published>
-    <updated>2014-01-01T16:51:18-06:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;Got a new iPhone 4S or recently upgraded your iPhone 4 or 3GS to IOS5 and noticing unusually high cellular data usage? Are you close to exceeding your data usage limit when you never have before? Have you already exceeded it? You are
-&lt;a href="http://forums.wireless.att.com/t5/Apple-iPhone/Insane-data-usage-with-the-new-iPhone-4s/td-p/2952781"&gt;not&lt;/a&gt;
-&lt;a href="https://discussions.apple.com/thread/3410990"&gt;alone&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;My wife recently traded in her old iPhone 3G for a shiny new iPhone 4S, and within 10 days had exceeded her 200MB AT&amp;amp;T data plan limit when she has never exceeded it before. So what gives? It&amp;rsquo;s a new phone, and Siri does transmit voice data back to Apple&amp;rsquo;s servers, but could that really have caused the usage?###Fixing The Data Usage Problem&lt;/p&gt;
-
-&lt;p&gt;Turns out the problem is that Apple ships iOS5 with iCloud data syncing over cellular networks ON by default. This means all the documents and data stored on your phone for all the applications you have installed on your phone will be automatically uploaded to iCloud, decimating your puny cellular data plan you thought you&amp;rsquo;d never burn through.&lt;/p&gt;
-
-&lt;p&gt;If you are experiencing super high data usage on iOS5, just follow these steps:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Navigate to: Settings -&gt; iCloud -&gt; Documents &amp;amp; Data -&gt; Use Cellular&lt;/li&gt;
-&lt;li&gt;Turn it OFF&lt;/li&gt;
-&lt;li&gt;Fight with AT&amp;amp;T (or other wireless carrier) about your excessive data usage charges&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Why Apple would ever think its a good default to sync data and documents for all your phone&amp;rsquo;s applications over a cellular network in the world of severely limited data plans and usage based billing is beyond me. This, and the
-&lt;a href="https://discussions.apple.com/thread/3391947"&gt;widespread&lt;/a&gt; 
-&lt;a href="http://gizmodo.com/5859278/the-iphone-4s-battery-problem-is-probably-not-because-of-faulty-hardware"&gt;battery&lt;/a&gt; 
-&lt;a href="http://www.macworld.com/article/163200/2011/10/troubleshoot_iphone4s_battery.html"&gt;issues&lt;/a&gt; with the iPhone 4S and iOS5 seem to indicate Apple didn&amp;rsquo;t do nearly enough field testing with the new phone or OS. Let&amp;rsquo;s home they learn from this in the future.&lt;/p&gt;
-
-&lt;h3&gt;Usage Before iPhone 4S&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href="http://www.vancelucas.com/wp-content/uploads/2011/11/Screen-shot-2011-11-16-at-5.08.03-PM.png"&gt;&lt;img src="http://www.vancelucas.com/wp-content/uploads/2011/11/Screen-shot-2011-11-16-at-5.08.03-PM.png" /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Some months have clearly higher data usage than others depending on how long we were away from home or what we did while we were out with out phones, but we were never in any real danger of going over the low 200MB limit before.&lt;/p&gt;
-
-&lt;h3&gt;Data Usage after 10 days with the iPhone 4S&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href="http://www.vancelucas.com/wp-content/uploads/2011/11/Screen-shot-2011-11-16-at-5.09.04-PM.png"&gt;&lt;img src="http://www.vancelucas.com/wp-content/uploads/2011/11/Screen-shot-2011-11-16-at-5.09.04-PM.png" /&gt;&lt;/a&gt;
-On the left (green) is my data usage with an Android device, Right (red) is my wife&amp;rsquo;s data usage this month with the new iPhone 4S.&lt;/p&gt;
-
-&lt;p&gt;My wife got a text alert for 65% data plan usage on Monday, and then one on Friday for 80%, and one the day after on Saturday saying she had gone over her limit (exceeding 100% of the plan) and that we would be billed an additional $15 by AT&amp;amp;T for the overage.&lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
-
-&lt;p&gt; &lt;/p&gt;
-</content>
   </entry>
 </feed>
