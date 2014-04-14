@@ -27,7 +27,7 @@ liberating, and it's an incredible learning experience - and unlike anything
 else that any full-time job is going to give you. **This makes choosing my next
 job very hard**. A lot more thought goes into what I am going to go with the next
 few years of my life, and how that will help me along my path, whether or not
-it will be interesting and challening enough for me, etc.
+it will be interesting and challenging enough for me, etc.
 
 ## What I am Looking For Now
 
