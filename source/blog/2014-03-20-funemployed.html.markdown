@@ -47,3 +47,5 @@ right now *(unless maybe you need me to relocate to say... the Bahamas or the
 
 **Have work for me? [Get in touch](/contact). No recruiters, please!**
 
+**UPDATE:** I have accepted and started a full-time 12-month contract, so I am
+no longer looking for work. Thanks for all the support and emails!
