@@ -66,8 +66,8 @@ page "/feed.xml", :layout => false
 configure :build do
   activate :minify_css
   activate :minify_javascript
-  activate :cache_buster
-  activate :relative_assets
+  # activate :cache_buster
+  # activate :relative_assets
 
   # Compress PNGs after build
   # First: gem install middleman-smusher
