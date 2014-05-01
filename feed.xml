@@ -18,7 +18,7 @@
     <author>
       <name>Vance Lucas</name>
     </author>
-    <content type="html">&lt;p&gt;&lt;img alt="Pulling My Apps From The App Store" src="images/posts/2014/appstore/itunesconnect-unpublished-apps.png?1398985656" /&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;&lt;img alt="Pulling My Apps From The App Store" src="/images/posts/2014/appstore/itunesconnect-unpublished-apps.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Last night, I decided to pull my two iOS and Android apps &lt;a href="/blog/android-iphone-seo-app/"&gt;SEMTab SEO
 Pro&lt;/a&gt; and my very first app, &lt;a href="/blog/zero-to-app-in-two-weeks-with-titanium/"&gt;AutoRidge
@@ -59,12 +59,12 @@ was not able to test on, or were not actually supported (like the &amp;ldquo;Rub
 review you see for it not working on the Galaxy Tab - one of the first Android
 tablets that liked to pretend it could run normal Android apps just fine).&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="Google Play Rating - An abysmal 1.6" src="images/posts/2014/appstore/semtab-googleplay-ratings.png?1398985656" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Google Play Rating - An abysmal 1.6" src="/images/posts/2014/appstore/semtab-googleplay-ratings.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;On the App Store, the app was a lot more stable, but still got a bad rating for
 it&amp;rsquo;s terrible accuracy.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="App Store Rating - An not-much-beter 2 stars" src="images/posts/2014/appstore/semtab-appstore-ratings.png?1398985656" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="App Store Rating - An not-much-beter 2 stars" src="/images/posts/2014/appstore/semtab-appstore-ratings.png" /&gt;&lt;/p&gt;
 
 &lt;h3&gt;Revenue&lt;/h3&gt;
 
@@ -74,11 +74,11 @@ app sucks and has a bunch of bad ratings.&lt;/p&gt;
 
 &lt;p&gt;Google Play Revenue&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="Google Play Revenue 2011-2014" src="images/posts/2014/appstore/semtab-googleplay-revenue.png?1398985656" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Google Play Revenue 2011-2014" src="/images/posts/2014/appstore/semtab-googleplay-revenue.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;App Store Revenue&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="iTunes Connect Stats 2011-2014" src="images/posts/2014/appstore/itunesconnect-proceeds-2009-2014.png?1398985656" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="iTunes Connect Stats 2011-2014" src="/images/posts/2014/appstore/itunesconnect-proceeds-2009-2014.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;A whopping &lt;strong&gt;$127.19&lt;/strong&gt; from Google and &lt;strong&gt;$83.01&lt;/strong&gt; from Apple, for a grand total
 of &lt;strong&gt;$210.20&lt;/strong&gt;. &lt;em&gt;In 4 years&lt;/em&gt;. Ouch. Totally not worth the (admittedly small)
@@ -135,12 +135,12 @@ generally loved it. You can see this wide rating distribution reflected in the
 data. This saddens me a bit, because the rating could have easily been 4+ in
 Google Play if it worked consistently across all Android devices.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="Google Play Rating - A very average 3.08" src="images/posts/2014/appstore/autoridge-googleplay-ratings.png?1398985656" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Google Play Rating - A very average 3.08" src="/images/posts/2014/appstore/autoridge-googleplay-ratings.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;The App Store rating was pretty much the same story, with all the negative
 reviews questioning data completeness and accuracy:&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="App Store Rating - An not-much-beter 2 stars" src="images/posts/2014/appstore/autoridge-appstore-ratings.png?1398985656" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="App Store Rating - An not-much-beter 2 stars" src="/images/posts/2014/appstore/autoridge-appstore-ratings.png" /&gt;&lt;/p&gt;
 
 &lt;h3&gt;Distribution&lt;/h3&gt;
 
@@ -152,12 +152,12 @@ store.&lt;/p&gt;
 
 &lt;p&gt;App Store Distribution Units&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="App Store Units - 2009-2014" src="images/posts/2014/appstore/itunesconnect-units-2009-2014.png?1398985656" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="App Store Units - 2009-2014" src="/images/posts/2014/appstore/itunesconnect-units-2009-2014.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Google Play Installs&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="Google Play Distribution - 2010-2014" src="images/posts/2014/appstore/autoridge-googleplay-units.png?1398985656" /&gt;
-&lt;img alt="Google Play Active Installs - 2010-2014" src="images/posts/2014/appstore/autoridge-googleplay-activeinstalls.png?1398985656" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Google Play Distribution - 2010-2014" src="/images/posts/2014/appstore/autoridge-googleplay-units.png" /&gt;
+&lt;img alt="Google Play Active Installs - 2010-2014" src="/images/posts/2014/appstore/autoridge-googleplay-activeinstalls.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;According to Google, there are &lt;strong&gt;still 1,584 devices with Autoridge Lite
 installed&lt;/strong&gt;. Definitely far better than SEMTab SEO Pro that had only
@@ -562,7 +562,7 @@ people you meet and talk to who are also there. At SkiPHP, the main event was
 obvious - skiing! A small group of us stayed an extra day or two after the
 conference to hit the slopes at &lt;a href="http://www.snowbird.com/"&gt;Snowbird&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="SkiPHP Slopes Crew" src="images/skiphp-group.jpg" /&gt;
+&lt;p&gt;&lt;img alt="SkiPHP Slopes Crew" src="/images/skiphp-group.jpg" /&gt;
 &lt;small&gt;Pictured (Front): Adam Culp, Ben Edmonds, Chris Boden, Josh Adell
 (Back) Paul Jones, Vance Lucas, John Coggeshall&lt;/small&gt;&lt;/p&gt;
 
@@ -571,7 +571,7 @@ hill since it was our first time snow skiing, but the other guys hit the real
 slopes, and have much better, more majestic mountanside pictures and views to
 share. I did manage to take a good selfie on the ski lift though!&lt;/p&gt;
 
-&lt;p&gt;&lt;img alt="Vance Lucas on the Ski Lift on the Chickadee Slope at Snowbrid" src="images/skiphp-selfie.jpg" /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="Vance Lucas on the Ski Lift on the Chickadee Slope at Snowbrid" src="/images/skiphp-selfie.jpg" /&gt;&lt;/p&gt;
 
 &lt;h2&gt;Wrapping Up&lt;/h2&gt;
 
