@@ -1,5 +1,5 @@
 ---
-title: Pulling My Apps From The App Store
+title: 'Pulling My Apps From The App Store: Lessons Learned'
 date: 2014-05-01 02:31 UTC
 tags: ['apps', 'mobile']
 ---
