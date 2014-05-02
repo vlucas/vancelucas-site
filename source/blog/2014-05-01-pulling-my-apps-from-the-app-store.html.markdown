@@ -48,7 +48,7 @@ tablets that liked to pretend it could run normal Android apps just fine).
 ![Google Play Rating - An abysmal 1.6](/images/posts/2014/appstore/semtab-googleplay-ratings.png)
 
 On the App Store, the app was a lot more stable, but still got a bad rating for
-it's terrible accuracy.
+its terrible accuracy.
 
 ![App Store Rating - An not-much-beter 2 stars](/images/posts/2014/appstore/semtab-appstore-ratings.png)
 
@@ -100,7 +100,7 @@ the app didn't work for at all (freezing or crashing). I mostly attribute this
 to the very poor early [Appcelerator Titanium](http://www.appcelerator.com/)
 Android support. Both these apps were developed and released at least 3 years
 ago on Titanium versions 1.5.x - 1.7.x, and a lot has changed for the better
-since those dark ages with Titanium (we have have and MVC framework called
+since those dark ages with Titanium (we have have an MVC framework called
 Alloy, and Titanium is at 3.2.x). From my experience with Alloy, I am positive
 that updated versions of these apps would elimate all the problems on Android.
 
