@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.vancelucas.com/blog/pulling-my-apps-from-the-app-store/"/>
     <id>http://www.vancelucas.com/blog/pulling-my-apps-from-the-app-store/</id>
     <published>2014-05-01T02:31:00Z</published>
-    <updated>2014-05-02T09:01:34-05:00</updated>
+    <updated>2014-05-02T13:09:14-05:00</updated>
     <author>
       <name>Vance Lucas</name>
     </author>
@@ -62,7 +62,7 @@ tablets that liked to pretend it could run normal Android apps just fine).&lt;/p
 &lt;p&gt;&lt;img alt="Google Play Rating - An abysmal 1.6" src="/images/posts/2014/appstore/semtab-googleplay-ratings.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;On the App Store, the app was a lot more stable, but still got a bad rating for
-it&amp;rsquo;s terrible accuracy.&lt;/p&gt;
+its terrible accuracy.&lt;/p&gt;
 
 &lt;p&gt;&lt;img alt="App Store Rating - An not-much-beter 2 stars" src="/images/posts/2014/appstore/semtab-appstore-ratings.png" /&gt;&lt;/p&gt;
 
@@ -116,7 +116,7 @@ the app didn&amp;rsquo;t work for at all (freezing or crashing). I mostly attrib
 to the very poor early &lt;a href="http://www.appcelerator.com/"&gt;Appcelerator Titanium&lt;/a&gt;
 Android support. Both these apps were developed and released at least 3 years
 ago on Titanium versions 1.5.x - 1.7.x, and a lot has changed for the better
-since those dark ages with Titanium (we have have and MVC framework called
+since those dark ages with Titanium (we have have an MVC framework called
 Alloy, and Titanium is at 3.2.x). From my experience with Alloy, I am positive
 that updated versions of these apps would elimate all the problems on Android.&lt;/p&gt;
 
