@@ -1,11 +1,23 @@
 - wrap_layout :base do
   = partial "shared/header"
+
   .container.main
     .col-md-10.col-md-offset-1.col-sm-12.col-lg-10
-      h1= current_page.title
+
+      h1.post_title
+        = current_page.title
+        .post_date
+          = current_page.date.strftime('%b %e, %Y')
+
       = yield
-      .small
-        ' Posted on
-        = current_page.date.strftime('%b %e, %Y')
+
+      .post_tags
+        - current_page.tags.each do |tag|
+          = link_to(tag, tag_path(tag), class: 'tag')
+
+      // Show App Idea promo if post tagged any single tag below
+      - unless (current_page.tags & ['business', 'freelance', 'apps']).empty?
+        = partial "shared/promo/appidea"
+
   = partial "shared/footer"
 

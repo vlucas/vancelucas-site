@@ -1,7 +1,7 @@
 ---
 title: "Valitron: The Simple Validation Library That Doesn't Suck"
 date: 2013-03-04
-tags: php, php, programming, validation, validator, valitron
+tags: php, programming, validation, validator, valitron
 ---
 
 [Valitron](https://github.com/vlucas/valitron) is a simple, minimal and elegant stand-alone PHP validation library with NO dependencies. Valitron uses simple, straightforward validation methods with a focus on readable and concise syntax.

@@ -69,6 +69,107 @@ mark
     img
       max-width: 100%
 
+// Post styles
+h1.post_title
+  border-bottom: 1px dotted #333
+
+.post_date
+  font-size: 0.5em
+  margin: 5px
+  color: #aaa
+
+.post_tags
+  border-top: 1px dotted #333
+  padding-top: 20px
+
+.tags
+  list-style: none
+  margin: 0
+  overflow: hidden
+  padding: 0
+
+.tags li
+  float: left
+
+.tag
+  font-size: 0.8em
+  background: #eee
+  border-radius: 3px 0 0 3px
+  color: #777
+  display: inline-block
+  height: 26px
+  line-height: 26px
+  padding: 0 20px 0 23px
+  position: relative
+  margin: 0 10px 10px 0
+  text-decoration: none
+  -webkit-transition: color 0.2s
+
+.tag::before
+  background: #fff
+  border-radius: 10px
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.25)
+  content: ''
+  height: 6px
+  left: 10px
+  position: absolute
+  width: 6px
+  top: 10px
+
+.tag::after
+  background: #fff
+  border-bottom: 13px solid transparent
+  border-left: 10px solid #eee
+  border-top: 13px solid transparent
+  content: ''
+  position: absolute
+  right: 0
+  top: 0
+
+.tag:hover
+  background-color: #777
+  color: #fff
+  text-decoration: none
+
+.tag:hover::after
+  border-left-color: #777
+
+// Promo box
+.promo_box
+  border: 1px solid #aaa
+  margin-top: 40px
+  padding-bottom: 16px
+  background-color: #ffffef
+  font-size: 18px
+
+  .promo_head
+    padding: 10px
+    margin-bottom: 16px
+    background-color: #536168
+    color: #fff
+    h2
+      font-size: 1.3em
+      margin: 0
+
+  .promo_image
+    float: left
+
+  .promo_body
+    float: left
+
+    h3
+      margin: 4px 0
+    h4
+      margin-top: 0
+      line-height: 1.5em
+      font-style: italic
+
+  .promo_end
+    clear: both
+
+.promo_home
+  margin: 0 10%
+
 // footer
 #page_foot
   background-color: #eee

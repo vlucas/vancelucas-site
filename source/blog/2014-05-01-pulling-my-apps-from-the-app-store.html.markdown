@@ -1,7 +1,7 @@
 ---
 title: 'Pulling My Apps From The App Store: Lessons Learned'
 date: 2014-05-01 02:31 UTC
-tags: ['apps', 'mobile']
+tags: ['apps', 'mobile', 'business']
 ---
 
 ![Pulling My Apps From The App Store](/images/posts/2014/appstore/itunesconnect-unpublished-apps.png)
