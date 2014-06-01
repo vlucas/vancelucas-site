@@ -5,16 +5,77 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2014-05-01T02:31:00Z</updated>
+  <updated>2014-05-30T19:48:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>Future Anticipated Questions</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/future-anticipated-questions/"/>
+    <id>http://www.vancelucas.com/blog/future-anticipated-questions/</id>
+    <published>2014-05-30T19:48:00Z</published>
+    <updated>2014-05-31T21:42:19-05:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;I was recently part of a project where, upon asking for content for the
+requried &amp;ldquo;Frequently Asked Questions&amp;rdquo; page, I was invited to a meeting with the
+objective of &amp;ldquo;brainstorming content for the F.A.Q. page&amp;rdquo;. It was painfully
+ironic. How can we possibly list frequently asked questions when we haven&amp;rsquo;t
+even launched yet and &lt;em&gt;no one has asked any questions&lt;/em&gt;?&lt;/p&gt;
+
+&lt;p&gt;The meeting (video conference call) started, and I decided to stay silent for a
+little while to see how the call would play out. The project stakeholders begun
+by going over the F.A.Q. sections on a bunch of other websites, and compiling a
+short list of all the questions they would need to write answers for. The list
+included things like &lt;em&gt;&amp;ldquo;How can I contact you&amp;rdquo;&lt;/em&gt;, and &lt;em&gt;&amp;ldquo;How can I reset my
+password&amp;rdquo;&lt;/em&gt; - &lt;strong&gt;questions that will likely never be asked unless your UI/UX is
+terrible&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2&gt;All Filler, No Meat&lt;/h2&gt;
+
+&lt;p&gt;Almost all of the questions on the list were things that anyone who has used a
+website in the past 10 years should have some idea how to do. People naturally
+look for &amp;ldquo;Contact&amp;rdquo; links in common navigation areas, and generally know they
+can find a password reset link on a login form.  &lt;strong&gt;Simply by following common
+conventions, all of the &amp;ldquo;F.A.Q.&amp;quot;s gleaned from other websites become completely
+irrelevant&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Cart Before The Horse&lt;/h2&gt;
+
+&lt;p&gt;Of course, all of the filler-quality content of the questions aside, the obvious
+problem here is that &lt;strong&gt;by trying to anticipate future questions ahead of time, we
+are going to get things wrong&lt;/strong&gt;. And, perhaps even more importantly - &lt;strong&gt;we are
+creating unnecessary work for ourselves before launch, when our time is most
+valuable&lt;/strong&gt;. Right before launch is exactly the time when you shouldn&amp;rsquo;t be
+spending time on non-critical items.&lt;/p&gt;
+
+&lt;h2&gt;Do You Really Need This Now?&lt;/h2&gt;
+
+&lt;p&gt;This is a good question to asking about everything in general, but especially
+when creating content pages for a website that you &amp;quot;need&amp;rdquo; before launch. During
+my client meeting, after going over the initial list of F.A.Qs compiled during
+the initial brainstorm, I interjected, and explained (nicely) everything that I
+wrote above as an objection to creating the F.A.Q. page before launch. The
+bottom line is that we were effectively changing the definition of &amp;ldquo;F.A.Q.&amp;rdquo;
+from &lt;em&gt;Frequently Asked Questions&lt;/em&gt; to &lt;em&gt;Future Anticipated Questions&lt;/em&gt; by trying
+to create content for it before we even had any real questions from visitors or
+customers.&lt;/p&gt;
+
+&lt;p&gt;Ultimately, we decided to put off the F.A.Q. section until after the website
+launch and after we got some real customer questions. It seems obvious that it
+should have been this way from the beginning, but it&amp;rsquo;s very easy for your
+clients to get overwhelmed with things they think they need. It&amp;rsquo;s your job as a
+professional to help them reason through everything and remove barriers to
+launch to give them the best chance for success.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Pulling My Apps From The App Store: Lessons Learned</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/pulling-my-apps-from-the-app-store/"/>
     <id>http://www.vancelucas.com/blog/pulling-my-apps-from-the-app-store/</id>
     <published>2014-05-01T02:31:00Z</published>
-    <updated>2014-05-02T13:09:14-05:00</updated>
+    <updated>2014-05-31T10:53:45-05:00</updated>
     <author>
       <name>Vance Lucas</name>
     </author>
@@ -641,7 +702,7 @@ much better looking) blog.&lt;/p&gt;
     <link rel="alternate" href="http://www.vancelucas.com/blog/valitron-the-simple-validation-library-that-doesnt-suck/"/>
     <id>http://www.vancelucas.com/blog/valitron-the-simple-validation-library-that-doesnt-suck/</id>
     <published>2013-03-04T00:00:00Z</published>
-    <updated>2014-01-02T11:41:32-06:00</updated>
+    <updated>2014-05-31T21:30:15-05:00</updated>
     <author>
       <name>Vance Lucas</name>
     </author>
@@ -933,41 +994,6 @@ stack trace and exact point of failure for any job - even background jobs:&lt;/p
 &lt;p&gt;And it works beautifully. Now all the jobs are run, the Gearman daemon is never
 killed by a PHP process, and all the exceptions are logged with full granular
 details that makes it easy to troubleshoot and fix any errors.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Confoo 2012 Montreal</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/confoo-2012-montreal/"/>
-    <id>http://www.vancelucas.com/blog/confoo-2012-montreal/</id>
-    <published>2012-04-13T00:00:00Z</published>
-    <updated>2014-01-01T16:45:54-06:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;My second year speaking at
-&lt;a href="http://confoo.ca"&gt;Confoo&lt;/a&gt; was more fun than my first. This year I met a lot of new people and had a lot of interesting discussions, particularly in the CMS room and at lunch after my
-&lt;a href="http://stackboxcms.com"&gt;Stackbox CMS&lt;/a&gt; presentation. The whole philosophy and approach of Stackbox seemed to have stuck a chord with other people passionate about CMSes and a lot of discussion emerged about different CMS concepts and how to integrate them into the various CMSes around. The whole edit-on-page approach of Stackbox isn&amp;rsquo;t new, but it&amp;rsquo;s striking how much simpler it is for the end user than most existing CMSes that are used today -
-&lt;a href="http://drupal.org"&gt;Drupal&lt;/a&gt;,
-&lt;a href="http://joomla.org"&gt;Joomla&lt;/a&gt;, and
-&lt;a href="http://wordpress.org"&gt;Wordpress&lt;/a&gt; included. I think 
-&lt;strong&gt;all&lt;/strong&gt;
- CMSes should strive to enable on-page and in-place editing wherever possible - it really makes a huge difference in usability.&lt;/p&gt;
-
-&lt;p&gt;The second talk I gave at Confoo was 
-&lt;a href="http://confoo.ca/en/2012/session/hierarchical-mvc-hmvc-what-why-and-how"&gt;Hierarchical MVC (HMVC) - What, Why, and How&lt;/a&gt; - an architectural talk I have been wanting to give at several conferences for a little while now (but had until now not been accepted). The talk was very well received, and hopefully helped at least a few people though some of the tougher architectural decisions they might be facing in their own projects. The gist of the talk is that HMVC can help break up code into &amp;ldquo;widget&amp;rdquo; type blocks, and can go further down the path of fully separating concerns than more strict traditional MVC can. HMVC is all about code re-use across multiple places, like a comment module that is dispatched to anywhere you display comments across multiple types of content (blog posts, articles, pages, events, etc.). Traditional MVC forces you to use view partials, different layouts, duplicate code, or some other separate widget system to achieve the same level of flexibility you get from HMVC.&lt;/p&gt;
-
-&lt;p&gt;One of the best things I like about Confoo is the sheer diversity of the schedule. There were 10 tracks this year, with talks spanning across all types of technologies, markets, and languages, like PHP, Ruby, Python, .NET, Java, and JavaScript to Scaling, Startups, CMSes and Agile. Confoo is the most technologically diverse conference I have had the privilege of speaking at, and I benefit from that diversity every year by expanding my horizons a little bit. While I was there, I attended a
-&lt;a href="http://confoo.ca/en/2012/session/renee"&gt;talk&lt;/a&gt; on a Ruby framework called
-&lt;a href="http://reneerb.com/"&gt;Renee&lt;/a&gt; by
-&lt;a href="https://github.com/joshbuddy"&gt;Joshua Hull&lt;/a&gt;. Even though most of my background is in PHP and I was presenting with PHP examples and projects for my talks, I use Ruby on Rails quite a bit for client work at my company 
-&lt;a href="http://brightb.it"&gt;Brightbit&lt;/a&gt; and was working on a Rails API at the time, so I thought I&amp;rsquo;d check it out. I had been thinking about better REST frameworks beyond MVC for a little while, and the talk inspired me to try the same nested callback style with closures in PHP, and I started hacking together the very first (crude) implementation of
-&lt;a href="https://github.com/vlucas/bulletphp"&gt;Bullet&lt;/a&gt; on the plane ride back home the next day, just to see if it was possible. I had the basic concept working well in under an hour thanks to PHP 5.3&amp;rsquo;s awesome closures. That&amp;rsquo;s why I like and value the diversity at Confoo so much. You get to see things that are going on in other languages and expand your horizon a bit, then you can bring those benefits back to another language you work in, and benefit even more people. I&amp;rsquo;ve fleshed out Bullet a little more now and made it a proper project, but the details of that are for another blog post. For now, I leave you with the slide decks I presented at Confoo.&lt;/p&gt;
-
-&lt;h3&gt;Slide Decks&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href="https://speakerdeck.com/u/vlucas/p/stackbox-cms-next-generation-content-management"&gt;Stackbox CMS Slides&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href="https://speakerdeck.com/u/vlucas/p/hierarchical-mvc-what-why-how"&gt;Hierarchical MVC (HMVC) Slides&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
 </feed>
