@@ -1,4 +1,8 @@
-<!DOCTYPE html><html><head><title>Introducing Bullet: The Functional PHP Micro-Framework • Vance Lucas</title><link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="/javascripts/application.js" type="text/javascript"></script><link href="/images/favicon.ico" rel="shortcut icon" /><link href="http://vancelucas.com/feed.xml" rel="alternate" title="RSS" type="application/rss+xml" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle" data-target="#nav-main-header" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse" id="nav-main-header"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="row"><div class="col-md-10 col-md-offset-1"><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/future-anticipated-questions/">Future Anticipated Questions</a> <small>May 30, 2014</small></h2></h2><p>I was recently part of a project where, upon asking for content for the
+<!DOCTYPE html><html><head><title>Valitron: The Simple Validation Library That Doesn't Suck • Vance Lucas</title><link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="/javascripts/application.js" type="text/javascript"></script><link href="/images/favicon.ico" rel="shortcut icon" /><link href="http://vancelucas.com/feed.xml" rel="alternate" title="RSS" type="application/rss+xml" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle" data-target="#nav-main-header" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse" id="nav-main-header"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="row"><div class="col-md-10 col-md-offset-1"><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/module-exports-all-the-things/"><code>module.exports</code> All The Things!</a> <small>Jun  5, 2014</small></h2></h2><p>One thing I find myself doing a lot in javascript files for
+<a href="http://nodejs.org">node.js</a>, or any other
+<a href="http://wiki.commonjs.org/wiki/CommonJS">CommonJS</a>-based system is typing
+<code>module.exports</code> quite a lot, or creating these obnoxiously large and
+repetitive <code>module.exports</code> declarations at the bottom of my files.</p></div></div><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/future-anticipated-questions/">Future Anticipated Questions</a> <small>May 30, 2014</small></h2></h2><p>I was recently part of a project where, upon asking for content for the
 requried “Frequently Asked Questions” page, I was invited to a meeting with the
 objective of “brainstorming content for the F.A.Q. page”. It was painfully
 ironic. How can we possibly...</p></div></div><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/pulling-my-apps-from-the-app-store/">Pulling My Apps From The App Store: Lessons Learned</a> <small>May  1, 2014</small></h2></h2><p><img alt="Pulling My Apps From The App Store" src="/images/posts/2014/appstore/itunesconnect-unpublished-apps.png"></p>
@@ -33,60 +37,7 @@ HTML), and...</p></div></div><div class="panel panel-default"><div class="panel-
 
 <h3>Why Another Validation Library?</h3>
 
-<p><a href="https://github.com/vlucas/valitron">Valitron</a> was...</p></div></div><div class="panel panel-default"><div class="panel-body"><h2><a href="/blog/introducing-bullet-the-functional-php-micro-framework/">Introducing Bullet: The Functional PHP Micro-Framework</a> <small>Dec 20, 2012</small></h2></h2><p><a href="http://bulletphp.com">Bullet</a> is a new PHP micro-framework with a unique
-functional approach to URL routing that allows for more flexibility and
-requires less verbosity than the more typical full route+callback approach
-found in other micro-frameworks.</p>
-
-<h3>The Problem with Independent Scope</h3>
-
-<p>The main problem with most micro-frameworks and even full-stack MVC frameworks
-that leads to code duplication is that the callback or method executed to
-perform the action and respond to the URL route lives fully within its own
-scope. This means that you are forced to repeat a lot of setup code across URL
-route handlers that load the same resource, authorize it, etc.</p>
-
-<p>Some typical micro-framework code might look like this:</p>
-<pre class="highlight php"><span class="cp">&lt;?php</span>
-<span class="c1">// View single post
-</span><span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/posts/:id&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$post</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
-    <span class="nx">check_user_acl_for</span><span class="p">(</span><span class="nv">$post</span><span class="p">);</span>
-    <span class="c1">// ...
-</span><span class="p">});</span>
-
-<span class="c1">// Delete post
-</span><span class="nv">$app</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">(</span><span class="s1">&#39;/posts/:id&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$post</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
-    <span class="nx">check_user_acl_for</span><span class="p">(</span><span class="nv">$post</span><span class="p">);</span>
-    <span class="nv">$post</span><span class="o">-&gt;</span><span class="na">delete</span><span class="p">();</span>
-    <span class="c1">// ...
-</span><span class="p">});</span>
-
-<span class="c1">// Edit post
-</span><span class="nv">$app</span><span class="o">-&gt;</span><span class="na">get</span><span class="p">(</span><span class="s1">&#39;/posts/:id/edit&#39;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="nv">$id</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nv">$post</span> <span class="o">=</span> <span class="nx">Post</span><span class="o">::</span><span class="na">find</span><span class="p">(</span><span class="nv">$id</span><span class="p">);</span>
-    <span class="nx">check_user_acl_for</span><span class="p">(</span><span class="nv">$post</span><span class="p">);</span>
-    <span class="c1">// ...
-</span><span class="p">});</span>
-</pre>
-<p>You may be able to move the ACL check to a middleware layer or &ldquo;before&rdquo; hook if
-the framework supports it, but there is always a certain amount of duplicate
-code you will either never be able to get rid of, or have to jump through hoops
-to get rid of (like adding more abstraction or re-checking the current URL,
-etc).</p>
-
-<h3>The Benefits of Shared Scope</h3>
-
-<p>Bullet uses a unique nested callback style that splits the URL by directory
-separator and only handles a single part of the URL at a time with it&rsquo;s own
-callback. At first blush, this approach might seem like more work, but the key
-to how Bullet works is that nested closures - by definition - can use variables
-defined in the scope of their parent. This leads to some pretty powerful and
-profund capabilities that can only be done using the same nested closure style
-that Bullet uses.</p>
-
-<p></div></div><ul class="pager"><li class="next"><a href="/blog/page/2/">Next &rarr;</a></li></ul></div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="/images/VanceLucas-March09.jpg" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="/images/icons/Github.png" /></a></li><li><a href="https://twitter.com/vlucas"><img src="/images/icons/Twitter.png" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="/images/icons/LinkedIN.png" /></a></li><li><a href="/feed.xml"><img src="/images/icons/RSS.png" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a><a class="list-group-item" href="http://frisbyjs.com">Frisby.js - REST API Testing</a><a class="list-group-item" href="http://bulletphp.com">BulletPHP - REST API Microframework</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/future-anticipated-questions/">Future Anticipated Questions</a><a class="list-group-item" href="/blog/pulling-my-apps-from-the-app-store/">Pulling My Apps From The App Store: Lessons Learned</a><a class="list-group-item" href="/blog/funemployed/">Funemployed</a><a class="list-group-item" href="/blog/macbook-pro-retina-3-5mm-trrs-cable-with-audio-input/">MacBook Pro Retina 3.5mm TRRS Cable With Audio Input</a><a class="list-group-item" href="/blog/okcphp-user-group-reboot/">Oklahoma PHP User Group Reboot</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+<p><a href="https://github.com/vlucas/valitron">Valitron</a> was...</p></div></div><ul class="pager"><li class="next"><a href="/blog/page/2/">Next &rarr;</a></li></ul></div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="/images/VanceLucas-March09.jpg" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="/images/icons/Github.png" /></a></li><li><a href="https://twitter.com/vlucas"><img src="/images/icons/Twitter.png" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="/images/icons/LinkedIN.png" /></a></li><li><a href="/feed.xml"><img src="/images/icons/RSS.png" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a><a class="list-group-item" href="http://frisbyjs.com">Frisby.js - REST API Testing</a><a class="list-group-item" href="http://bulletphp.com">BulletPHP - REST API Microframework</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/module-exports-all-the-things/"><code>module.exports</code> All The Things!</a><a class="list-group-item" href="/blog/future-anticipated-questions/">Future Anticipated Questions</a><a class="list-group-item" href="/blog/pulling-my-apps-from-the-app-store/">Pulling My Apps From The App Store: Lessons Learned</a><a class="list-group-item" href="/blog/funemployed/">Funemployed</a><a class="list-group-item" href="/blog/macbook-pro-retina-3-5mm-trrs-cable-with-audio-input/">MacBook Pro Retina 3.5mm TRRS Cable With Audio Input</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-359731-12']);
 _gaq.push(['_trackPageview']);
 

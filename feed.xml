@@ -5,10 +5,119 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2014-05-30T19:48:00Z</updated>
+  <updated>2014-06-05T04:38:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>&lt;code&gt;module.exports&lt;/code&gt; All The Things!</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/module-exports-all-the-things/"/>
+    <id>http://www.vancelucas.com/blog/module-exports-all-the-things/</id>
+    <published>2014-06-05T04:38:00Z</published>
+    <updated>2014-06-05T00:37:03-05:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;One thing I find myself doing a lot in javascript files for
+&lt;a href="http://nodejs.org"&gt;node.js&lt;/a&gt;, or any other
+&lt;a href="http://wiki.commonjs.org/wiki/CommonJS"&gt;CommonJS&lt;/a&gt;-based system is typing
+&lt;code&gt;module.exports&lt;/code&gt; quite a lot, or creating these obnoxiously large and
+repetitive &lt;code&gt;module.exports&lt;/code&gt; declarations at the bottom of my files.&lt;/p&gt;
+
+&lt;p&gt;For example in a helper library for a
+&lt;a href="http://www.appcelerator.com/titanium/"&gt;Titanium&lt;/a&gt; mobile project, I had the
+following code snippet:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="c1"&gt;// ...
+&lt;/span&gt;
+&lt;span class="c1"&gt;// Platform detection helpers
+&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;osname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Platform&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;osname&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;isiPhone&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;iphone&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nx"&gt;osname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;isiPad&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ipad&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nx"&gt;osname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;isiOS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;isiPhone&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nx"&gt;isiPad&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ios&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nx"&gt;osname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;isAndroid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;android&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nx"&gt;osname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="c1"&gt;// ... (lots of other functions) ...
+&lt;/span&gt;
+&lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;exports&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// ...
+&lt;/span&gt;  &lt;span class="nl"&gt;isiOS&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;isiOS&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nl"&gt;isiPhone&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;isiPhone&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nl"&gt;isiPad&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;isiPad&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="nl"&gt;isAndroid&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nx"&gt;isAndroid&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="c1"&gt;// ...
+&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;This is a small sampling, but there were many, many other helpful functions in
+that file. You can probably imagine the number or times I had to type out all
+the variable names - &lt;em&gt;twice!&lt;/em&gt; That seems like such a waste of typing. The other
+problem with this approach is that there is nothing visually signaling to me
+what is going to be a part of the public API, and what is private and internal.
+Everything is just a &lt;code&gt;var&lt;/code&gt;, and I have to recall what I want exposed when doing
+the &lt;code&gt;module.exports&lt;/code&gt; call at the end.&lt;/p&gt;
+
+&lt;p&gt;To avoid these issues, I could just prefix everything with &lt;code&gt;module.exports&lt;/code&gt;
+directly, but that&amp;rsquo;s a lot of typing too - and doing that makes it cumbersome
+to use a function in another place in the same module file.  Since there would
+be no local variable assigned, I would have to type the full
+&lt;code&gt;module.exports.functionName()&lt;/code&gt; every time to call another function within my
+own module with this approach.&lt;/p&gt;
+
+&lt;h2&gt;A Better Solution - Namespacing&lt;/h2&gt;
+
+&lt;p&gt;The way I have come up with to solve this in my own code is to create a single
+empty object literal at the top of the file named &lt;code&gt;ns&lt;/code&gt; (for &lt;em&gt;namespace&lt;/em&gt;). I
+then create functions on the &lt;code&gt;ns&lt;/code&gt; object as I go, and export all the properties
+on the &lt;code&gt;ns&lt;/code&gt; object at the end of the file.&lt;/p&gt;
+
+&lt;p&gt;So in my original example, &lt;code&gt;var isiPhone = ...&lt;/code&gt; becomes &lt;code&gt;ns.isiPhone: ...&lt;/code&gt; -
+shedding a few keystrokes &lt;em&gt;and&lt;/em&gt; gaining more clarity, because I know that
+everything in the &lt;code&gt;ns&lt;/code&gt; object gets automatically exported at the end of the
+file:&lt;/p&gt;
+&lt;pre class="highlight javascript"&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;ns&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{};&lt;/span&gt;
+
+&lt;span class="c1"&gt;// ...
+&lt;/span&gt;
+&lt;span class="c1"&gt;// Platform detection helpers
+&lt;/span&gt;&lt;span class="kd"&gt;var&lt;/span&gt; &lt;span class="nx"&gt;osname&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;Ti&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;Platform&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;osname&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="nx"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isiPhone&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;iphone&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nx"&gt;osname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="nx"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isiPad&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ipad&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nx"&gt;osname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="nx"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isiOS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isiPhone&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nx"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isiPad&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;ios&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nx"&gt;osname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;span class="nx"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;isAndroid&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;android&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nx"&gt;osname&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="c1"&gt;// ...
+&lt;/span&gt;
+&lt;span class="c1"&gt;// Export all the things! *\(&amp;#39;o&amp;#39;)|
+&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;prop&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nx"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;hasOwnProperty&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;prop&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;exports&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;prop&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;ns&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nx"&gt;prop&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;You could argue that any saved keystrokes are negated with the &lt;code&gt;module.exports&lt;/code&gt;
+loop at the bottom, but the real benefit is the added clarity - I now know that
+&lt;code&gt;var osname&lt;/code&gt; is just a temporary placeholder for data, and will never be in the
+public API, and that all the functions following it will be. I don&amp;rsquo;t have to
+scroll to the bottom or go anywhere else - I know this immediately by looking
+at them, and re-using the public functions in &lt;code&gt;ns.isiOS&lt;/code&gt; isn&amp;rsquo;t painful. Besides,
+I copy and paste the for loop anyways :).&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Future Anticipated Questions</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/future-anticipated-questions/"/>
@@ -940,60 +1049,6 @@ automatically conform to the HTTP spec, and I think you&amp;rsquo;ll love using 
 
 &lt;p&gt;Make sure to
 &lt;a href="http://twitter.com/vlucas"&gt;let me know&lt;/a&gt; if you start using it or if you have any questions or awesome ideas.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Handling Exceptions in Gearman Tasks (Even Background Ones)</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/handling-exceptions-in-gearman-tasks-even-background-ones/"/>
-    <id>http://www.vancelucas.com/blog/handling-exceptions-in-gearman-tasks-even-background-ones/</id>
-    <published>2012-07-31T00:00:00Z</published>
-    <updated>2014-01-02T12:15:34-06:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;I recently had some issues with Gearman tasks throwing exceptions and killing
-the whole Gearman daemon. This made it nearly impossible to trace errors back
-to their origin, because the logged exception stack trace didn&amp;rsquo;t provide much
-useful information, because it just logged where it failed in Gearman - not the
-actual file and line of code that was doing the work. I dug into the code and
-started trying things like
-&lt;a href="http://us.php.net/manual/en/gearmanclient.setexceptioncallback.php"&gt;GearmanClient::setExceptionCallback&lt;/a&gt;
-and running the tasks, but since the tasks were being run with
-&lt;a href="http://us.php.net/manual/en/gearmanclient.addtaskbackground.php"&gt;addTaskBackground&lt;/a&gt;
-instead of just
-&lt;a href="http://us.php.net/manual/en/gearmanclient.addtask.php"&gt;addTask&lt;/a&gt;, the callbacks
-were never getting executed, and I still was not able to do anything to handle
-exceptions for the jobs that were being run (and they were still killing the
-    Gearman daemon). Clearly, I was going to have to get a little more
-creative.&lt;/p&gt;
-
-&lt;p&gt;The only other place to add code that will catch exceptions for all jobs run is
-in the GearmanWorker::addFunction method. So I looked at the following
-one-liner for adding named job callbacks:&lt;/p&gt;
-&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
-&lt;span class="nv"&gt;$worker&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;addFunction&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nv"&gt;$task&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;And replaced it with a closure that uses a try/catch and then logs any
-exceptions to &lt;a href="http://www.exceptional.io/"&gt;Exceptional&lt;/a&gt; so we can see the full
-stack trace and exact point of failure for any job - even background jobs:&lt;/p&gt;
-&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
-&lt;span class="nv"&gt;$worker&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;addFunction&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="k"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$task&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;try&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="nv"&gt;$result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;call_user_func_array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$task&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;func_get_args&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;catch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;\Exception&lt;/span&gt; &lt;span class="nv"&gt;$e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="nv"&gt;$result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nx"&gt;GEARMAN_WORK_EXCEPTION&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-        &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Gearman: CAUGHT EXCEPTION: &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt; &lt;span class="nv"&gt;$e&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;getMessage&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-
-        &lt;span class="c1"&gt;// Send exception to Exceptional so it can be logged with details
-&lt;/span&gt;        &lt;span class="nx"&gt;Exceptional&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="na"&gt;handle_exception&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$e&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;FALSE&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;$result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;});&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;And it works beautifully. Now all the jobs are run, the Gearman daemon is never
-killed by a PHP process, and all the exceptions are logged with full granular
-details that makes it easy to troubleshoot and fix any errors.&lt;/p&gt;
 </content>
   </entry>
 </feed>
