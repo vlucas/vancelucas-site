@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.vancelucas.com/blog/module-exports-all-the-things/"/>
     <id>http://www.vancelucas.com/blog/module-exports-all-the-things/</id>
     <published>2014-06-05T04:38:00Z</published>
-    <updated>2014-06-05T00:37:03-05:00</updated>
+    <updated>2014-06-05T10:35:56-05:00</updated>
     <author>
       <name>Vance Lucas</name>
     </author>
@@ -116,6 +116,13 @@ public API, and that all the functions following it will be. I don&amp;rsquo;t h
 scroll to the bottom or go anywhere else - I know this immediately by looking
 at them, and re-using the public functions in &lt;code&gt;ns.isiOS&lt;/code&gt; isn&amp;rsquo;t painful. Besides,
 I copy and paste the for loop anyways :).&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;UPDATE:&lt;/em&gt; You may wonder &amp;ldquo;why not just assign &lt;code&gt;module.exports&lt;/code&gt; to &lt;code&gt;ns&lt;/code&gt;, like
+this: &lt;code&gt;module.exports = ns;&lt;/code&gt;?&amp;rdquo; The reason is that using the &lt;code&gt;hasOwnProperty&lt;/code&gt;
+method ensures that only properties you have explicitly added get exported. In
+this case, it may not make a difference since we&amp;rsquo;re using a bare object
+literal, but it&amp;rsquo;s good practice to use, so I do. Feel free to save a few lines
+of code with the assignment if you feel differently!&lt;/p&gt;
 </content>
   </entry>
   <entry>
