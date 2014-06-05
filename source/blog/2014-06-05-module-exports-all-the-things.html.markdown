@@ -109,3 +109,10 @@ scroll to the bottom or go anywhere else - I know this immediately by looking
 at them, and re-using the public functions in `ns.isiOS` isn't painful. Besides,
 I copy and paste the for loop anyways :).
 
+*UPDATE:* You may wonder "why not just assign `module.exports` to `ns`, like
+this: `module.exports = ns;`?" The reason is that using the `hasOwnProperty`
+method ensures that only properties you have explicitly added get exported. In
+this case, it may not make a difference since we're using a bare object
+literal, but it's good practice to use, so I do. Feel free to save a few lines
+of code with the assignment if you feel differently!
+
