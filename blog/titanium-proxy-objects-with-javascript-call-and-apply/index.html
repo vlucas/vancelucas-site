@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><title>Titanium Proxy Objects With JavaScript Call and Apply • Vance Lucas</title><link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="/javascripts/application.js" type="text/javascript"></script><link href="/images/favicon.ico" rel="shortcut icon" /><link href="http://vancelucas.com/feed.xml" rel="alternate" title="RSS" type="application/rss+xml" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_titanium-proxy-objects-with-javascript-call-and-apply blog_titanium-proxy-objects-with-javascript-call-and-apply_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle" data-target="#nav-main-header" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse" id="nav-main-header"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1 class="post_title">Titanium Proxy Objects With JavaScript Call and Apply<div class="post_date">Jul  3, 2014</div></h1><p>Sometimes language and platform abstractions bite you. They can seem pretty
+straightforward and &ldquo;just like the real thing&rdquo;, but sometimes they have odd
+behaviors that don&rsquo;t quite work the way you expect.</p>
+
+<h2>Dynamic Programming with .call() and .apply()</h2>
+
+<p>The <code>.call()</code> and <code>.apply()</code> functions are something you will use a lot if your
+code involves a lot of dynamic arguments, such as building an array of
+arguments that then need to be mapped to actual ordered function arguments in a
+function or method call.</p>
+
+<p>Since Titanium runs native JavaScript with the V8 engine bundled in your app,
+you will naturally find yourself attempting things like this:</p>
+<pre class="highlight javascript"><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="p">[</span><span class="nx">sql</span><span class="p">].</span><span class="nx">concat</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Database</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;dbname&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">rs</span> <span class="o">=</span> <span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">db</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+</pre>
+<p>But if you run that, and you will be presented with the head-scratching error:</p>
+<pre class="highlight text">invalid method &#39;execute:&#39;
+</pre>
+<p>Although the error is pretty confusing - you <em>know</em> there is a method named
+<em>execute</em> on the <code>db</code> object - there actually is a good explanation for this
+behavior.</p>
+
+<h2>Titanium Proxy Objects</h2>
+
+<p>What intiutively seems to you like a normal JavaScript variable here - <code>db</code> -
+is actually a <a href="http://www.appcelerator.com/blog/2012/02/what-is-a-titanium-proxy-object/">proxy
+object</a>
+created and returned by Titanium with the <code>Ti.Database.open</code> call. Titanium
+also returns proxy objects for pretty much every other component that has a
+native counterpart they are bridging over to behind the scenes. This black
+magic is fundamental to how Titanium works internally.</p>
+
+<h2>The Solution</h2>
+
+<p>Although the main Titanium <a href="http://www.appcelerator.com/blog/2012/02/what-is-a-titanium-proxy-object/">proxy
+object
+explanation</a>
+suggests creating a wrapper object for the method call, that&rsquo;s actually not necessary
+at all, and creates a lot of extra work, as well as many additional lines of code.</p>
+
+<p>The best solution is to use a bit of JavaScript meta programming and call the
+<code>apply</code> method directly from the <code>Function</code> prototype:</p>
+<pre class="highlight javascript"><span class="kd">var</span> <span class="nx">args</span> <span class="o">=</span> <span class="p">[</span><span class="nx">sql</span><span class="p">].</span><span class="nx">concat</span><span class="p">(</span><span class="nx">params</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">db</span> <span class="o">=</span> <span class="nx">Ti</span><span class="p">.</span><span class="nx">Database</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;dbname&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">rs</span> <span class="o">=</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">apply</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">,</span> <span class="nx">db</span><span class="p">,</span> <span class="nx">args</span><span class="p">);</span>
+</pre>
+<p>This is a nice one-liner that achieves the same end result, is much easier to
+undertand, and does not require a wrapper object or another layer of
+indirection to achieve.</p>
+<div class="post_tags"><a class="tag" href="/blog/tags/titanium/">titanium</a><a class="tag" href="/blog/tags/mobile/">mobile</a><a class="tag" href="/blog/tags/javascript/">javascript</a></div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="/images/VanceLucas-March09.jpg" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="/images/icons/Github.png" /></a></li><li><a href="https://twitter.com/vlucas"><img src="/images/icons/Twitter.png" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="/images/icons/LinkedIN.png" /></a></li><li><a href="/feed.xml"><img src="/images/icons/RSS.png" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a><a class="list-group-item" href="http://frisbyjs.com">Frisby.js - REST API Testing</a><a class="list-group-item" href="http://bulletphp.com">BulletPHP - REST API Microframework</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/titanium-proxy-objects-with-javascript-call-and-apply/">Titanium Proxy Objects With JavaScript Call and Apply</a><a class="list-group-item" href="/blog/module-exports-all-the-things/"><code>module.exports</code> All The Things!</a><a class="list-group-item" href="/blog/future-anticipated-questions/">Future Anticipated Questions</a><a class="list-group-item" href="/blog/pulling-my-apps-from-the-app-store/">Pulling My Apps From The App Store: Lessons Learned</a><a class="list-group-item" href="/blog/funemployed/">Funemployed</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-359731-12']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>
