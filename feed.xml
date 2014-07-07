@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://www.vancelucas.com/blog/titanium-proxy-objects-with-javascript-call-and-apply/"/>
     <id>http://www.vancelucas.com/blog/titanium-proxy-objects-with-javascript-call-and-apply/</id>
     <published>2014-07-03T03:52:00Z</published>
-    <updated>2014-07-03T10:36:24-05:00</updated>
+    <updated>2014-07-07T11:18:03-05:00</updated>
     <author>
       <name>Vance Lucas</name>
     </author>
@@ -22,7 +22,7 @@
 straightforward and &amp;ldquo;just like the real thing&amp;rdquo;, but sometimes they have odd
 behaviors that don&amp;rsquo;t quite work the way you expect.&lt;/p&gt;
 
-&lt;h2&gt;Dynamic Programming with .call() and .apply()&lt;/h2&gt;
+&lt;h2&gt;Dynamic method invocation with .call() and .apply()&lt;/h2&gt;
 
 &lt;p&gt;The &lt;code&gt;.call()&lt;/code&gt; and &lt;code&gt;.apply()&lt;/code&gt; functions are something you will use a lot if your
 code involves a lot of dynamic arguments, such as building an array of
