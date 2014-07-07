@@ -8,7 +8,7 @@ Sometimes language and platform abstractions bite you. They can seem pretty
 straightforward and "just like the real thing", but sometimes they have odd
 behaviors that don't quite work the way you expect.
 
-## Dynamic Programming with .call() and .apply()
+## Dynamic method invocation with .call() and .apply()
 
 The `.call()` and `.apply()` functions are something you will use a lot if your
 code involves a lot of dynamic arguments, such as building an array of
