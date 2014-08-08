@@ -5,7 +5,7 @@ tags: ['php', 'programming', 'hacks']
 ---
 
 A common problem I have in PHP is that when I deal with larger objects with
-mutliple dependencies or circular references, `var_dump()` becomes effectively
+multiple dependencies or circular references, `var_dump()` becomes effectively
 useless. Often times it spits out *huge* numbers of objects that were set as a
 dependency on the object I wanted to inspect that I didn't even know were
 there. Even worse, there are often circular references and other things that
@@ -161,20 +161,14 @@ So... trade-offs, right? Here are the main ones I have seen:
    personally like single-word combined getter/setter methods, because they
    simplify and reduce the surface area of your object's API, so this may not
    even be a drawback to you.
-2. **The object reference seems to be lost once set**. In my tests, once you
-   set an object to a static variable inside a function, any modifications to
-   that object outside our `DoStuff` class no longer affects the connection we
-   have inside our `DoStuff` class. So in our example, once a
-   `DatabaseConnection` object gets set on our `DoStuff` object, if we change
-   the connection credentials or make other configuration changes elsewhere,
-   those changes will not be reflected on the `DatabaseConnection` object we
-   are using inside our `DoStuff` class.  In affect, the object is copied and
-   no longer passed by reference. This can cause some strange issues and
-   side-effects, so be careful.
+2. **The object reference will now be static**. This is probably okay for most
+   objects you pass that are setup once and remain constant, like a
+   `DatabaseConnection` object would be, but it won't be okay for other
+   scenarios, like a collection of result objects or anything else that may
+   change for each new object instance you want to create.
 
-   *Note: I am not actually sure what is going on "under the hood" inside PHP
-   here, so anyone who can shed some light on why this happens would be greatly
-   appreciated*
+   *(Update: I previously said the object refence won't change (mutate)
+   anymore once set with this method, but my tests on that were flawed.)*
 3. **The code might be confusing**. Simplicity has a lot of value.  This
    approach does add a little bit of complexity to the code, and may be a
    little harder to understand and debug, especially for beginners. It's likely
@@ -186,3 +180,10 @@ If you are using this approach and can think of any other benefits or
 drawbacks, [let me know](https://twitter.com/vlucas) and I will update this
 post. Hiding variables from `var_dump` and other similar functions is something
 I really wish was built-in PHP.
+
+*UPDATE: I have [been
+informed](https://twitter.com/cowburn/status/497821547886022657) that [a new
+`__debugInfo()` magic method](https://wiki.php.net/rfc/debug-info) has made its
+way into PHP 5.6 - this is exactly what I was looking for, so now you just have to
+upgrade when PHP 5.6 has a stable release :)*
+
