@@ -16,8 +16,8 @@
           = link_to(tag, tag_path(tag), class: 'tag')
 
       // Show App Idea promo if post tagged any single tag below
-      - unless (current_page.tags & ['business', 'freelance', 'apps']).empty?
-        = partial "shared/promo/appidea"
+      /- unless (current_page.tags & ['business', 'freelance', 'apps']).empty?
+      /  = partial "shared/promo/appidea"
 
   = partial "shared/footer"
 
