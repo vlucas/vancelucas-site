@@ -5,10 +5,195 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2014-07-03T03:52:00Z</updated>
+  <updated>2014-08-07T21:09:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>Hiding Variables From PHP's &lt;code&gt;var_dump()&lt;/code&gt;</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/hiding-variables-from-php-var_dump/"/>
+    <id>http://www.vancelucas.com/blog/hiding-variables-from-php-var_dump/</id>
+    <published>2014-08-07T21:09:00Z</published>
+    <updated>2014-08-08T10:10:45-05:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;A common problem I have in PHP is that when I deal with larger objects with
+mutliple dependencies or circular references, &lt;code&gt;var_dump()&lt;/code&gt; becomes effectively
+useless. Often times it spits out &lt;em&gt;huge&lt;/em&gt; numbers of objects that were set as a
+dependency on the object I wanted to inspect that I didn&amp;rsquo;t even know were
+there. Even worse, there are often circular references and other things that
+get in the way. The signal-to-noise ratio is way off the charts.&lt;/p&gt;
+
+&lt;h2&gt;Playing Hide-and-seek with &lt;code&gt;var_dump()&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;So is there a way to effectively &amp;ldquo;hide&amp;rdquo; a variable from functions like
+&lt;code&gt;var_dump&lt;/code&gt;, &lt;code&gt;print_r&lt;/code&gt;, and &lt;code&gt;var_export&lt;/code&gt;? Turns out, there is - but it does come
+with some serious trade-offs.&lt;/p&gt;
+
+&lt;p&gt;The first thing you need to know is that there is &lt;strong&gt;no way to hide an object
+property&lt;/strong&gt;. Object properties will all be dumped, no matter the scope - public,
+protected, or private.&lt;/p&gt;
+
+&lt;p&gt;The trick &lt;em&gt;(or hack, if you will)&lt;/em&gt; relies on using a very handy but little-used
+feature of PHP: static variables. No, not static class properties - static
+&lt;em&gt;variables&lt;/em&gt;. You may have seen them, or even used them yourself a time or two:&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="nv"&gt;$connection&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$connection&lt;/span&gt; &lt;span class="o"&gt;===&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$connection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;DatabaseConnection&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;$connection&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Basically our &lt;code&gt;connection&lt;/code&gt; function acts as a kind of factory. The
+&lt;code&gt;$connection&lt;/code&gt; variable here is cached between function calls so that the object
+is only ever created once, and then simply returned on subsequent calls. The
+&lt;code&gt;static&lt;/code&gt; declaration before our variable tells PHP that this variable will
+maintain its value within the current execution scope, much like a static class
+property maintains its value across multiple object creations.&lt;/p&gt;
+
+&lt;h2&gt;That&amp;rsquo;s Great, But Now Your Dependecy Is Hard-Coded&lt;/h2&gt;
+
+&lt;p&gt;The more experienced coders among you may have noticed that using this
+approach, we can no longer use constructor dependency injecton. At least - not
+&lt;em&gt;exactly&lt;/em&gt; like we used to.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Remember when I said solving this problem comes with some serious trade-offs?
+Okay, stay with me here. We can still use dependency injection.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The main design trade-off you will have to make if you want to use this
+approach is that you will have to create a single method that is both a getter
+and setter for each object dependecy you want to inject. This is best
+illustrated by example:&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;DatabaseConnection&lt;/span&gt; &lt;span class="nv"&gt;$newConnection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="nv"&gt;$connection&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$newConnection&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$connection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$newConnection&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;$connection&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;Okay, so now we have modified our function to be both a setter and a getter. We
+can now use this function to set our dependecy upon object creation, and to get
+the connection we need to use in place of the typical object property.&lt;/p&gt;
+
+&lt;h2&gt;Using Dependency Injection In An Object&lt;/h2&gt;
+
+&lt;p&gt;So now, &lt;strong&gt;instead of setting an object property&lt;/strong&gt; and using that object property
+for our dependency like so:&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;DoStuff&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;protected&lt;/span&gt; &lt;span class="nv"&gt;$connection&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;__construct&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;DatabaseConnection&lt;/span&gt; &lt;span class="nv"&gt;$connection&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$this&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;connection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$connection&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;someQuery&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nv"&gt;$this&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;connection&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SELECT ... blah blah blah&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;We can &lt;strong&gt;remove the object property and replace it with our new method&lt;/strong&gt;, and use
+our &lt;code&gt;connection&lt;/code&gt; method as a setter in the constructor (while still using
+dependecy injection), and then use our &lt;code&gt;connection&lt;/code&gt; method anywhere we need
+it as a getter.&lt;/p&gt;
+&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;DoStuff&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;__construct&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;DatabaseConnection&lt;/span&gt; &lt;span class="nv"&gt;$connection&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Setter
+&lt;/span&gt;        &lt;span class="nv"&gt;$this&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$connection&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;DatabaseConnection&lt;/span&gt; &lt;span class="nv"&gt;$newConnection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="nv"&gt;$connection&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$newConnection&lt;/span&gt; &lt;span class="o"&gt;!==&lt;/span&gt; &lt;span class="kc"&gt;null&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nv"&gt;$connection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nv"&gt;$newConnection&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nv"&gt;$connection&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="k"&gt;public&lt;/span&gt; &lt;span class="k"&gt;function&lt;/span&gt; &lt;span class="nf"&gt;someQuery&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="c1"&gt;// Getter
+&lt;/span&gt;        &lt;span class="nv"&gt;$this&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;connection&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;query&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;SELECT ... blah blah blah&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;
+&lt;p&gt;And there we have it. We get the same functionality with a little bit more
+code, except now our dependant object is &lt;strong&gt;completely hidden from &lt;code&gt;var_dump&lt;/code&gt;,
+because it is not an object property&lt;/strong&gt;. It&amp;rsquo;s just a variable inside a method,
+which no PHP inspector function will display.&lt;/p&gt;
+
+&lt;h2&gt;Benefits To This Approach&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The dependency is completely hidden from &lt;code&gt;var_dump&lt;/code&gt;, &lt;code&gt;var_export&lt;/code&gt;
+and &lt;code&gt;print_r&lt;/code&gt;.&lt;/strong&gt; This results in nice and clean debugging dumps without any
+large dependency graphs or circular references.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Your database and service credentials are safe&lt;/strong&gt;. Related to #1 - this is
+such a huge benefit by itself that is has to have its own point. How many
+times have you dumped the contents of an object only to see a database
+connection dependency or API service dependency also dump out all your
+connection information, usernames, passwords, and API keys? Hopefully this
+never happens in production, but even in development, this is irritating.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Save time and hassle&lt;/strong&gt;. Sometimes dumping an object&amp;rsquo;s contents can be
+unexpectedly &lt;em&gt;gigantic&lt;/em&gt;. In these cases, most of your time spent debugging
+is scrolling through pages and pages of junk you don&amp;rsquo;t need to find the one
+piece of information you&amp;rsquo;re actually looking for. This can be very
+fristrating, especially if you&amp;rsquo;re in an edit-debug cycle where you are
+repeating this multiple times in quick succession.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2&gt;Drawbacks To This Approach&lt;/h2&gt;
+
+&lt;p&gt;So&amp;hellip; trade-offs, right? Here are the main ones I have seen:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;You have to use a combined getter/setter method&lt;/strong&gt;. This is because the static
+variable&amp;rsquo;s scope only exists inside the method it is defined in. I
+personally like single-word combined getter/setter methods, because they
+simplify and reduce the surface area of your object&amp;rsquo;s API, so this may not
+even be a drawback to you.&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The object reference seems to be lost once set&lt;/strong&gt;. In my tests, once you
+set an object to a static variable inside a function, any modifications to
+that object outside our &lt;code&gt;DoStuff&lt;/code&gt; class no longer affects the connection we
+have inside our &lt;code&gt;DoStuff&lt;/code&gt; class. So in our example, once a
+&lt;code&gt;DatabaseConnection&lt;/code&gt; object gets set on our &lt;code&gt;DoStuff&lt;/code&gt; object, if we change
+the connection credentials or make other configuration changes elsewhere,
+those changes will not be reflected on the &lt;code&gt;DatabaseConnection&lt;/code&gt; object we
+are using inside our &lt;code&gt;DoStuff&lt;/code&gt; class.  In affect, the object is copied and
+no longer passed by reference. This can cause some strange issues and
+side-effects, so be careful.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note: I am not actually sure what is going on &amp;ldquo;under the hood&amp;rdquo; inside PHP
+here, so anyone who can shed some light on why this happens would be greatly
+appreciated&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The code might be confusing&lt;/strong&gt;. Simplicity has a lot of value.  This
+approach does add a little bit of complexity to the code, and may be a
+little harder to understand and debug, especially for beginners. It&amp;rsquo;s likely
+that people will see this code and say something like &lt;em&gt;&amp;ldquo;Why don&amp;rsquo;t you just
+use an object property?&amp;rdquo;&lt;/em&gt;, because what it is doing is not immediately
+obvious.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you are using this approach and can think of any other benefits or
+drawbacks, &lt;a href="https://twitter.com/vlucas"&gt;let me know&lt;/a&gt; and I will update this
+post. Hiding variables from &lt;code&gt;var_dump&lt;/code&gt; and other similar functions is something
+I really wish was built-in PHP.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Titanium Proxy Objects With JavaScript Call and Apply</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/titanium-proxy-objects-with-javascript-call-and-apply/"/>
@@ -873,49 +1058,6 @@ was a bit tricky and time-consuming (though
 &lt;a href="https://github.com/mdb/wp2middleman"&gt;wp2middleman&lt;/a&gt; did most of the heavy
 lifting), but I&amp;rsquo;m glad I did it. Here&amp;rsquo;s to a great 2014 on a great new (and
 much better looking) blog.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Valitron: The Simple Validation Library That Doesn't Suck</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/valitron-the-simple-validation-library-that-doesnt-suck/"/>
-    <id>http://www.vancelucas.com/blog/valitron-the-simple-validation-library-that-doesnt-suck/</id>
-    <published>2013-03-04T00:00:00Z</published>
-    <updated>2014-05-31T21:30:15-05:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;a href="https://github.com/vlucas/valitron"&gt;Valitron&lt;/a&gt; is a simple, minimal and elegant stand-alone PHP validation library with NO dependencies. Valitron uses simple, straightforward validation methods with a focus on readable and concise syntax.&lt;/p&gt;
-
-&lt;h3&gt;Why Another Validation Library?&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href="https://github.com/vlucas/valitron"&gt;Valitron&lt;/a&gt; was created out of frustration with other validation libraries that have dependencies on large components from other frameworks unrelated to validation like
-&lt;a href="https://github.com/illuminate/validation"&gt;Illuminate Validation&lt;/a&gt; (laravel 4) requiring 
-&lt;a href="http://symfony.com/doc/master/components/http_foundation/index.html"&gt;Symfony HttpFoundation&lt;/a&gt;, pulling in a ton of extra files that aren&amp;rsquo;t needed for basic validation. It also has purposefully simple syntax used to run all validations in one call instead of individually validating each value by instantiating new classes and validating values one at a time like
-&lt;a href="https://github.com/Respect/Validation"&gt;Respect Validation&lt;/a&gt; requires you to do. Valitron also has a focus on being concise - validation rules are just a single line per rule, and can include multiple fields in an array. This is handy, because in most use cases, a single validation rule - like &amp;ldquo;required&amp;rdquo; will be applied to many fields, so it doesn&amp;rsquo;t make sense to start with the field first like
-&lt;a href="https://github.com/fuelphp/validation"&gt;Fuel Validation&lt;/a&gt; does.&lt;/p&gt;
-
-&lt;p&gt;In short, Valitron is everything you&amp;rsquo;ve been looking for in a validation library but haven&amp;rsquo;t been able to find until now: simple pragmatic syntax, lightweight code that makes sense, extensibility for custom callbacks and validations, good test coverage, and no dependencies.&lt;/p&gt;
-
-&lt;h3&gt;Usage Example&lt;/h3&gt;
-
-&lt;p&gt;Valitron is made to setup all your validation rules on the fields you need, and then run all the validations in one call. This is better than validating the fields one-by-one, because that approach causes a lot of &amp;ldquo;if&amp;rdquo; statements and branching logic that doesn&amp;rsquo;t make the resulting code any better than doing the validations by hand (which obviously sucks).&lt;/p&gt;
-&lt;pre class="highlight php"&gt;&lt;span class="cp"&gt;&amp;lt;?php&lt;/span&gt;
-&lt;span class="nv"&gt;$v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;Valitron\Validator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$_POST&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// Input array
-&lt;/span&gt;&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;rule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;required&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;name&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;date_start&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
-&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;rule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt; &lt;span class="c1"&gt;// Email uses filter_var
-&lt;/span&gt;&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;rule&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;dateAfter&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;date_start&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;new&lt;/span&gt; &lt;span class="nx"&gt;\DateTime&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt; &lt;span class="c1"&gt;// After today
-&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;validate&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;Yay! We&amp;#39;re all good!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="nb"&gt;print_r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;data&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="c1"&gt;// Errors
-&lt;/span&gt;    &lt;span class="nb"&gt;print_r&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$v&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="na"&gt;errors&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;
-&lt;p&gt;More usage examples and documentation can be found on the
-&lt;a href="https://github.com/vlucas/valitron"&gt;Valitron GitHub Page&lt;/a&gt;. Valitron is
-&lt;a href="https://packagist.org/packages/vlucas/valitron"&gt;on Packagist&lt;/a&gt;, and can be installed via
-&lt;a href="http://getcomposer.org/"&gt;Composer&lt;/a&gt;.&lt;/p&gt;
 </content>
   </entry>
 </feed>

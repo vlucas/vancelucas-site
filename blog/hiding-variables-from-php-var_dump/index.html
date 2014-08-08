@@ -1,0 +1,183 @@
+<!DOCTYPE html><html><head><title>Hiding Variables From PHP's <code>var_dump()</code> • Vance Lucas</title><link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="/javascripts/application.js" type="text/javascript"></script><link href="/images/favicon.ico" rel="shortcut icon" /><link href="http://vancelucas.com/feed.xml" rel="alternate" title="RSS" type="application/rss+xml" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_hiding-variables-from-php-var_dump blog_hiding-variables-from-php-var_dump_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle" data-target="#nav-main-header" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse" id="nav-main-header"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1 class="post_title">Hiding Variables From PHP's <code>var_dump()</code><div class="post_date">Aug  7, 2014</div></h1><p>A common problem I have in PHP is that when I deal with larger objects with
+mutliple dependencies or circular references, <code>var_dump()</code> becomes effectively
+useless. Often times it spits out <em>huge</em> numbers of objects that were set as a
+dependency on the object I wanted to inspect that I didn&rsquo;t even know were
+there. Even worse, there are often circular references and other things that
+get in the way. The signal-to-noise ratio is way off the charts.</p>
+
+<h2>Playing Hide-and-seek with <code>var_dump()</code></h2>
+
+<p>So is there a way to effectively &ldquo;hide&rdquo; a variable from functions like
+<code>var_dump</code>, <code>print_r</code>, and <code>var_export</code>? Turns out, there is - but it does come
+with some serious trade-offs.</p>
+
+<p>The first thing you need to know is that there is <strong>no way to hide an object
+property</strong>. Object properties will all be dumped, no matter the scope - public,
+protected, or private.</p>
+
+<p>The trick <em>(or hack, if you will)</em> relies on using a very handy but little-used
+feature of PHP: static variables. No, not static class properties - static
+<em>variables</em>. You may have seen them, or even used them yourself a time or two:</p>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">connection</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="nv">$connection</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$connection</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$connection</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DatabaseConnection</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nv">$connection</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p>Basically our <code>connection</code> function acts as a kind of factory. The
+<code>$connection</code> variable here is cached between function calls so that the object
+is only ever created once, and then simply returned on subsequent calls. The
+<code>static</code> declaration before our variable tells PHP that this variable will
+maintain its value within the current execution scope, much like a static class
+property maintains its value across multiple object creations.</p>
+
+<h2>That&rsquo;s Great, But Now Your Dependecy Is Hard-Coded</h2>
+
+<p>The more experienced coders among you may have noticed that using this
+approach, we can no longer use constructor dependency injecton. At least - not
+<em>exactly</em> like we used to.</p>
+
+<p><strong>Remember when I said solving this problem comes with some serious trade-offs?
+Okay, stay with me here. We can still use dependency injection.</strong></p>
+
+<p>The main design trade-off you will have to make if you want to use this
+approach is that you will have to create a single method that is both a getter
+and setter for each object dependecy you want to inject. This is best
+illustrated by example:</p>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="k">function</span> <span class="nf">connection</span><span class="p">(</span><span class="nx">DatabaseConnection</span> <span class="nv">$newConnection</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="nv">$connection</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nv">$newConnection</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nv">$connection</span> <span class="o">=</span> <span class="nv">$newConnection</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nv">$connection</span><span class="p">;</span>
+<span class="p">}</span>
+</pre>
+<p>Okay, so now we have modified our function to be both a setter and a getter. We
+can now use this function to set our dependecy upon object creation, and to get
+the connection we need to use in place of the typical object property.</p>
+
+<h2>Using Dependency Injection In An Object</h2>
+
+<p>So now, <strong>instead of setting an object property</strong> and using that object property
+for our dependency like so:</p>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">DoStuff</span>
+<span class="p">{</span>
+    <span class="k">protected</span> <span class="nv">$connection</span><span class="p">;</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">DatabaseConnection</span> <span class="nv">$connection</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span> <span class="o">=</span> <span class="nv">$connection</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">someQuery</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT ... blah blah blah&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>We can <strong>remove the object property and replace it with our new method</strong>, and use
+our <code>connection</code> method as a setter in the constructor (while still using
+dependecy injection), and then use our <code>connection</code> method anywhere we need
+it as a getter.</p>
+<pre class="highlight php"><span class="cp">&lt;?php</span>
+<span class="k">class</span> <span class="nc">DoStuff</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">__construct</span><span class="p">(</span><span class="nx">DatabaseConnection</span> <span class="nv">$connection</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// Setter
+</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="p">(</span><span class="nv">$connection</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">connection</span><span class="p">(</span><span class="nx">DatabaseConnection</span> <span class="nv">$newConnection</span> <span class="o">=</span> <span class="kc">null</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">static</span> <span class="nv">$connection</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nv">$newConnection</span> <span class="o">!==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nv">$connection</span> <span class="o">=</span> <span class="nv">$newConnection</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="nv">$connection</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="k">function</span> <span class="nf">someQuery</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// Getter
+</span>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">connection</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="s2">&quot;SELECT ... blah blah blah&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre>
+<p>And there we have it. We get the same functionality with a little bit more
+code, except now our dependant object is <strong>completely hidden from <code>var_dump</code>,
+because it is not an object property</strong>. It&rsquo;s just a variable inside a method,
+which no PHP inspector function will display.</p>
+
+<h2>Benefits To This Approach</h2>
+
+<ol>
+<li><strong>The dependency is completely hidden from <code>var_dump</code>, <code>var_export</code>
+and <code>print_r</code>.</strong> This results in nice and clean debugging dumps without any
+large dependency graphs or circular references.</li>
+<li><strong>Your database and service credentials are safe</strong>. Related to #1 - this is
+such a huge benefit by itself that is has to have its own point. How many
+times have you dumped the contents of an object only to see a database
+connection dependency or API service dependency also dump out all your
+connection information, usernames, passwords, and API keys? Hopefully this
+never happens in production, but even in development, this is irritating.</li>
+<li><strong>Save time and hassle</strong>. Sometimes dumping an object&rsquo;s contents can be
+unexpectedly <em>gigantic</em>. In these cases, most of your time spent debugging
+is scrolling through pages and pages of junk you don&rsquo;t need to find the one
+piece of information you&rsquo;re actually looking for. This can be very
+fristrating, especially if you&rsquo;re in an edit-debug cycle where you are
+repeating this multiple times in quick succession.</li>
+</ol>
+
+<h2>Drawbacks To This Approach</h2>
+
+<p>So&hellip; trade-offs, right? Here are the main ones I have seen:</p>
+
+<ol>
+<li><strong>You have to use a combined getter/setter method</strong>. This is because the static
+variable&rsquo;s scope only exists inside the method it is defined in. I
+personally like single-word combined getter/setter methods, because they
+simplify and reduce the surface area of your object&rsquo;s API, so this may not
+even be a drawback to you.</li>
+<li><p><strong>The object reference seems to be lost once set</strong>. In my tests, once you
+set an object to a static variable inside a function, any modifications to
+that object outside our <code>DoStuff</code> class no longer affects the connection we
+have inside our <code>DoStuff</code> class. So in our example, once a
+<code>DatabaseConnection</code> object gets set on our <code>DoStuff</code> object, if we change
+the connection credentials or make other configuration changes elsewhere,
+those changes will not be reflected on the <code>DatabaseConnection</code> object we
+are using inside our <code>DoStuff</code> class.  In affect, the object is copied and
+no longer passed by reference. This can cause some strange issues and
+side-effects, so be careful.</p>
+
+<p><em>Note: I am not actually sure what is going on &ldquo;under the hood&rdquo; inside PHP
+here, so anyone who can shed some light on why this happens would be greatly
+appreciated</em></p></li>
+<li><p><strong>The code might be confusing</strong>. Simplicity has a lot of value.  This
+approach does add a little bit of complexity to the code, and may be a
+little harder to understand and debug, especially for beginners. It&rsquo;s likely
+that people will see this code and say something like <em>&ldquo;Why don&rsquo;t you just
+use an object property?&rdquo;</em>, because what it is doing is not immediately
+obvious.</p></li>
+</ol>
+
+<p>If you are using this approach and can think of any other benefits or
+drawbacks, <a href="https://twitter.com/vlucas">let me know</a> and I will update this
+post. Hiding variables from <code>var_dump</code> and other similar functions is something
+I really wish was built-in PHP.</p>
+<div class="post_tags"><a class="tag" href="/blog/tags/php/">php</a><a class="tag" href="/blog/tags/programming/">programming</a><a class="tag" href="/blog/tags/hacks/">hacks</a></div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="/images/VanceLucas-March09.jpg" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="/images/icons/Github.png" /></a></li><li><a href="https://twitter.com/vlucas"><img src="/images/icons/Twitter.png" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="/images/icons/LinkedIN.png" /></a></li><li><a href="/feed.xml"><img src="/images/icons/RSS.png" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a><a class="list-group-item" href="http://frisbyjs.com">Frisby.js - REST API Testing</a><a class="list-group-item" href="http://bulletphp.com">BulletPHP - REST API Microframework</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/hiding-variables-from-php-var_dump/">Hiding Variables From PHP's <code>var_dump()</code></a><a class="list-group-item" href="/blog/titanium-proxy-objects-with-javascript-call-and-apply/">Titanium Proxy Objects With JavaScript Call and Apply</a><a class="list-group-item" href="/blog/module-exports-all-the-things/"><code>module.exports</code> All The Things!</a><a class="list-group-item" href="/blog/future-anticipated-questions/">Future Anticipated Questions</a><a class="list-group-item" href="/blog/pulling-my-apps-from-the-app-store/">Pulling My Apps From The App Store: Lessons Learned</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-359731-12']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>
