@@ -4,6 +4,12 @@ date: 2014-08-07 21:09 UTC
 tags: ['php', 'programming', 'hacks']
 ---
 
+**NOTE**: This post is irrelevant for PHP 5.6+: [a new
+`__debugInfo()` magic method](http://php.net/manual/en/language.oop5.magic.php#language.oop5.magic.debuginfo)
+has made its way into PHP 5.6, so use that as the best solution to this issue.
+
+---
+
 A common problem I have in PHP is that when I deal with larger objects with
 multiple dependencies or circular references, `var_dump()` becomes effectively
 useless. Often times it spits out *huge* numbers of objects that were set as a
