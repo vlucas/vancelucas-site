@@ -14,12 +14,18 @@
     <link rel="alternate" href="http://www.vancelucas.com/blog/hiding-variables-from-php-var_dump/"/>
     <id>http://www.vancelucas.com/blog/hiding-variables-from-php-var_dump/</id>
     <published>2014-08-07T21:09:00Z</published>
-    <updated>2014-08-08T10:10:45-05:00</updated>
+    <updated>2014-09-17T09:29:26-05:00</updated>
     <author>
       <name>Vance Lucas</name>
     </author>
-    <content type="html">&lt;p&gt;A common problem I have in PHP is that when I deal with larger objects with
-mutliple dependencies or circular references, &lt;code&gt;var_dump()&lt;/code&gt; becomes effectively
+    <content type="html">&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: This post is irrelevant for PHP 5.6+: &lt;a href="http://php.net/manual/en/language.oop5.magic.php#language.oop5.magic.debuginfo"&gt;a new
+&lt;code&gt;__debugInfo()&lt;/code&gt; magic method&lt;/a&gt;
+has made its way into PHP 5.6, so use that as the best solution to this issue.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;A common problem I have in PHP is that when I deal with larger objects with
+multiple dependencies or circular references, &lt;code&gt;var_dump()&lt;/code&gt; becomes effectively
 useless. Often times it spits out &lt;em&gt;huge&lt;/em&gt; numbers of objects that were set as a
 dependency on the object I wanted to inspect that I didn&amp;rsquo;t even know were
 there. Even worse, there are often circular references and other things that
@@ -166,20 +172,14 @@ variable&amp;rsquo;s scope only exists inside the method it is defined in. I
 personally like single-word combined getter/setter methods, because they
 simplify and reduce the surface area of your object&amp;rsquo;s API, so this may not
 even be a drawback to you.&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;The object reference seems to be lost once set&lt;/strong&gt;. In my tests, once you
-set an object to a static variable inside a function, any modifications to
-that object outside our &lt;code&gt;DoStuff&lt;/code&gt; class no longer affects the connection we
-have inside our &lt;code&gt;DoStuff&lt;/code&gt; class. So in our example, once a
-&lt;code&gt;DatabaseConnection&lt;/code&gt; object gets set on our &lt;code&gt;DoStuff&lt;/code&gt; object, if we change
-the connection credentials or make other configuration changes elsewhere,
-those changes will not be reflected on the &lt;code&gt;DatabaseConnection&lt;/code&gt; object we
-are using inside our &lt;code&gt;DoStuff&lt;/code&gt; class.  In affect, the object is copied and
-no longer passed by reference. This can cause some strange issues and
-side-effects, so be careful.&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;The object reference will now be static&lt;/strong&gt;. This is probably okay for most
+objects you pass that are setup once and remain constant, like a
+&lt;code&gt;DatabaseConnection&lt;/code&gt; object would be, but it won&amp;rsquo;t be okay for other
+scenarios, like a collection of result objects or anything else that may
+change for each new object instance you want to create.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Note: I am not actually sure what is going on &amp;ldquo;under the hood&amp;rdquo; inside PHP
-here, so anyone who can shed some light on why this happens would be greatly
-appreciated&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;em&gt;(Update: I previously said the object refence won&amp;rsquo;t change (mutate)
+anymore once set with this method, but my tests on that were flawed.)&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;The code might be confusing&lt;/strong&gt;. Simplicity has a lot of value.  This
 approach does add a little bit of complexity to the code, and may be a
 little harder to understand and debug, especially for beginners. It&amp;rsquo;s likely
@@ -192,6 +192,12 @@ obvious.&lt;/p&gt;&lt;/li&gt;
 drawbacks, &lt;a href="https://twitter.com/vlucas"&gt;let me know&lt;/a&gt; and I will update this
 post. Hiding variables from &lt;code&gt;var_dump&lt;/code&gt; and other similar functions is something
 I really wish was built-in PHP.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;UPDATE: I have &lt;a href="https://twitter.com/cowburn/status/497821547886022657"&gt;been
+informed&lt;/a&gt; that &lt;a href="https://wiki.php.net/rfc/debug-info"&gt;a new
+&lt;code&gt;__debugInfo()&lt;/code&gt; magic method&lt;/a&gt; has made its
+way into PHP 5.6 - this is exactly what I was looking for, so now you just have to
+upgrade when PHP 5.6 has a stable release :)&lt;/em&gt;&lt;/p&gt;
 </content>
   </entry>
   <entry>
