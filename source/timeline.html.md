@@ -86,6 +86,10 @@ mobile applications, and technology consulting.
 ### 2012-2014
 
 Running and growing [Brightbit](http://brightbit.com) working on various client
-project or all kinds and some of our own projects on the side. Who knows -
-maybe we'll make it big someday?
+project or all kinds and some of our own projects on the side.
+
+### 2014
+
+We closed down [Brightbit](http://brightbit.com) in February 2014 and I am now
+freelancing full-time through my old LLC, [Actridge](http://www.actridge.com).
 
