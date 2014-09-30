@@ -1,0 +1,119 @@
+<!DOCTYPE html><html><head><title>An API is a Competitive Advantage • Vance Lucas</title><link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="/javascripts/application.js" type="text/javascript"></script><link href="/images/favicon.ico" rel="shortcut icon" /><link href="http://vancelucas.com/feed.xml" rel="alternate" title="RSS" type="application/rss+xml" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_api-competitive-advantage blog_api-competitive-advantage_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle" data-target="#nav-main-header" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse" id="nav-main-header"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/speaking">Speaking</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1 class="post_title">An API is a Competitive Advantage<div class="post_date">Sep 29, 2014</div></h1><p>In this increasingly inter-connected world, APIs are becoming more and more
+important as time goes on. This is especially true if you have a business that
+requires integration of some sort, like metrics, notifications, integrated
+access to other systems (like telephony), payments, etc.</p>
+
+<p>Companies like <a href="https://stripe.com">Stripe</a>, <a href="http://www.amazon.com">Amazon</a>,
+and <a href="http://www.twilio.com">Twilio</a> have embraced the API-first approach, and
+in many ways embody and epitomize this movement as a whole.</p>
+
+<h2>Beyond Just Having An API</h2>
+
+<p>Just having an API is the obvious requirement for basic integrations. Going
+further than that, however, is the thought that <strong>your API can actually be a
+key point of differentiation from your competitors</strong>. Using this strategy
+(creating a robust, easy-to-use API) can be especially effective when you are
+going up against entrenched competitors, or when you are trying to make
+something that is traditionally very hard, easy.</p>
+
+<h2>Stripe And The Payments Industry</h2>
+
+<p>Ask any developer about online payment gateways, and they are likely to mention
+<a href="https://stripe.com">Stripe</a>. Why? Because it was clear from the start that
+they really cared about devleopers, and put high priority in their API. Not
+only just creating an API - <em>because every online payment system has an API</em> -
+but in creating a <strong>very good API</strong> that is robust, simple, well-documented,
+and easy to use.</p>
+
+<p>In contrast, many of Stripe&rsquo;s competitors are using SOAP APIs or an emulation of the
+Authorize.net API. The API documentation typically exists only in PDF form, and
+it&rsquo;s something that is mailed to you by the sales department. You&rsquo;re lucky if
+you can find it on the website. Sales first and developers second is pretty
+much the exact opposite approach that Stripe took by focusing on developers and
+integrations first.</p>
+
+<p>Here an <a href="https://stripe.com/docs/api#create_charge">example from the Stripe
+documentation</a> - it&rsquo;s just a simple
+cURL call to charge a card, and returns a simple JSON response:</p>
+<pre class="highlight text">curl https://api.stripe.com/v1/charges \
+   -u sk_test_BQokikJOvBiI2HlWgH4olfQ2: \
+   -d amount=400 \
+   -d currency=usd \
+   -d card=tok_14i9vP2eZvKYlo2Cdr4h0oHs \
+   -d &quot;description=Charge for test@example.com&quot;
+</pre>
+<p>Stripe did several things right here:</p>
+
+<ul>
+<li>Provide a simple API with good documentation</li>
+<li>Provide a fast on-boarding process with no red tape (rare for credit card processors)</li>
+<li>Support subscription charges with no additional fees (also rare)</li>
+<li>Target and market to developers</li>
+<li>Good design and nice, clean merchant interface</li>
+</ul>
+
+<p>Stripe&rsquo;s success is a combination of the above reasons as well as many other
+factors, but <strong>without a doubt their core product and main competitive
+advantage is their API</strong>. It shows in their overall developer experience, and
+has played a large role in their success in stealing market share from
+entrenched competitors like Authorize.net.</p>
+
+<h2>Amazon and the Public Cloud</h2>
+
+<p>For many, <a href="http://www.amazon.com">Amazon</a> is synonymous with cloud computing.
+Many web hosts selling vitrualized servers came and went before Amazon got into
+the game, but no one besides maybe <a href="http://digitalocean.com">DigitalOcean</a> has
+had a similar level of success doing so.</p>
+
+<p>From the start of Amazon Web Services, <strong>Amazon made it clear that they were a
+platform for developers to build on top of</strong>, and provided an API from day one.
+So while many other virtual hosting providers existed, Amazon EC2 was one of
+the only ones that developers could use to provision whole new servers with
+automated scripts and zero manual intervention. The availability of APIs to
+provision servers lead to the creation of businesses built on top of Amazon&rsquo;s
+infrastructure, like <a href="https://www.heroku.com/">Heroku</a> &ndash; who probably wouldn&rsquo;t
+exist without Amazon&rsquo;s APIs.</p>
+
+<p><a href="http://www.rackspace.com/">Rackspace</a>, a much larger web host and significant
+competitor, didn&rsquo;t launch a public API until years after Amazon did, but it
+<a href="http://www.cloudscaling.com/blog/cloud-computing/openstack-aws/">was already too late, and they gave up significant market
+share</a> to
+Amazon and Google Cloud Engine. <strong>Amazon&rsquo;s API was its killer feature, and key
+differentiator</strong>. And we all <a href="http://venturebeat.com/2014/04/24/amazon-web-services-is-doing-so-well-it-has-nowhere-else-to-grow/">know how well that has gone for
+them</a>.</p>
+
+<h2>Twilio And Telecommunications</h2>
+
+<p><a href="http://www.twilio.com">Twilio</a> is a good example of a company using APIs to
+make something that is normally really difficult very easy. Now you don&rsquo;t have
+to worry about which cell phone network the number you are texting belongs to,
+what country it is in, etc. Just integrate with the Twilio API, and you know
+it&rsquo;s going to work.</p>
+
+<p>For Twilio, <strong>their API is their entire business</strong>. There is no Twilio without
+an API, because if Twilio was just a web form that sent a text message to any
+given number - even if it still smoothed over all the carrier and location
+differences - it would not acheive the goal of automation, and thus would
+defeat the purpose.</p>
+
+<p>In the years since Twilio launched, countless companies have relied on it for
+things like <a href="http://en.wikipedia.org/wiki/Multi-factor_authentication">2-factor
+authentication</a> and
+phone number verification via SMS. Twilio can even power your entire phone
+system through tools like <a href="http://www.openvbx.org/">OpenVBX</a>, all with a
+collection of REST APIs.</p>
+
+<h2>The Bottom Line</h2>
+
+<p>If you don&rsquo;t have an open REST API that is easy to use, you will lose market
+share to a competitor who does. It&rsquo;s time to start taking your API very
+seriously. An API is a competitive advantage.</p>
+<div class="post_tags"><a class="tag" href="/blog/tags/business/">business</a><a class="tag" href="/blog/tags/api/">api</a></div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="/images/VanceLucas-March09.jpg" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="/images/icons/Github.png" /></a></li><li><a href="https://twitter.com/vlucas"><img src="/images/icons/Twitter.png" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="/images/icons/LinkedIN.png" /></a></li><li><a href="/feed.xml"><img src="/images/icons/RSS.png" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://brightbit.com">Brightbit - App Development</a><a class="list-group-item" href="http://autoridge.com">Autoridge - Find Auto Parts</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a><a class="list-group-item" href="http://frisbyjs.com">Frisby.js - REST API Testing</a><a class="list-group-item" href="http://bulletphp.com">BulletPHP - REST API Microframework</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/api-competitive-advantage/">An API is a Competitive Advantage</a><a class="list-group-item" href="/blog/hiding-variables-from-php-var_dump/">Hiding Variables From PHP's <code>var_dump()</code></a><a class="list-group-item" href="/blog/titanium-proxy-objects-with-javascript-call-and-apply/">Titanium Proxy Objects With JavaScript Call and Apply</a><a class="list-group-item" href="/blog/module-exports-all-the-things/"><code>module.exports</code> All The Things!</a><a class="list-group-item" href="/blog/future-anticipated-questions/">Future Anticipated Questions</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-359731-12']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>

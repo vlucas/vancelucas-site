@@ -5,10 +5,131 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2014-08-07T21:09:00Z</updated>
+  <updated>2014-09-29T17:18:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>An API is a Competitive Advantage</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/api-competitive-advantage/"/>
+    <id>http://www.vancelucas.com/blog/api-competitive-advantage/</id>
+    <published>2014-09-29T17:18:00Z</published>
+    <updated>2014-09-29T22:37:13-05:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;In this increasingly inter-connected world, APIs are becoming more and more
+important as time goes on. This is especially true if you have a business that
+requires integration of some sort, like metrics, notifications, integrated
+access to other systems (like telephony), payments, etc.&lt;/p&gt;
+
+&lt;p&gt;Companies like &lt;a href="https://stripe.com"&gt;Stripe&lt;/a&gt;, &lt;a href="http://www.amazon.com"&gt;Amazon&lt;/a&gt;,
+and &lt;a href="http://www.twilio.com"&gt;Twilio&lt;/a&gt; have embraced the API-first approach, and
+in many ways embody and epitomize this movement as a whole.&lt;/p&gt;
+
+&lt;h2&gt;Beyond Just Having An API&lt;/h2&gt;
+
+&lt;p&gt;Just having an API is the obvious requirement for basic integrations. Going
+further than that, however, is the thought that &lt;strong&gt;your API can actually be a
+key point of differentiation from your competitors&lt;/strong&gt;. Using this strategy
+(creating a robust, easy-to-use API) can be especially effective when you are
+going up against entrenched competitors, or when you are trying to make
+something that is traditionally very hard, easy.&lt;/p&gt;
+
+&lt;h2&gt;Stripe And The Payments Industry&lt;/h2&gt;
+
+&lt;p&gt;Ask any developer about online payment gateways, and they are likely to mention
+&lt;a href="https://stripe.com"&gt;Stripe&lt;/a&gt;. Why? Because it was clear from the start that
+they really cared about devleopers, and put high priority in their API. Not
+only just creating an API - &lt;em&gt;because every online payment system has an API&lt;/em&gt; -
+but in creating a &lt;strong&gt;very good API&lt;/strong&gt; that is robust, simple, well-documented,
+and easy to use.&lt;/p&gt;
+
+&lt;p&gt;In contrast, many of Stripe&amp;rsquo;s competitors are using SOAP APIs or an emulation of the
+Authorize.net API. The API documentation typically exists only in PDF form, and
+it&amp;rsquo;s something that is mailed to you by the sales department. You&amp;rsquo;re lucky if
+you can find it on the website. Sales first and developers second is pretty
+much the exact opposite approach that Stripe took by focusing on developers and
+integrations first.&lt;/p&gt;
+
+&lt;p&gt;Here an &lt;a href="https://stripe.com/docs/api#create_charge"&gt;example from the Stripe
+documentation&lt;/a&gt; - it&amp;rsquo;s just a simple
+cURL call to charge a card, and returns a simple JSON response:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;curl https://api.stripe.com/v1/charges \
+   -u sk_test_BQokikJOvBiI2HlWgH4olfQ2: \
+   -d amount=400 \
+   -d currency=usd \
+   -d card=tok_14i9vP2eZvKYlo2Cdr4h0oHs \
+   -d &amp;quot;description=Charge for test@example.com&amp;quot;
+&lt;/pre&gt;
+&lt;p&gt;Stripe did several things right here:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Provide a simple API with good documentation&lt;/li&gt;
+&lt;li&gt;Provide a fast on-boarding process with no red tape (rare for credit card processors)&lt;/li&gt;
+&lt;li&gt;Support subscription charges with no additional fees (also rare)&lt;/li&gt;
+&lt;li&gt;Target and market to developers&lt;/li&gt;
+&lt;li&gt;Good design and nice, clean merchant interface&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Stripe&amp;rsquo;s success is a combination of the above reasons as well as many other
+factors, but &lt;strong&gt;without a doubt their core product and main competitive
+advantage is their API&lt;/strong&gt;. It shows in their overall developer experience, and
+has played a large role in their success in stealing market share from
+entrenched competitors like Authorize.net.&lt;/p&gt;
+
+&lt;h2&gt;Amazon and the Public Cloud&lt;/h2&gt;
+
+&lt;p&gt;For many, &lt;a href="http://www.amazon.com"&gt;Amazon&lt;/a&gt; is synonymous with cloud computing.
+Many web hosts selling vitrualized servers came and went before Amazon got into
+the game, but no one besides maybe &lt;a href="http://digitalocean.com"&gt;DigitalOcean&lt;/a&gt; has
+had a similar level of success doing so.&lt;/p&gt;
+
+&lt;p&gt;From the start of Amazon Web Services, &lt;strong&gt;Amazon made it clear that they were a
+platform for developers to build on top of&lt;/strong&gt;, and provided an API from day one.
+So while many other virtual hosting providers existed, Amazon EC2 was one of
+the only ones that developers could use to provision whole new servers with
+automated scripts and zero manual intervention. The availability of APIs to
+provision servers lead to the creation of businesses built on top of Amazon&amp;rsquo;s
+infrastructure, like &lt;a href="https://www.heroku.com/"&gt;Heroku&lt;/a&gt; &amp;ndash; who probably wouldn&amp;rsquo;t
+exist without Amazon&amp;rsquo;s APIs.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.rackspace.com/"&gt;Rackspace&lt;/a&gt;, a much larger web host and significant
+competitor, didn&amp;rsquo;t launch a public API until years after Amazon did, but it
+&lt;a href="http://www.cloudscaling.com/blog/cloud-computing/openstack-aws/"&gt;was already too late, and they gave up significant market
+share&lt;/a&gt; to
+Amazon and Google Cloud Engine. &lt;strong&gt;Amazon&amp;rsquo;s API was its killer feature, and key
+differentiator&lt;/strong&gt;. And we all &lt;a href="http://venturebeat.com/2014/04/24/amazon-web-services-is-doing-so-well-it-has-nowhere-else-to-grow/"&gt;know how well that has gone for
+them&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Twilio And Telecommunications&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href="http://www.twilio.com"&gt;Twilio&lt;/a&gt; is a good example of a company using APIs to
+make something that is normally really difficult very easy. Now you don&amp;rsquo;t have
+to worry about which cell phone network the number you are texting belongs to,
+what country it is in, etc. Just integrate with the Twilio API, and you know
+it&amp;rsquo;s going to work.&lt;/p&gt;
+
+&lt;p&gt;For Twilio, &lt;strong&gt;their API is their entire business&lt;/strong&gt;. There is no Twilio without
+an API, because if Twilio was just a web form that sent a text message to any
+given number - even if it still smoothed over all the carrier and location
+differences - it would not acheive the goal of automation, and thus would
+defeat the purpose.&lt;/p&gt;
+
+&lt;p&gt;In the years since Twilio launched, countless companies have relied on it for
+things like &lt;a href="http://en.wikipedia.org/wiki/Multi-factor_authentication"&gt;2-factor
+authentication&lt;/a&gt; and
+phone number verification via SMS. Twilio can even power your entire phone
+system through tools like &lt;a href="http://www.openvbx.org/"&gt;OpenVBX&lt;/a&gt;, all with a
+collection of REST APIs.&lt;/p&gt;
+
+&lt;h2&gt;The Bottom Line&lt;/h2&gt;
+
+&lt;p&gt;If you don&amp;rsquo;t have an open REST API that is easy to use, you will lose market
+share to a competitor who does. It&amp;rsquo;s time to start taking your API very
+seriously. An API is a competitive advantage.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Hiding Variables From PHP's &lt;code&gt;var_dump()&lt;/code&gt;</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/hiding-variables-from-php-var_dump/"/>
@@ -1009,61 +1130,6 @@ share. I did manage to take a good selfie on the ski lift though!&lt;/p&gt;
 really came together to put on a great conference and show their support for
 events like this in their backyard. I am already looking forward to submitting
 again next year! Maybe I can try some green slopes this time :).&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>New Year, New Blog</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/new-year-new-blog/"/>
-    <id>http://www.vancelucas.com/blog/new-year-new-blog/</id>
-    <published>2014-01-04T04:57:00Z</published>
-    <updated>2014-01-03T23:39:57-06:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;It&amp;rsquo;s a whole new year, and I&amp;rsquo;ve got a whole new blog. This time around, I knew
-I wanted a static blog generator instead of a WordPress site (they are a little
-more developer friendly, and there are no security vulnerabilities with static
-HTML), and I&amp;rsquo;ve been window shopping a bit. A self-hosted blog was important to
-me since I want to make sure I will always own and control all my own content.&lt;/p&gt;
-
-&lt;h3&gt;The Options&lt;/h3&gt;
-
-&lt;p&gt;Though popular, &lt;a href="https://github.com/imathis/octopress"&gt;Octopress&lt;/a&gt; was out,
-because of my experience using it on &lt;a href="http://okcjs.com"&gt;OKC.js&lt;/a&gt;. It is
-difficult to customize, and the Octopress code is mixed in with your blog and
-website content, making upgrading difficult as well.&lt;/p&gt;
-
-&lt;p&gt;Using &lt;a href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt; was very tempting - and I almost used it,
-but I decided to take a look at another option first - and I&amp;rsquo;m very glad I did.&lt;/p&gt;
-
-&lt;h3&gt;Enter Middleman&lt;/h3&gt;
-
-&lt;p&gt;I ended up going with &lt;a href="http://middlemanapp.com/"&gt;Middleman&lt;/a&gt; for this blog. We
-just re-launched the &lt;a href="http://brightbit.com"&gt;Brightbit&lt;/a&gt; website with it, and
-Joshua (my design co-founder) was raving about it, so I had to give it a shot.
-Both Jekyll and Octopress use &lt;a href="http://liquidmarkup.org/"&gt;Liquid&lt;/a&gt; templates,
-which are a learning curve if you&amp;rsquo;ve never used them. I personally don&amp;rsquo;t like
-the syntax, so I wasn&amp;rsquo;t too keen on doing a lot of layout customization with
-it.&lt;/p&gt;
-
-&lt;p&gt;Middleman, however, is different. Middleman offers so much more flexibility -
-pure Ruby code, Sass, the option to use Slim or Haml for templates, blog posts,
-and pages, and the same asset pipeline that Rails has for combining and
-compressing your CSS and JavaScript into a single file for production
-deployment. Layout customization is also easier and better feeling in general.
-The last, and perhaps biggest reason Middleman is a winner is that Middleman
-exists entirely inside it&amp;rsquo;s own self-contained gem. Your site&amp;rsquo;s project folder
-has only what it should - your site&amp;rsquo;s content. There is no Middleman cruft in
-there that you have to bring along, and upgrades are clean and brainless since
-Middleman is a gem.&lt;/p&gt;
-
-&lt;h3&gt;Wrapping Up&lt;/h3&gt;
-
-&lt;p&gt;Importing all my old posts from WordPress and converting them all to markdown
-was a bit tricky and time-consuming (though
-&lt;a href="https://github.com/mdb/wp2middleman"&gt;wp2middleman&lt;/a&gt; did most of the heavy
-lifting), but I&amp;rsquo;m glad I did it. Here&amp;rsquo;s to a great 2014 on a great new (and
-much better looking) blog.&lt;/p&gt;
 </content>
   </entry>
 </feed>
