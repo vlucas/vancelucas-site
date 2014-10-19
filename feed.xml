@@ -5,10 +5,46 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2014-09-29T17:18:00Z</updated>
+  <updated>2014-10-19T23:25:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>Fixing Homebrew on OSX 10.10 Yosemite</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/fixing-homebrew-on-osx-yosemite-10-10/"/>
+    <id>http://www.vancelucas.com/blog/fixing-homebrew-on-osx-yosemite-10-10/</id>
+    <published>2014-10-19T23:25:00Z</published>
+    <updated>2014-10-19T18:47:44-05:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;If you upgraded to OSX 10.10 Yosemite, and now have a broken
+&lt;a href="http://brew.sh/"&gt;homebrew&lt;/a&gt;, fear not
+- the homebrew team has already fixed this!&lt;/p&gt;
+
+&lt;p&gt;Luckily, the steps to fix it are fairly simple.&lt;/p&gt;
+
+&lt;p&gt;First, update homebrew via &lt;code&gt;git&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;cd /usr/local/Library
+git pull origin master
+&lt;/pre&gt;
+&lt;p&gt;Next, use homebrew to update and clean your installed packages:&lt;/p&gt;
+&lt;pre class="highlight text"&gt;brew update
+brew prune
+brew doctor
+&lt;/pre&gt;
+&lt;p&gt;Now you should be all set!&lt;/p&gt;
+
+&lt;p&gt;Footnote:&lt;/p&gt;
+
+&lt;p&gt;I originally found (and &lt;a href="https://twitter.com/vlucas/status/523975518421397504"&gt;tweeted
+ about&lt;/a&gt;) &lt;a href="http://jcvangent.com/fixing-homebrew-os-x-10-10-yosemite/"&gt;this
+article&lt;/a&gt; when
+searching for a fix, but ran into more issues after editing the &lt;code&gt;brew.rb&lt;/code&gt; file,
+and eventually came to the solution of updating homebrew itself after seeing
+that the homebrew team had fixed the issue themselves.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>An API is a Competitive Advantage</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/api-competitive-advantage/"/>
@@ -1064,72 +1100,6 @@ Step 4. You should be able to view your app live on your custom port, subdomain,
 domain now, and all should be well.&lt;/p&gt;
 
 &lt;p&gt;Now sit back, relax, and enjoy your own mini-Heroku at a fraction of the cost!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>SkiPHP Conference 2014</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/skiphp-conference/"/>
-    <id>http://www.vancelucas.com/blog/skiphp-conference/</id>
-    <published>2014-01-22T17:07:00Z</published>
-    <updated>2014-05-01T18:18:23-05:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;It&amp;rsquo;s always fun to be a part of a conference&amp;rsquo;s first year. This year, I was
-lucky enough to speak at the inaugural &lt;a href="http://skiphp.com"&gt;SkiPHP Conference&lt;/a&gt;
-in Salt Lake City, UT. Since the conference was very micro-framework friendly,
-I was able to present my own &lt;a href="http://bulletphp.com"&gt;Bullet PHP
-Micro-Framework&lt;/a&gt;. The talk went well, was very well
-recieved, and got &lt;a href="http://joind.in/talk/view/10434"&gt;very highly rated on
-Joind.in&lt;/a&gt;. The talk (and Bullet itself)
-presents some interesting ideas that I was very happy to be able to share in a
-conference talk format.&lt;/p&gt;
-
-&lt;p&gt;Overall, the conference was great. It was very well put together, and very well
-run. The orgainzers sent lots of emails ahead of time letting us know what was
-going on, and took care of speakers very well - even having breakfast ready for
-us each morning in the speaker lounge (something that was very much appreciated
-by myself and many other speakers as well). I thought the talk selection was
-good as well - there were more sessions at this conference that I was
-personally interested in atending than I have in while at many other
-conferences over the years.&lt;/p&gt;
-
-&lt;p&gt;Huge thanks and kudos go to the SkiPHP organizers - I hope this is a sign of
-good things from the Salt Lake City PHP community, and I hope there are many
-more sucessful years of this conference ahead.&lt;/p&gt;
-
-&lt;h2&gt;Bullet: The Functional PHP Micro-Framework&lt;/h2&gt;
-
-&lt;p&gt;My &lt;a href="https://www.slideshare.net/vlucas/bullet-php"&gt;presentation slides are avaialble on
-Slideshare&lt;/a&gt;, though I am not sure
-how enlightening they will be without the audio. For this particular talk of
-mine, the audio context is pretty important. Luckily, my entire talk was
-recorded on video, so I will post that here when available.&lt;/p&gt;
-
-&lt;h2&gt;Post-Conference Activities&lt;/h2&gt;
-
-&lt;p&gt;Half the fun of a conference is all the activities surrounding it, and all the
-people you meet and talk to who are also there. At SkiPHP, the main event was
-obvious - skiing! A small group of us stayed an extra day or two after the
-conference to hit the slopes at &lt;a href="http://www.snowbird.com/"&gt;Snowbird&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="SkiPHP Slopes Crew" src="/images/posts/2014/skiphp/skiphp-group.jpg" /&gt;
-&lt;small&gt;Pictured (Front): Adam Culp, Ben Edmonds, Chris Boden, Josh Adell
-(Back) Paul Jones, Vance Lucas, John Coggeshall&lt;/small&gt;&lt;/p&gt;
-
-&lt;p&gt;Paul Jones and I started with the beginner course and stayed on the &amp;ldquo;Chickadee&amp;rdquo;
-hill since it was our first time snow skiing, but the other guys hit the real
-slopes, and have much better, more majestic mountanside pictures and views to
-share. I did manage to take a good selfie on the ski lift though!&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Vance Lucas on the Ski Lift on the Chickadee Slope at Snowbrid" src="/images/posts/2014/skiphp/skiphp-selfie.jpg" /&gt;&lt;/p&gt;
-
-&lt;h2&gt;Wrapping Up&lt;/h2&gt;
-
-&lt;p&gt;All in all, my time at SkiPHP was a blast. The Salt Lake City PHP community
-really came together to put on a great conference and show their support for
-events like this in their backyard. I am already looking forward to submitting
-again next year! Maybe I can try some green slopes this time :).&lt;/p&gt;
 </content>
   </entry>
 </feed>
