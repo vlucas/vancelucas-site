@@ -1,0 +1,37 @@
+<!DOCTYPE html><html><head><title>A Modern PHP OpenX API Client • Vance Lucas</title><link href="/stylesheets/application.css" media="all" rel="stylesheet" type="text/css" /><script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script><script src="/javascripts/application.js" type="text/javascript"></script><link href="/images/favicon.ico" rel="shortcut icon" /><link href="http://vancelucas.com/feed.xml" rel="alternate" title="RSS" type="application/rss+xml" /><meta charset="utf-8" /><meta content="Personal website and blog of Vance Lucas from Oklahoma City, OK" name="description" /><meta content="Vance Lucas" name="apple-mobile-web-app-title" /><meta content="yes" name="apple-mobile-web-app-capable" /><meta content="initial-scale=1.0, user-scalable=no" name="viewport" /></head><body class="blog blog_a-modern-php-openx-api-client blog_a-modern-php-openx-api-client_index"><header><div class="navbar-wrapper"><nav class="navbar navbar-inverse navbar-static-top" role="navigation"><div class="container"><div class="navbar-header"><button class="navbar-toggle" data-target="#nav-main-header" data-toggle="collapse" type="button"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a class="navbar-brand" href="/">Vance Lucas</a></div><div class="navbar-collapse collapse" id="nav-main-header"><ul class="nav navbar-nav"><li><a href="/blog">Blog</a></li><li><a href="/skills">Skills</a></li><li><a href="/speaking">Speaking</a></li><li><a href="/timeline">Timeline</a></li><li><a href="/contact">Contact</a></li></ul></div></div></nav></div></header><div class="container main"><div class="col-md-10 col-md-offset-1 col-sm-12 col-lg-10"><h1 class="post_title">A Modern PHP OpenX API Client<div class="post_date">Nov 19, 2014</div></h1><p>I released a new <a href="https://github.com/vlucas/openx-oauth-client">OpenX REST API
+Client</a> that works with the
+newest OpenX v4 REST API. It uses <a href="https://github.com/guzzle/guzzle/tree/4.2.3">Guzzle v4.x</a> and the
+<a href="https://github.com/guzzle/oauth-subscriber">oauth-subscriber plugin</a>. It is
+<a href="https://packagist.org/packages/vlucas/openx-oauth-client">available on Packagist</a>,
+uses the PSR-4 autoloader, and is properly namespaced. It took a bit of effort
+to put together, so I hope you enjoy using it, and I hope it saves you a lot of
+time.</p>
+
+<p></p>
+
+<h2>What About the Official Client?</h2>
+
+<p>I didn&rsquo;t really want to have to write a custom client library to use the OpenX
+API, but the <a href="https://github.com/openx/OX3-PHP-API-Client">official PHP
+library</a> was very outdated, both
+in terms of code and composer autoload-friendliness. It has been updated to
+work with v4 API, but the README and docs in the library itself don&rsquo;t say that,
+and only mention API v3. It has no namespaces, and can&rsquo;t be autoloaded
+just by using the class names.</p>
+
+<p>Beyond just code and style issues, the offical client is based on Zend
+Framework 1 components, when ZF2 has been around for a few years now. I also
+have a bias against ZF components, because they are not very de-coupled, and
+have a tendency to <a href="http://paul-m-jones.com/archives/4176">require nearly the rest of the entire
+framework</a> when using them. I don&rsquo;t want
+to include half of Zend Framework just to make a few API calls. Now, I don&rsquo;t
+have to!</p>
+<div class="post_tags"><a class="tag" href="/blog/tags/php/">php</a><a class="tag" href="/blog/tags/openx/">openx</a><a class="tag" href="/blog/tags/api/">api</a></div></div></div><footer id="page_foot"><div class="container"><section class="col-md-4"><h3></h3><img width="250" class="thumbnail" src="/images/VanceLucas-March09.jpg" /><ul class="contact_icons"><li><a href="https://github.com/vlucas"><img src="/images/icons/Github.png" /></a></li><li><a href="https://twitter.com/vlucas"><img src="/images/icons/Twitter.png" /></a></li><li><a href="http://www.linkedin.com/in/vancelucas"><img src="/images/icons/LinkedIN.png" /></a></li><li><a href="/feed.xml"><img src="/images/icons/RSS.png" /></a></li></ul></section><section class="col-md-4"><h3>Sites & Projects</h3><div class="list-group"><a class="list-group-item" href="http://merrylist.com">MerryList - Christmas Wishlist Creator</a><a class="list-group-item" href="http://invoicemore.com">InvoiceMore - Online Invoicing</a><a class="list-group-item" href="http://jscompress.com">Online JavaScript Compressor</a><a class="list-group-item" href="http://strfu.com">Online String Functions</a><a class="list-group-item" href="http://frisbyjs.com">Frisby.js - REST API Testing</a><a class="list-group-item" href="http://bulletphp.com">BulletPHP - REST API Microframework</a></div></section><section class="col-md-4"><h3>Recent Posts</h3><div class="list-group"><a class="list-group-item" href="/blog/a-modern-php-openx-api-client/">A Modern PHP OpenX API Client</a><a class="list-group-item" href="/blog/fixing-homebrew-on-osx-yosemite-10-10/">Fixing Homebrew on OSX 10.10 Yosemite</a><a class="list-group-item" href="/blog/api-competitive-advantage/">An API is a Competitive Advantage</a><a class="list-group-item" href="/blog/hiding-variables-from-php-var_dump/">Hiding Variables From PHP's <code>var_dump()</code></a><a class="list-group-item" href="/blog/titanium-proxy-objects-with-javascript-call-and-apply/">Titanium Proxy Objects With JavaScript Call and Apply</a></div></section></div></footer><script type="text/javascript">var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-359731-12']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();</script></body></html>
