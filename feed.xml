@@ -5,10 +5,84 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2014-11-19T21:58:00Z</updated>
+  <updated>2015-03-05T17:19:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>Working For The Man</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/working-for-the-man/"/>
+    <id>http://www.vancelucas.com/blog/working-for-the-man/</id>
+    <published>2015-03-05T17:19:00Z</published>
+    <updated>2015-03-05T14:34:09-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;After almost exactly one year being &lt;a href="http://vancelucas.com/blog/funemployed/"&gt;fully on my
+own&lt;/a&gt; after shutting down Brightbit, I
+have decided to stop doing contract work, and accept a full-time position at
+&lt;a href="http://www.netsuite.com"&gt;NetSuite&lt;/a&gt;. I debated a lot about either staying on my
+own, or getting a full time job, and in the end, the job won out.&lt;/p&gt;
+
+&lt;h3&gt;Why Go Back To Working For The Man?&lt;/h3&gt;
+
+&lt;p&gt;In a nutshell: I needed a break from the responsibilities of running a company
+to reset my focus and priorities. Working for myself was amazing, and it&amp;rsquo;s
+something that I will probably go back to at some point in the future - just
+not for a while, and it will be under different terms.&lt;/p&gt;
+
+&lt;p&gt;Running, and subsequently shutting down &lt;a href="http://brightbit.com/"&gt;Brightbit&lt;/a&gt; was
+the most stressful experience I have ever been through. Doing contract work on
+my own after Brightbit was a breath of fresh air, and a &lt;em&gt;huge&lt;/em&gt; reduction in
+stress, but I still found myself worrying about all the same things (sales
+pipeline, invoicing, payments, performance, client communication, etc.), just on a
+smaller scale (only myself this time).&lt;/p&gt;
+
+&lt;h3&gt;Time Was Money&lt;/h3&gt;
+
+&lt;p&gt;Perhaps the largest contributing factor to me choosing to quit contract work
+was that I constantly found myself thinking (and valuing) my own time in terms
+of money. I was resistant to taking time off, and it was always a
+struggle in my mind, because I would always think of what the time off was
+costing me in lost work. This mentality affected my family life and marriage,
+and made me feel like I always needed to be working. If I &lt;em&gt;did&lt;/em&gt; take
+time off, I needed to make it up sometime later - like on nights or on the
+weekend. This also affected my own time as well - it was hard to justify
+working on my own projects when there was always plenty of billable work to be
+done.&lt;/p&gt;
+
+&lt;p&gt;There are other ways to break the &amp;ldquo;time is money&amp;rdquo; mentality besides quitting
+and taking a &amp;ldquo;normal job&amp;rdquo;, but taking a job is the fastest and most
+frictionless ways to do it.&lt;/p&gt;
+
+&lt;h3&gt;Benefits &amp;amp; Time Off&lt;/h3&gt;
+
+&lt;p&gt;Ah, benefits. It&amp;rsquo;s nice to have them again. It&amp;rsquo;s also nice to not be paying
+both sides of the social security and medicare tax again. But the largest benefit I
+wanted? &lt;em&gt;Paid vacation&lt;/em&gt;. I can&amp;rsquo;t tell you how nice it was to just take a week
+off inbetween quitting contract work and starting full time at NetSuite. It&amp;rsquo;s
+also nice being able to plan a future vacation for the summer and look forward
+to it without worry because I know I have plenty of paid time off.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Working with a team&lt;/em&gt; was another huge plus I that I was looking forward to.
+Working on my own was fun, but sometimes it felt a bit isolating. It&amp;rsquo;s nice to
+work with a good team again with lots of smart and talented people on it who
+are all working together towards the same goal.&lt;/p&gt;
+
+&lt;h3&gt;NetSuite&lt;/h3&gt;
+
+&lt;p&gt;So that leaves the question: Why NetSuite? The product challenge is significant
+and interesting, and involves a product area that I am most interested in:
+Content Mangement Systems (CMS). It is also an opportunity to dive further into
+JavaScript, as the role will have me at nearly 100% frontend JavaScript
+development (the whole CMS frontend).&lt;/p&gt;
+
+&lt;p&gt;Additionally, the pay and benefits are very good (mostly covered above), they
+allow and support remote workers, and the working pace is relaxed and low
+stress. It&amp;rsquo;s a good combination for employee happiness, and I hope to do some
+good high-impact work during my time with them.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>A Modern PHP OpenX API Client</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/a-modern-php-openx-api-client/"/>
@@ -962,39 +1036,6 @@ lags a bit behind for 3rd party accessories like this (all these cables are
 marketed as iPod/iPhone/iPad cables, which have the same TRRS 3.5mm jack). In
 another year or two, I doubt this will be a problem at all, but just incase it
 still is - you can always find this blog post :).&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Oklahoma PHP User Group Reboot</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/okcphp-user-group-reboot/"/>
-    <id>http://www.vancelucas.com/blog/okcphp-user-group-reboot/</id>
-    <published>2014-03-03T17:26:00Z</published>
-    <updated>2014-03-03T13:33:31-06:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;Our first &lt;a href="http://oklahomaphp.com"&gt;Oklahoma PHP User Group&lt;/a&gt; meeting in a few
-years happened on Thursday, February 20th 2014, thanks to the efforts of &lt;a href="http://jakeasmith.com"&gt;Jake
-A. Smith&lt;/a&gt; who contacted me about it (as I ran the
-previous PHPUG a few years ago) and did all the legwork to make it happen. We
-are now going to co-organize the user group going forward.&lt;/p&gt;
-
-&lt;p&gt;After a meet &amp;amp; greet fueled by pizza and soda, I presented a short
-introductory talk on &lt;a href="https://getcomposer.org"&gt;Composer&lt;/a&gt;, which also covered
-using and publishing packages to &lt;a href="https://packagist.org"&gt;Packagist&lt;/a&gt;. The
-turnout was fairly small - around 12 people or so, but everyone was excited
-that the user group was happening, and there were lots of beginners and new
-faces.&lt;/p&gt;
-
-&lt;p&gt;Our meetings are going to be on the &lt;strong&gt;3rd Thursday of each month&lt;/strong&gt;. All our
-meeting times, descriptions, etc. will be posted on our &lt;a href="http://www.meetup.com/OklahomaPHP"&gt;Meetup
-Page&lt;/a&gt;. Our March plans are tentative, but we
-plan to do a PHP Foundations talk that will cover all the basics like
-Namespaces, &lt;a href="http://www.php-fig.org/"&gt;PHP-FIG&lt;/a&gt; standards, code organization,
-etc. so it should be a great meeting for begineers and those who are not
-familiar with what the larger PHP community is doing. You can RSVP on the
-Meetup page to get notifications and reminder emails for upcoming meetings.
-Hope to see you there!&lt;/p&gt;
 </content>
   </entry>
 </feed>
