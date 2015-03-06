@@ -37,9 +37,11 @@ weekend. This also affected my own time as well - it was hard to justify
 working on my own projects when there was always plenty of billable work to be
 done.
 
-There are other ways to break the "time is money" mentality besides quitting
-and taking a "normal job", but taking a job is the fastest and most
-frictionless ways to do it.
+There are other ways to break this mentality besides quitting and taking a
+"normal job" for a while, but taking a job is the fastest and most frictionless
+ways to do it. I am still trading time for money, but the typical job
+arrangement means that I can relax a bit and no longer obsess over billable
+hours.
 
 ### Benefits &amp; Time Off
 
