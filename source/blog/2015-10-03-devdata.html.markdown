@@ -1,0 +1,53 @@
+---
+title: "DevData: The Data You Need in the Language You Want"
+date: 2015-10-03 21:32 UTC
+tags: ['projects']
+---
+
+Around two months ago, I launched a new website called
+[DevData](http://devdata.io). It is a website that I wished has existed for
+many years, and finally just built and launched it myself.
+
+## Motivation
+
+Many times during the development of a new project, I will often
+need common data sets - a list of U.S. states, a list of all the countries in
+the world, a list of all the different timezones or currencies, etc. These
+lists exist in places like Wikipedia and other sources, but the data is not
+formatted for programming languages, so there is still a good bit of work to do
+before the data can even be used in your project.
+
+## Solution
+
+Enter [DevData](http://devdata.io). It's a fairly basic node.js Express app
+that just reads and formats a JSON dataset file into many different programming
+languages.
+
+Current Programming Languages (time of writing):
+
+  * JavaScript
+  * PHP
+  * Python
+  * Ruby
+  * C#
+  * Lua
+
+Current Datasets (time of writing):
+
+  * U.S. States
+  * Canadian Provinces
+  * World Countries
+  * World Currencies
+  * World Time Zones
+  * International Airport Codes
+
+The DevData project [is on GitHub](https://github.com/vlucas/devdata.io), and
+my hope is that more developers will continue adding more datasets and language
+formats, so that over time, DevData will be the first place to check for common
+datasets in any programming language you need.
+
+This is the second officially launched project of my [year of making
+stuff](http://vancelucas.com/blog/year-of-making-stuff/) - and the official
+launch of my third project [Countism](http://countism.com) is just around the
+corner!
+
