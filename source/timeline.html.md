@@ -91,5 +91,21 @@ project or all kinds and some of our own projects on the side.
 ### 2014
 
 We closed down [Brightbit](http://brightbit.com) in February 2014 and I am now
-freelancing full-time through my old LLC, [Actridge](http://www.actridge.com).
+[freelancing full-time](http://vancelucas.com/blog/funemployed/) through my old
+LLC, [Actridge](http://www.actridge.com).
+
+I also ended up [pulling both my mobile
+apps](http://vancelucas.com/blog/pulling-my-apps-from-the-app-store/) from the
+App Store and Google Play to focus on publishing a more quality mobile app
+later.
+
+### 2015
+
+After a full year of freelancing on my own and after long deliberation, I
+decided to [take a full-time
+job](http://vancelucas.com/blog/working-for-the-man/) at
+[NetSuite](http://www.netsuite.com). This gives me more time for my family,
+less stress, and more time to work on a [few of my own
+projects](http://vancelucas.com/blog/year-of-making-stuff/).
+
 
