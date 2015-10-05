@@ -8,6 +8,8 @@ Around two months ago, I launched a new website called
 [DevData](http://devdata.io). It is a website that I wished has existed for
 many years, and finally just built and launched it myself.
 
+READMORE
+
 ## Motivation
 
 Many times during the development of a new project, I will often
