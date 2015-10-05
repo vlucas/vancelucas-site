@@ -5,10 +5,73 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2015-04-17T21:25:00Z</updated>
+  <updated>2015-10-03T21:32:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>DevData: The Data You Need in the Language You Want</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/devdata/"/>
+    <id>http://www.vancelucas.com/blog/devdata/</id>
+    <published>2015-10-03T21:32:00Z</published>
+    <updated>2015-10-05T09:17:32-05:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;p&gt;Around two months ago, I launched a new website called
+&lt;a href="http://devdata.io"&gt;DevData&lt;/a&gt;. It is a website that I wished has existed for
+many years, and finally just built and launched it myself.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;h2&gt;Motivation&lt;/h2&gt;
+
+&lt;p&gt;Many times during the development of a new project, I will often
+need common data sets - a list of U.S. states, a list of all the countries in
+the world, a list of all the different timezones or currencies, etc. These
+lists exist in places like Wikipedia and other sources, but the data is not
+formatted for programming languages, so there is still a good bit of work to do
+before the data can even be used in your project.&lt;/p&gt;
+
+&lt;h2&gt;Solution&lt;/h2&gt;
+
+&lt;p&gt;Enter &lt;a href="http://devdata.io"&gt;DevData&lt;/a&gt;. It&amp;rsquo;s a fairly basic node.js Express app
+that just reads and formats a JSON dataset file into many different programming
+languages.&lt;/p&gt;
+
+&lt;p&gt;Current Programming Languages (time of writing):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;JavaScript&lt;/li&gt;
+&lt;li&gt;PHP&lt;/li&gt;
+&lt;li&gt;Python&lt;/li&gt;
+&lt;li&gt;Ruby&lt;/li&gt;
+&lt;li&gt;C#&lt;/li&gt;
+&lt;li&gt;Lua&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Current Datasets (time of writing):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;U.S. States&lt;/li&gt;
+&lt;li&gt;Canadian Provinces&lt;/li&gt;
+&lt;li&gt;World Countries&lt;/li&gt;
+&lt;li&gt;World Currencies&lt;/li&gt;
+&lt;li&gt;World Time Zones&lt;/li&gt;
+&lt;li&gt;International Airport Codes&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The DevData project &lt;a href="https://github.com/vlucas/devdata.io"&gt;is on GitHub&lt;/a&gt;, and
+my hope is that more developers will continue adding more datasets and language
+formats, so that over time, DevData will be the first place to check for common
+datasets in any programming language you need.&lt;/p&gt;
+
+&lt;p&gt;This is the second officially launched project of my &lt;a href="http://vancelucas.com/blog/year-of-making-stuff/"&gt;year of making
+stuff&lt;/a&gt; - and the official
+launch of my third project &lt;a href="http://countism.com"&gt;Countism&lt;/a&gt; is just around the
+corner!&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Year of Making Stuff</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/year-of-making-stuff/"/>
@@ -778,200 +841,6 @@ should have been this way from the beginning, but it&amp;rsquo;s very easy for y
 clients to get overwhelmed with things they think they need. It&amp;rsquo;s your job as a
 professional to help them reason through everything and remove barriers to
 launch to give them the best chance for success.&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Pulling My Apps From The App Store: Lessons Learned</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/pulling-my-apps-from-the-app-store/"/>
-    <id>http://www.vancelucas.com/blog/pulling-my-apps-from-the-app-store/</id>
-    <published>2014-05-01T02:31:00Z</published>
-    <updated>2014-05-31T10:53:45-05:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;&lt;img alt="Pulling My Apps From The App Store" src="/images/posts/2014/appstore/itunesconnect-unpublished-apps.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Last night, I decided to pull my two iOS and Android apps &lt;a href="/blog/android-iphone-seo-app/"&gt;SEMTab SEO
-Pro&lt;/a&gt; and my very first app, &lt;a href="/blog/zero-to-app-in-two-weeks-with-titanium/"&gt;AutoRidge
-Lite&lt;/a&gt; from the App Store and
-Google Play. It was a difficult decision to make, because they were my first
-two apps, and I now have &lt;em&gt;no published mobile apps&lt;/em&gt; to show potential freelance
-clients when they ask for app examples. This does limit my options, but now is
-a great time to make this move since I just started a full-time long-term
-contract and won&amp;rsquo;t be actively looking for extra work right now.&lt;/p&gt;
-
-&lt;h2&gt;Showcasing Quality&lt;/h2&gt;
-
-&lt;p&gt;With the &lt;a href="/blog/funemployed/"&gt;recent shutdown of my company&lt;/a&gt;, I feel like I&amp;rsquo;m
-writing a new chapter in my life. Having any app in the app store just to say I
-have one is no longer enough. The bar is higher now. &lt;strong&gt;I want a high-quality,
-well-rated app that people genuinely like and want to use&lt;/strong&gt;. I want something I
-can really be proud of. It doesn&amp;rsquo;t have to be complicated or difficult, or even
-do anything fancy. It just has to look good, and do one thing well &amp;ndash; and &lt;em&gt;not
-crash randomly&lt;/em&gt;. Difficult task, I know.&lt;/p&gt;
-
-&lt;h2&gt;What A Bad App Looks Like&lt;/h2&gt;
-
-&lt;p&gt;To provide an example of the kind of results a bad quality app will give you,
-look no further than my own app - my only paid app - one I just pulled from the
-stores - &lt;a href="http://semtab.com/"&gt;SEMTab SEO Pro&lt;/a&gt;. This app was ill-conceived and
-hastily crafted. The UI wasn&amp;rsquo;t thought out very well, and neither was the
-stability of the source data. The code I used to fetch Google&amp;rsquo;s PR ranking was
-frequently wrong (I apparently used the wrong black magic incantation to summon
-the accurate result), and link counts from Facebook and Twitter were
-different than what were reported by other (more accurate) tools and by the
-platforms themselves (turns out the API I used was way outdated).&lt;/p&gt;
-
-&lt;h3&gt;Ratings&lt;/h3&gt;
-
-&lt;p&gt;On Google Play, SEMTab had an abysmal rating of 1.6. This is primarily due to
-the app crashing or just plain not working on a few Android devices that I
-was not able to test on, or were not actually supported (like the &amp;ldquo;Rubbish&amp;rdquo;
-review you see for it not working on the Galaxy Tab - one of the first Android
-tablets that liked to pretend it could run normal Android apps just fine).&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Google Play Rating - An abysmal 1.6" src="/images/posts/2014/appstore/semtab-googleplay-ratings.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;On the App Store, the app was a lot more stable, but still got a bad rating for
-its terrible accuracy.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="App Store Rating - An not-much-beter 2 stars" src="/images/posts/2014/appstore/semtab-appstore-ratings.png" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;Revenue&lt;/h3&gt;
-
-&lt;p&gt;The app was $1.99, and was on sale for $0.99 for an extended period
-of time to try and boost sales. Obviously, this strategy doesn&amp;rsquo;t work if your
-app sucks and has a bunch of bad ratings.&lt;/p&gt;
-
-&lt;p&gt;Google Play Revenue&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Google Play Revenue 2011-2014" src="/images/posts/2014/appstore/semtab-googleplay-revenue.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;App Store Revenue&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="iTunes Connect Stats 2011-2014" src="/images/posts/2014/appstore/itunesconnect-proceeds-2009-2014.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;A whopping &lt;strong&gt;$127.19&lt;/strong&gt; from Google and &lt;strong&gt;$83.01&lt;/strong&gt; from Apple, for a grand total
-of &lt;strong&gt;$210.20&lt;/strong&gt;. &lt;em&gt;In 4 years&lt;/em&gt;. Ouch. Totally not worth the (admittedly small)
-effort I put into it.&lt;/p&gt;
-
-&lt;h3&gt;Why I Pulled SEMTab SEO Pro&lt;/h3&gt;
-
-&lt;p&gt;The reasons here are prety obvious, right? At this point, the ratings and
-performance of this app are so bad that I don&amp;rsquo;t even &lt;em&gt;want&lt;/em&gt; it in my portfolio.
-I didn&amp;rsquo;t even want people to know I made this app, and was a bit embarrased to
-mention it whenever the &amp;ldquo;what apps have you made?&amp;rdquo; question came up, fearful
-people would see the terrible rating read all the horrible reviews. Good
-riddance. &lt;em&gt;(And if you&amp;rsquo;re wondering why I am publicly sharing all this now, it&amp;rsquo;s
-for accountability - I never want to make an app this bad again.)&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2&gt;What a Mediocre App Looks Like&lt;/h2&gt;
-
-&lt;p&gt;I am definitely &lt;em&gt;more proud&lt;/em&gt; (or, at least, not embarrased) by my first app -
-&lt;a href="http://autoridge.com/mobile"&gt;Autoridge&lt;/a&gt;. I was a &lt;em&gt;lot&lt;/em&gt; more torn
-about taking down Autoridge than I was about SEMTab. The reviews of Autoridge
-basically boil down to this:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;The people who used the app and found relevant data for their vehicle&amp;rsquo;s
-year/make/model &lt;strong&gt;loved it&lt;/strong&gt;. It provided huge value for them.&lt;/li&gt;
-&lt;li&gt;The people who could not find their specific vehicle&amp;rsquo;s year/make/model, or
-didn&amp;rsquo;t find any (or very few) relevant parts for their vehicle mostly
-trashed it as incomplete, inaccurate or unreliable.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;Poor Early Titanium Android Support&lt;/h3&gt;
-
-&lt;p&gt;And as in the case of SEMTab, there were also quite a few Android users that
-the app didn&amp;rsquo;t work for at all (freezing or crashing). I mostly attribute this
-to the very poor early &lt;a href="http://www.appcelerator.com/"&gt;Appcelerator Titanium&lt;/a&gt;
-Android support. Both these apps were developed and released at least 3 years
-ago on Titanium versions 1.5.x - 1.7.x, and a lot has changed for the better
-since those dark ages with Titanium (we have have an MVC framework called
-Alloy, and Titanium is at 3.2.x). From my experience with Alloy, I am positive
-that updated versions of these apps would elimate all the problems on Android.&lt;/p&gt;
-
-&lt;p&gt;That said, it&amp;rsquo;s pretty disharenting when you develop an Android app with an
-intermediate platform like Titanium, test it locally with your own Android
-device and emulator working perfectly, and then release it to a tsunami of
-1-star reviews and reports of random freezes and crashes on various Android
-devices that you can&amp;rsquo;t do anything to fix.&lt;/p&gt;
-
-&lt;h3&gt;Ratings&lt;/h3&gt;
-
-&lt;p&gt;On Google Play, Autoridge Lite had a &lt;strong&gt;very average rating of 3.1&lt;/strong&gt;. I am
-actually suprised it was this high with the number of ratings reporting freezes
-and crashes, but like I said, the number of people who it did work for
-generally loved it. You can see this wide rating distribution reflected in the
-data. This saddens me a bit, because the rating could have easily been 4+ in
-Google Play if it worked consistently across all Android devices.&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Google Play Rating - A very average 3.08" src="/images/posts/2014/appstore/autoridge-googleplay-ratings.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;The App Store rating was pretty much the same story, with all the negative
-reviews questioning data completeness and accuracy:&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="App Store Rating - An not-much-beter 2 stars" src="/images/posts/2014/appstore/autoridge-appstore-ratings.png" /&gt;&lt;/p&gt;
-
-&lt;h3&gt;Distribution&lt;/h3&gt;
-
-&lt;p&gt;The uptake of Autoridge Lite surprised me from the start. It definitely seems
-like something people were ready to embrace if the data was more accurate,
-complete, and up-to-date. I think overall, people really like the idea of using
-an app instead of flipping through a greasy old parts book at the auto part
-store.&lt;/p&gt;
-
-&lt;p&gt;App Store Distribution Units&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="App Store Units - 2009-2014" src="/images/posts/2014/appstore/itunesconnect-units-2009-2014.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;Google Play Installs&lt;/p&gt;
-
-&lt;p&gt;&lt;img alt="Google Play Distribution - 2010-2014" src="/images/posts/2014/appstore/autoridge-googleplay-units.png" /&gt;
-&lt;img alt="Google Play Active Installs - 2010-2014" src="/images/posts/2014/appstore/autoridge-googleplay-activeinstalls.png" /&gt;&lt;/p&gt;
-
-&lt;p&gt;According to Google, there are &lt;strong&gt;still 1,584 devices with Autoridge Lite
-installed&lt;/strong&gt;. Definitely far better than SEMTab SEO Pro that had only
-12 active installs. A lot of people still like this app.&lt;/p&gt;
-
-&lt;h3&gt;Why I Pulled Autoridge Lite&lt;/h3&gt;
-
-&lt;p&gt;The decision to pull Autoridge from the App Store and Google Play was much
-harder than with SEMTab, but ultimately, it came down to an issue of time,
-energy, and focus:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Autoridge Lite has a &lt;a href="http://autoridge.com"&gt;webservice backend&lt;/a&gt; that I also
-built and maintain, and this costs time and money.&lt;/li&gt;
-&lt;li&gt;The vehicle data has a low degree of accuracy with no automatic error
-correction, and would take a significant re-investment of time and energy to
-correct. I would have to research new sources of auto part information and
-build web scrapers/parsers for each of them, as well as implement better
-processes for checking for updates and invalidating bad data.&lt;/li&gt;
-&lt;li&gt;I want to completely re-code the app, and have wanted to for a while. So
-doing this plus all the webservice updates too would probably take longer than
-the original 2 weeks the entire project took initially. And since I can&amp;rsquo;t
-update the app only without fixing the data accuracy issue, I have to
-consider the whole picture.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;In short - it would take too long to re-build the right way, and I don&amp;rsquo;t
-currently see it as worth the effort considering I haven&amp;rsquo;t made any money from
-it (and don&amp;rsquo;t see any path to make significant money from it ever as a one-man
-show).&lt;/p&gt;
-
-&lt;h2&gt;Conclusion&lt;/h2&gt;
-
-&lt;p&gt;Although this choice was tough, and arguably should have happened a long time
-ago, I am happy to be doing it now. &lt;strong&gt;The first step towards finding something
-that works is identifying and eliminating the stuff that doesn&amp;rsquo;t&lt;/strong&gt;. The worst
-thing that can happen is to split your time, energy, and focus across so many
-projects that you do them all badly. This is exactly what I feel I have done.
-&lt;strong&gt;I want to be able to focus on my next project, I want it to be
-high-quality, and I want it to have a clear revenue path&lt;/strong&gt;. This whole &amp;ldquo;making
-money with software&amp;rdquo; path is not an easy one, so I want to give myself the best
-chance possible by concentrating on the next big thing, and making a better
-product than I&amp;rsquo;ve ever made before. That&amp;rsquo;s what this move is all about.&lt;/p&gt;
 </content>
   </entry>
 </feed>
