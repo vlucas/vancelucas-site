@@ -5,10 +5,97 @@
   <id>http://www.vancelucas.com/blog</id>
   <link href="http://www.vancelucas.com/blog"/>
   <link href="http://www.vancelucas.com/feed.xml" rel="self"/>
-  <updated>2015-10-03T21:32:00Z</updated>
+  <updated>2015-12-31T19:17:00Z</updated>
   <author>
     <name>Vance Lucas</name>
   </author>
+  <entry>
+    <title>Countism: Tally Counter Mobile App</title>
+    <link rel="alternate" href="http://www.vancelucas.com/blog/countism/"/>
+    <id>http://www.vancelucas.com/blog/countism/</id>
+    <published>2015-12-31T19:17:00Z</published>
+    <updated>2016-01-04T14:12:14-06:00</updated>
+    <author>
+      <name>Vance Lucas</name>
+    </author>
+    <content type="html">&lt;div class="left pad10"&gt;
+  &lt;a href="http://countism.com"&gt;&lt;img src="/images/posts/2015/countism/appicon.png" /&gt;&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href="http://countism.com"&gt;Countism&lt;/a&gt; is a mobile app idea that I have been working
+on and thinking about for a long time. Even though I have been thinking of the
+idea for a while and even did some initial work, I did not plan to actually
+build and release the app - that was always a question that was up in air. My
+initial work was really just experimental to see if it was something I could
+build easily enough to make it worth the effort, and to see if my idea would be
+viable in app form.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;My mindset on this changed when I publicly declared this year as a &lt;a href="/blog/year-of-making-stuff/"&gt;year of
+making stuff&lt;/a&gt;, and committed to releasing 4 new
+projects this year. I knew Countism had to be one of those 4 projects -
+especially since &lt;a href="/blog/pulling-my-apps-from-the-app-store/"&gt;pulling my other 2 apps from the app
+store&lt;/a&gt; last year. I wanted another
+app in the App Store and Google Play - a &lt;em&gt;good&lt;/em&gt; app.&lt;/p&gt;
+
+&lt;div class="right pad10"&gt;
+  &lt;img src="/images/posts/2015/countism/ios-1-one.png" width="300" alt="Countism for iOS" /&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;What is Countism?&lt;/h2&gt;
+
+&lt;p&gt;Countism is an advanced tally counter app with timeseries data and graphs. You
+can use it to count anything that can&amp;rsquo;t be counted or tracked automatically.
+This can be anything - Glasses of Water, Sodas, Workouts, How many times you
+swear, How many hours you work at your job, etc.&lt;/p&gt;
+
+&lt;h2&gt;Why Make Countism?&lt;/h2&gt;
+
+&lt;p&gt;I fist came up with the idea for Countism when I wanted to track how many
+glasses of water I drank per day. This sounds like a fairly easy need to fill
+with existing apps, but it turned out not to be.&lt;/p&gt;
+
+&lt;p&gt;There are many tally counter apps on the app stores, but surprisingly few that
+have timeseries data - most are just simple incremental counters with limited
+usefulness. The few that do keep timseries data are mostly apps focused on
+habit and productivity niches, which have limited general usefulness if you
+don&amp;rsquo;t have an end goal in mind for what you&amp;rsquo;re tracking. There&amp;rsquo;s a whole other
+group of tally counter apps that simply have very poor UI/UX and are painful to
+use and look at.&lt;/p&gt;
+
+&lt;p&gt;Simply put: I saw a market opportunity to fill my need and others like it, and
+have already recieved positive feedback from real paying users that validate
+this hole in the market.&lt;/p&gt;
+
+&lt;div class="right pad10"&gt;
+  &lt;img src="/images/posts/2015/countism/android-4-four.png" width="300" alt="Countism for Android" /&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;How Can I Get Countism?&lt;/h2&gt;
+
+&lt;p&gt;Glad you asked! You can head over to the &lt;a href="http://countism.com"&gt;&lt;strong&gt;Countism
+website&lt;/strong&gt;&lt;/a&gt; to find the links to the iOS App Store and Google
+Play for Android devices.&lt;/p&gt;
+
+&lt;h2&gt;How Did You Make Countism?&lt;/h2&gt;
+
+&lt;p&gt;Good question. There are many development tools out there for building mobile
+apps, but I chose &lt;a href="http://www.appcelerator.com/"&gt;Appcelerator Titanium&lt;/a&gt; for
+Countism because it was full-featured and allowed me to target both iOS and
+Android with a single JavaScript codebase. I was also already very familiar and
+comfortable with it, as I have built and released multiple other mobile apps
+with it.&lt;/p&gt;
+
+&lt;p&gt;I gave &lt;a href="https://facebook.github.io/react-native/"&gt;React Native&lt;/a&gt; a try early in
+development, but it lacked too many features that I needed for an app like
+Countism. Namely, it lacked: Table Views and SQLite. There are some 3rd party
+components for these, but they were not complete at the time, and Android
+support for these is still a question as of the time of writing. I will
+probably build another app with React Native at a later time, but it needs a
+lot more maturity first.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>DevData: The Data You Need in the Language You Want</title>
     <link rel="alternate" href="http://www.vancelucas.com/blog/devdata/"/>
@@ -780,67 +867,6 @@ method ensures that only properties you have explicitly added get exported. In
 this case, it may not make a difference since we&amp;rsquo;re using a bare object
 literal, but it&amp;rsquo;s good practice to use, so I do. Feel free to save a few lines
 of code with the assignment if you feel differently!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Future Anticipated Questions</title>
-    <link rel="alternate" href="http://www.vancelucas.com/blog/future-anticipated-questions/"/>
-    <id>http://www.vancelucas.com/blog/future-anticipated-questions/</id>
-    <published>2014-05-30T19:48:00Z</published>
-    <updated>2014-05-31T21:42:19-05:00</updated>
-    <author>
-      <name>Vance Lucas</name>
-    </author>
-    <content type="html">&lt;p&gt;I was recently part of a project where, upon asking for content for the
-requried &amp;ldquo;Frequently Asked Questions&amp;rdquo; page, I was invited to a meeting with the
-objective of &amp;ldquo;brainstorming content for the F.A.Q. page&amp;rdquo;. It was painfully
-ironic. How can we possibly list frequently asked questions when we haven&amp;rsquo;t
-even launched yet and &lt;em&gt;no one has asked any questions&lt;/em&gt;?&lt;/p&gt;
-
-&lt;p&gt;The meeting (video conference call) started, and I decided to stay silent for a
-little while to see how the call would play out. The project stakeholders begun
-by going over the F.A.Q. sections on a bunch of other websites, and compiling a
-short list of all the questions they would need to write answers for. The list
-included things like &lt;em&gt;&amp;ldquo;How can I contact you&amp;rdquo;&lt;/em&gt;, and &lt;em&gt;&amp;ldquo;How can I reset my
-password&amp;rdquo;&lt;/em&gt; - &lt;strong&gt;questions that will likely never be asked unless your UI/UX is
-terrible&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2&gt;All Filler, No Meat&lt;/h2&gt;
-
-&lt;p&gt;Almost all of the questions on the list were things that anyone who has used a
-website in the past 10 years should have some idea how to do. People naturally
-look for &amp;ldquo;Contact&amp;rdquo; links in common navigation areas, and generally know they
-can find a password reset link on a login form.  &lt;strong&gt;Simply by following common
-conventions, all of the &amp;ldquo;F.A.Q.&amp;quot;s gleaned from other websites become completely
-irrelevant&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;h2&gt;Cart Before The Horse&lt;/h2&gt;
-
-&lt;p&gt;Of course, all of the filler-quality content of the questions aside, the obvious
-problem here is that &lt;strong&gt;by trying to anticipate future questions ahead of time, we
-are going to get things wrong&lt;/strong&gt;. And, perhaps even more importantly - &lt;strong&gt;we are
-creating unnecessary work for ourselves before launch, when our time is most
-valuable&lt;/strong&gt;. Right before launch is exactly the time when you shouldn&amp;rsquo;t be
-spending time on non-critical items.&lt;/p&gt;
-
-&lt;h2&gt;Do You Really Need This Now?&lt;/h2&gt;
-
-&lt;p&gt;This is a good question to asking about everything in general, but especially
-when creating content pages for a website that you &amp;quot;need&amp;rdquo; before launch. During
-my client meeting, after going over the initial list of F.A.Qs compiled during
-the initial brainstorm, I interjected, and explained (nicely) everything that I
-wrote above as an objection to creating the F.A.Q. page before launch. The
-bottom line is that we were effectively changing the definition of &amp;ldquo;F.A.Q.&amp;rdquo;
-from &lt;em&gt;Frequently Asked Questions&lt;/em&gt; to &lt;em&gt;Future Anticipated Questions&lt;/em&gt; by trying
-to create content for it before we even had any real questions from visitors or
-customers.&lt;/p&gt;
-
-&lt;p&gt;Ultimately, we decided to put off the F.A.Q. section until after the website
-launch and after we got some real customer questions. It seems obvious that it
-should have been this way from the beginning, but it&amp;rsquo;s very easy for your
-clients to get overwhelmed with things they think they need. It&amp;rsquo;s your job as a
-professional to help them reason through everything and remove barriers to
-launch to give them the best chance for success.&lt;/p&gt;
 </content>
   </entry>
 </feed>
