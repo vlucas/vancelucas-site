@@ -15,6 +15,19 @@ mark
 .main
   font-size: 1.2em
 
+.pad10
+  padding: 10px
+
+.left
+  float: left
+  .pad10
+    padding-left: 0
+
+.right
+  float: right
+  .pad10
+    padding-right: 0
+
 // Homepage
 .home_header
   margin-top: -22px
@@ -72,13 +85,19 @@ mark
 // Post styles
 h1.post_title
   border-bottom: 1px dotted #333
+  margin-bottom: 0
 
 .post_date
   font-size: 0.5em
   margin: 5px
   color: #aaa
 
+.post_body
+  font-size: 1.1em
+  line-height: 1.7em
+
 .post_tags
+  clear: both
   border-top: 1px dotted #333
   padding-top: 20px
 

@@ -9,7 +9,8 @@
         .post_date
           = current_page.date.strftime('%b %e, %Y')
 
-      = yield
+      .post_body
+        = yield
 
       .post_tags
         - current_page.tags.each do |tag|

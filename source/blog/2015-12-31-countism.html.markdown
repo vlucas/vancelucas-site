@@ -1,0 +1,84 @@
+---
+title: "Countism: Tally Counter Mobile App"
+date: 2015-12-31 19:17 UTC
+tags: ['apps', 'mobile', 'business', 'titanium']
+---
+
+
+<div class="left pad10">
+  <a href="http://countism.com"><img src="/images/posts/2015/countism/appicon.png" /></a>
+</div>
+
+[Countism](http://countism.com) is a mobile app idea that I have been working
+on and thinking about for a long time. Even though I have been thinking of the
+idea for a while and even did some initial work, I did not plan to actually
+build and release the app - that was always a question that was up in air. My
+initial work was really just experimental to see if it was something I could
+build easily enough to make it worth the effort, and to see if my idea would be
+viable in app form.
+
+READMORE
+
+My mindset on this changed when I publicly declared this year as a [year of
+making stuff](/blog/year-of-making-stuff/), and committed to releasing 4 new
+projects this year. I knew Countism had to be one of those 4 projects -
+especially since [pulling my other 2 apps from the app
+store](/blog/pulling-my-apps-from-the-app-store/) last year. I wanted another
+app in the App Store and Google Play - a *good* app.
+
+<div class="right pad10">
+  <img src="/images/posts/2015/countism/ios-1-one.png" width="300" alt="Countism for iOS" />
+</div>
+
+## What is Countism?
+
+Countism is an advanced tally counter app with timeseries data and graphs. You
+can use it to count anything that can't be counted or tracked automatically.
+This can be anything - Glasses of Water, Sodas, Workouts, How many times you
+swear, How many hours you work at your job, etc.
+
+## Why Make Countism?
+
+I fist came up with the idea for Countism when I wanted to track how many
+glasses of water I drank per day. This sounds like a fairly easy need to fill
+with existing apps, but it turned out not to be.
+
+There are many tally counter apps on the app stores, but surprisingly few that
+have timeseries data - most are just simple incremental counters with limited
+usefulness. The few that do keep timseries data are mostly apps focused on
+habit and productivity niches, which have limited general usefulness if you
+don't have an end goal in mind for what you're tracking. There's a whole other
+group of tally counter apps that simply have very poor UI/UX and are painful to
+use and look at.
+
+Simply put: I saw a market opportunity to fill my need and others like it, and
+have already recieved positive feedback from real paying users that validate
+this hole in the market.
+
+<div class="right pad10">
+  <img src="/images/posts/2015/countism/android-4-four.png" width="300" alt="Countism for Android" />
+</div>
+
+## How Can I Get Countism?
+
+Glad you asked! You can head over to the [**Countism
+website**](http://countism.com) to find the links to the iOS App Store and Google
+Play for Android devices.
+
+## How Did You Make Countism?
+
+Good question. There are many development tools out there for building mobile
+apps, but I chose [Appcelerator Titanium](http://www.appcelerator.com/) for
+Countism because it was full-featured and allowed me to target both iOS and
+Android with a single JavaScript codebase. I was also already very familiar and
+comfortable with it, as I have built and released multiple other mobile apps
+with it.
+
+I gave [React Native](https://facebook.github.io/react-native/) a try early in
+development, but it lacked too many features that I needed for an app like
+Countism. Namely, it lacked: Table Views and SQLite. There are some 3rd party
+components for these, but they were not complete at the time, and Android
+support for these is still a question as of the time of writing. I will
+probably build another app with React Native at a later time, but it needs a
+lot more maturity first.
+
